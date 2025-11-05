@@ -1,0 +1,1 @@
+{"name":"My PlayCanvas PWA","short_name":"PlayCanvas PWA","description":"A Progressive Web App using PlayCanvas","start_url":"./","display":"standalone","background_color":"#ffffff","theme_color":"#000000","lang":"en","scope":"./","icons":[{"src":"super-4d.png","sizes":"256x256","type":"image/png","purpose":"any maskable"}]}

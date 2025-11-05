@@ -1,0 +1,59 @@
+{
+  "params": {
+  },
+  "xrCamera": {
+    "fov": 50,
+    "position": [
+      -0.6, 0, -0.3
+    ],
+    "target": [
+      0.3, 0, 0
+    ],
+    "startAnim": "animTrack",
+    "animTrack": "cameraAnim"
+  },
+  "camera": {
+    "fov": 50,
+    "position": [
+      -1.9825166464, 1.1705358028, -0.7869514227
+    ],
+    "target": [
+      -1.0478913800, 0.9871664944, -0.4822362965
+    ],
+    "startAnim": "animTrack",
+    "animTrack": "cameraAnim"
+  },
+  "background": {
+    "color": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "animTracks": [
+    {
+      "name": "cameraAnim",
+      "duration": 5,
+      "frameRate": 60,
+      "target": "camera",
+      "loopMode": "repeat",
+      "interpolation": "spline",
+      "keyframes": {
+        "times": [
+          0,
+          3
+        ],
+        "values": {
+          "position": [
+            -2.0703489780, 1.5210900307, -0.4371632040,
+            -1.8814798594, 0.7672801018, -1.1893260479
+          ],
+          "target": [
+            -1.1248539468, 1.2088148522, -0.3448411652,
+            -1.0310484516, 0.7462613539, -0.6636601531
+          ]
+        }
+      }
+    }
+  ]
+}
