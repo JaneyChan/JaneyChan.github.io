@@ -1,34 +1,32 @@
 {
   "name": "4D Video Player",
-  "short_name": "Super4D",
-  "description": "Super4D is an advanced browser-based viewer for 4D Gaussian Splats.",
-  "display": "fullscreen",
-  "start_url": "./",
-  "scope": "./",
+  "short_name": "4DV.ai",
+  "description": "At 4DV.ai, we are working on 4D video creation, playing and editing tools based on Gaussian Splatting. We envision 4D video to be the future of visual media and ultimate medium for immersive storytelling.",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
   "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "natural",
+  "lang": "en-US",
+  "dir": "ltr",
   "icons": [
     {
-      "src": "./super-4d.svg",
+      "src": "./super4d-256.png",
       "sizes": "192x192",
-      "type": "image/svg+xml"
+      "type": "image/png"
     },
     {
-      "src": "./super-4d.svg",
+      "src": "./super4d-512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml"
+      "type": "image/png"
     }
   ],
   "screenshots": [
     {
-      "src": "./super-4d.svg",
-      "type": "image/svg+xml",
-      "sizes": "2160x3840",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "./super-4d.svg",
-      "type": "image/svg+xml",
-      "sizes": "3840x2160",
+      "src": "./super-4d-screenshot.png",
+      "type": "image/png",
+      "sizes": "1920x1080",
       "form_factor": "wide"
     }
   ],
@@ -36,6 +34,12 @@
     {
       "action": "./",
       "accept": {
+        "application/octet-stream": [
+          ".ply",
+          ".plys",
+          ".4dv",
+          ".gsd"
+        ],
         "application/ply": [
           ".ply"
         ]
