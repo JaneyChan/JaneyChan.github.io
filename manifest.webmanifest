@@ -1,1 +1,1 @@
-{"name":"@4dvai/viewer","short_name":"@4dvai/viewer","description":"Viewer for 4D gaussian splats","start_url":"/","display":"standalone","background_color":"#ffffff","theme_color":"#42b883","lang":"en","scope":"/"}
+{"name":"@4DV.ai/viewer","short_name":"@4DV.ai/viewer","description":"We are working on 4D video creation, playing and editing tools based on Gaussian Splatting.","start_url":"/","display":"standalone","background_color":"#ffffff","theme_color":"#42b883","lang":"en","scope":"/"}
