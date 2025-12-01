@@ -18202,826 +18202,827 @@ ${RF.toString()}
 )()
 
 `].join(`
-`),i=new Blob([s],{type:"application/javascript"}),r=URL.createObjectURL(i),a=Math.max(1,Math.min(16,c.numWorkers||h0)),n=[];for(let o=0;o<a;++o){const h=new Worker(r);h.postMessage({type:"init",module:e}),n.push(h)}nh.init(n)}),!0)},BF=(c,t)=>kF()?(nh.enqueueJob(c,t),!0):!1;class UF{constructor(){l(this,"gltf");l(this,"nodes");l(this,"scenes");l(this,"animations");l(this,"textures");l(this,"materials");l(this,"variants");l(this,"meshVariants");l(this,"meshDefaultMaterials");l(this,"renders");l(this,"skins");l(this,"lights");l(this,"cameras");l(this,"nodeInstancingMap")}destroy(){this.renders&&this.renders.forEach(t=>{t.meshes=null})}}const mx=c=>/^data:[^\n\r,\u2028\u2029]*,.*$/i.test(c),zF=c=>c.substring(c.indexOf(":")+1,c.indexOf(";")),bl=c=>{switch(c){case"SCALAR":return 1;case"VEC2":return 2;case"VEC3":return 3;case"VEC4":return 4;case"MAT2":return 4;case"MAT3":return 9;case"MAT4":return 16;default:return 3}},Id=c=>{switch(c){case 5120:return ud;case 5121:return ua;case 5122:return pd;case 5123:return Ol;case 5124:return _S;case 5125:return rl;case 5126:return Ue;default:return 0}},VF=c=>{switch(c){case 5120:return 1;case 5121:return 1;case 5122:return 2;case 5123:return 2;case 5124:return 4;case 5125:return 4;case 5126:return 4;default:return 0}},GF=c=>{switch(c){case 5120:return Int8Array;case 5121:return Uint8Array;case 5122:return Int16Array;case 5123:return Uint16Array;case 5124:return Int32Array;case 5125:return Uint32Array;case 5126:return Float32Array;default:return null}},Uh={POSITION:Ee,NORMAL:ms,TANGENT:Si,COLOR_0:Ht,JOINTS_0:ds,WEIGHTS_0:_i,TEXCOORD_0:es,TEXCOORD_1:La,TEXCOORD_2:Pl,TEXCOORD_3:Dl,TEXCOORD_4:Ml,TEXCOORD_5:Ll,TEXCOORD_6:Il,TEXCOORD_7:Rl},d0={[Ee]:0,[ms]:1,[Si]:2,[Ht]:3,[ds]:4,[_i]:5,[es]:6,[La]:7,[Pl]:8,[Dl]:9,[Ml]:10,[Ll]:11,[Il]:12,[Rl]:13},HF=c=>{switch(c){case ud:return t=>Math.max(t/127,-1);case ua:return t=>t/255;case pd:return t=>Math.max(t/32767,-1);case Ol:return t=>t/65535;default:return t=>t}},Gu=(c,t,e)=>{const s=HF(e),i=t.length;for(let r=0;r<i;++r)c[r]=s(t[r]);return c},Sa=(c,t,e=!1)=>{const s=bl(c.type),i=GF(c.componentType);if(!i)return null;let r;if(c.sparse){const a=c.sparse,n={count:a.count,type:"SCALAR"},o=Sa(Object.assign(n,a.indices),t,!0),h={count:a.count,type:c.type,componentType:c.componentType},d=Sa(Object.assign(h,a.values),t,!0);if(c.hasOwnProperty("bufferView")){const f={bufferView:c.bufferView,byteOffset:c.byteOffset,componentType:c.componentType,count:c.count,type:c.type};r=Sa(f,t,!0).slice()}else r=new i(c.count*s);for(let f=0;f<a.count;++f){const u=o[f];for(let p=0;p<s;++p)r[u*s+p]=d[f*s+p]}}else if(c.hasOwnProperty("bufferView")){const a=t[c.bufferView];if(e&&a.hasOwnProperty("byteStride")){const n=s*i.BYTES_PER_ELEMENT,o=new ArrayBuffer(c.count*n),h=new Uint8Array(o);let d=0;for(let f=0;f<c.count;++f){let u=(c.byteOffset||0)+f*a.byteStride;for(let p=0;p<n;++p)h[d++]=a[u++]}r=new i(o)}else r=new i(a.buffer,a.byteOffset+(c.byteOffset||0),c.count*s)}else r=new i(c.count*s);return r},Rn=(c,t)=>{const e=Sa(c,t,!0);if(e instanceof Float32Array||!c.normalized)return e;const s=new Float32Array(e.length);return Gu(s,e,Id(c.componentType)),s},Hu=c=>{let t=c.min,e=c.max;if(!t||!e)return null;if(c.normalized){const s=Id(c.componentType);t=Gu([],t,s),e=Gu([],e,s)}return new De(new E((e[0]+t[0])*.5,(e[1]+t[1])*.5,(e[2]+t[2])*.5),new E((e[0]-t[0])*.5,(e[1]-t[1])*.5,(e[2]-t[2])*.5))},_x=c=>{if(!c.hasOwnProperty("mode"))return $s;switch(c.mode){case 0:return dd;case 1:return fd;case 2:return hS;case 3:return dS;case 4:return $s;case 5:return Ar;case 6:return fa;default:return $s}},WF=c=>{const t=new Uint16Array(c);for(let e=0;e<c;e++)t[e]=e;return t},$F=(c,t)=>{const e=c[Ee];if(!e||e.components!==3)return;let s;if(e.size!==e.stride){const n=e.stride/zo[e.type],o=new Pn[e.type](e.buffer,e.offset,e.count*n);s=new Pn[e.type](e.count*3);for(let h=0;h<e.count;++h)s[h*3+0]=o[h*n+0],s[h*3+1]=o[h*n+1],s[h*3+2]=o[h*n+2]}else s=new Pn[e.type](e.buffer,e.offset,e.count*3);const i=e.count;t||(t=WF(i));const r=Ev(s,t),a=new Float32Array(r.length);a.set(r),c[ms]={buffer:a.buffer,size:12,offset:0,stride:12,count:i,components:3,type:Ue}},XF=c=>{const t=s=>{const i=[];for(let r=0;r<s._levels.length;++r){let a=[];if(s.cubemap)for(let n=0;n<6;++n)a.push(s._levels[r][n]);else a=s._levels[r];i.push(a)}return i},e=new de(c.device,c);return e._levels=t(c),e},qF=c=>{const t=new he(`${c.name}_clone`,c.type,c.file,c.data,c.options);return t.loaded=!0,t.resource=XF(c.resource),c.registry.add(t),t},jF=(c,t)=>{const e=t[Ee];if(!e)return null;const s=e.count,i=[];for(const S in t)if(t.hasOwnProperty(S)){const x={semantic:S,components:t[S].components,type:t[S].type,normalize:!!t[S].normalize};Nt.isElementValid(c,x)||x.components++,i.push(x)}i.sort((S,x)=>d0[S.semantic]-d0[x.semantic]);let r,a,n,o,h,d;const f=new Nt(c,i);let u=!0;for(r=0;r<f.elements.length;++r)if(h=f.elements[r],o=t[h.name],d=o.offset-e.offset,o.buffer!==e.buffer||o.stride!==h.stride||o.size!==h.size||d!==h.offset){u=!1;break}const p=new Ds(c,f,s),m=p.lock(),_=new Uint32Array(m);let g;if(u)g=new Uint32Array(e.buffer,e.offset,s*p.format.size/4),_.set(g);else{let S,x;for(r=0;r<p.format.elements.length;++r){h=p.format.elements[r],S=h.stride/4,o=t[h.name],x=o.stride/4,g=new Uint32Array(o.buffer,o.offset,(o.count-1)*x+(o.size+3)/4);let b=0,y=h.offset/4;const w=Math.floor((o.size+3)/4);for(a=0;a<s;++a){for(n=0;n<w;++n)_[y+n]=g[b+n];b+=x,y+=S}}}return p.unlock(),p},YF=(c,t,e,s,i,r)=>{const a={},n=[];for(const d in t)t.hasOwnProperty(d)&&Uh.hasOwnProperty(d)&&(a[d]=t[d],n.push(`${d}:${t[d]}`));n.sort();const o=n.join();let h=r[o];if(!h){const d={};for(const f in a){const u=s[t[f]],p=Sa(u,i),m=i[u.bufferView],_=Uh[f],g=bl(u.type)*VF(u.componentType),S=m&&m.hasOwnProperty("byteStride")?m.byteStride:g;d[_]={buffer:p.buffer,size:g,offset:p.byteOffset,stride:S,count:u.count,components:bl(u.type),type:Id(u.componentType),normalize:u.normalized}}d.hasOwnProperty(ms)||$F(d,e),h=jF(c,d),r[o]=h}return h},KF=(c,t,e,s,i,r)=>{let a,n,o;const h=t.joints,d=h.length,f=[];if(t.hasOwnProperty("inverseBindMatrices")){const _=t.inverseBindMatrices,g=Sa(e[_],s,!0),S=[];for(a=0;a<d;a++){for(n=0;n<16;n++)S[n]=g[a*16+n];o=new ee,o.set(S),f.push(o)}}else for(a=0;a<d;a++)o=new ee,f.push(o);const u=[];for(a=0;a<d;a++)u[a]=i[h[a]].name;const p=u.join("#");let m=r.get(p);return m||(m=new wv(c,f,u),r.set(p,m)),m},ZF=(c,t,e,s,i,r,a)=>{var h;const n=new ze(c);n.aabb=Hu(e[t.attributes.POSITION]);const o=[];for(const[d,f]of Object.entries(t.attributes)){const u=e[f],p=Uh[d],m=Id(u.componentType);o.push({semantic:p,components:bl(u.type),type:m,normalize:u.normalized??(p===Ht&&(m===ua||m===Ol))})}if(a.push(new Promise((d,f)=>{const u=t.extensions.KHR_draco_mesh_compression;BF(s[u.bufferView].slice().buffer,(p,m)=>{var _;if(p)console.log(p),f(p);else{const g={};for(const[C,T]of Object.entries(u.attributes))g[Uh[C]]=m.attributes.indexOf(T);o.sort((C,T)=>g[C.semantic]-g[T.semantic]),(_=t.attributes)!=null&&_.NORMAL||o.splice(1,0,{semantic:"NORMAL",components:3,type:Ue});const S=new Nt(c,o),x=m.vertices.byteLength/S.size,b=x<=65535?ji:wr,y=m.indices.byteLength/(x<=65535?2:4);v.call(()=>{x!==e[t.attributes.POSITION].count&&v.warn("mesh has invalid vertex count"),y!==e[t.indices].count&&v.warn("mesh has invalid index count")});const w=new Ds(c,S,x,{data:m.vertices}),A=new Cr(c,b,y,us,m.indices);n.vertexBuffer=w,n.indexBuffer[0]=A,n.primitive[0].type=_x(t),n.primitive[0].base=0,n.primitive[0].count=A?y:x,n.primitive[0].indexed=!!A,d()}})})),(h=t==null?void 0:t.extensions)!=null&&h.KHR_materials_variants){const d=t.extensions.KHR_materials_variants,f={};d.mappings.forEach(u=>{u.variants.forEach(p=>{f[p]=u.material})}),i[n.id]=f}return r[n.id]=t.material,n},QF=(c,t,e,s,i,r,a,n,o)=>{const h=[];return t.primitives.forEach(d=>{var f;if((f=d.extensions)!=null&&f.KHR_draco_mesh_compression)h.push(ZF(c,d,e,s,r,a,o));else{let u=d.hasOwnProperty("indices")?Sa(e[d.indices],s,!0):null;const p=YF(c,d.attributes,u,e,s,i),m=_x(d),_=new ze(c);if(_.vertexBuffer=p,_.primitive[0].type=m,_.primitive[0].base=0,_.primitive[0].indexed=u!==null,u!==null){let S;u instanceof Uint8Array?S=$f:u instanceof Uint16Array?S=ji:S=wr,S===$f&&c.isWebGPU&&(S=ji,u=new Uint16Array(u));const x=new Cr(c,S,u.length,us,u);_.indexBuffer[0]=x,_.primitive[0].count=u.length}else _.primitive[0].count=p.numVertices;if(d.hasOwnProperty("extensions")&&d.extensions.hasOwnProperty("KHR_materials_variants")){const S=d.extensions.KHR_materials_variants,x={};S.mappings.forEach(b=>{b.variants.forEach(y=>{x[y]=b.material})}),r[_.id]=x}a[_.id]=d.material;let g=e[d.attributes.POSITION];if(_.aabb=Hu(g),d.hasOwnProperty("targets")){const S=[];d.targets.forEach((x,b)=>{const y={};x.hasOwnProperty("POSITION")&&(g=e[x.POSITION],y.deltaPositions=Rn(g,s),y.aabb=Hu(g)),x.hasOwnProperty("NORMAL")&&(g=e[x.NORMAL],y.deltaNormals=Rn(g,s)),t.hasOwnProperty("extras")&&t.extras.hasOwnProperty("targetNames")?y.name=t.extras.targetNames[b]:y.name=b.toString(10),t.hasOwnProperty("weights")&&(y.defaultWeight=t.weights[b]),y.preserveData=n.morphPreserveData,S.push(new Ld(y))}),_.morph=new _m(S,c,{preferHighPrecision:n.morphPreferHighPrecision})}h.push(_)}}),h},Ct=(c,t,e)=>{var o;let s;const i=c.texCoord;if(i)for(s=0;s<e.length;++s)t[`${e[s]}MapUv`]=i;const r=[0,0],a=[1,1],n=(o=c.extensions)==null?void 0:o.KHR_texture_transform;if(n){const h=n.offset||r,d=n.scale||a,f=n.rotation?-n.rotation*$.RAD_TO_DEG:0,u=new K(d[0],d[1]),p=new K(h[0],1-d[1]-h[1]);for(s=0;s<e.length;++s)t[`${e[s]}MapTiling`]=u,t[`${e[s]}MapOffset`]=p,t[`${e[s]}MapRotation`]=f}},JF=(c,t,e)=>{let s,i;if(c.hasOwnProperty("diffuseFactor")?(s=c.diffuseFactor,t.diffuse.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2)),t.opacity=s[3]):(t.diffuse.set(1,1,1),t.opacity=1),c.hasOwnProperty("diffuseTexture")){const r=c.diffuseTexture;i=e[r.index],t.diffuseMap=i,t.diffuseMapChannel="rgb",t.opacityMap=i,t.opacityMapChannel="a",Ct(r,t,["diffuse","opacity"])}if(t.useMetalness=!1,c.hasOwnProperty("specularFactor")?(s=c.specularFactor,t.specular.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2))):t.specular.set(1,1,1),c.hasOwnProperty("glossinessFactor")?t.gloss=c.glossinessFactor:t.gloss=1,c.hasOwnProperty("specularGlossinessTexture")){const r=c.specularGlossinessTexture;t.specularMap=t.glossMap=e[r.index],t.specularMapChannel="rgb",t.glossMapChannel="a",Ct(r,t,["gloss","metalness"])}},eN=(c,t,e)=>{if(c.hasOwnProperty("clearcoatFactor")?t.clearCoat=c.clearcoatFactor*.25:t.clearCoat=0,c.hasOwnProperty("clearcoatTexture")){const s=c.clearcoatTexture;t.clearCoatMap=e[s.index],t.clearCoatMapChannel="r",Ct(s,t,["clearCoat"])}if(c.hasOwnProperty("clearcoatRoughnessFactor")?t.clearCoatGloss=c.clearcoatRoughnessFactor:t.clearCoatGloss=0,c.hasOwnProperty("clearcoatRoughnessTexture")){const s=c.clearcoatRoughnessTexture;t.clearCoatGlossMap=e[s.index],t.clearCoatGlossMapChannel="g",Ct(s,t,["clearCoatGloss"])}if(c.hasOwnProperty("clearcoatNormalTexture")){const s=c.clearcoatNormalTexture;t.clearCoatNormalMap=e[s.index],Ct(s,t,["clearCoatNormal"]),s.hasOwnProperty("scale")?t.clearCoatBumpiness=s.scale:t.clearCoatBumpiness=1}t.clearCoatGlossInvert=!0},tN=(c,t,e)=>{t.useLighting=!1,t.emissive.copy(t.diffuse),t.emissiveMap=t.diffuseMap,t.emissiveMapUv=t.diffuseMapUv,t.emissiveMapTiling.copy(t.diffuseMapTiling),t.emissiveMapOffset.copy(t.diffuseMapOffset),t.emissiveMapRotation=t.diffuseMapRotation,t.emissiveMapChannel=t.diffuseMapChannel,t.emissiveVertexColor=t.diffuseVertexColor,t.emissiveVertexColorChannel=t.diffuseVertexColorChannel,t.useLighting=!1,t.useSkybox=!1,t.diffuse.set(1,1,1),t.diffuseMap=null,t.diffuseVertexColor=!1},sN=(c,t,e)=>{if(t.useMetalnessSpecularColor=!0,c.hasOwnProperty("specularColorTexture")&&(t.specularMap=e[c.specularColorTexture.index],t.specularMapChannel="rgb",Ct(c.specularColorTexture,t,["specular"])),c.hasOwnProperty("specularColorFactor")){const s=c.specularColorFactor;t.specular.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2))}else t.specular.set(1,1,1);c.hasOwnProperty("specularFactor")?t.specularityFactor=c.specularFactor:t.specularityFactor=1,c.hasOwnProperty("specularTexture")&&(t.specularityFactorMapChannel="a",t.specularityFactorMap=e[c.specularTexture.index],Ct(c.specularTexture,t,["specularityFactor"]))},iN=(c,t,e)=>{c.hasOwnProperty("ior")&&(t.refractionIndex=1/c.ior)},rN=(c,t,e)=>{c.hasOwnProperty("dispersion")&&(t.dispersion=c.dispersion)},aN=(c,t,e)=>{t.blendType=js,t.useDynamicRefraction=!0,c.hasOwnProperty("transmissionFactor")&&(t.refraction=c.transmissionFactor),c.hasOwnProperty("transmissionTexture")&&(t.refractionMapChannel="r",t.refractionMap=e[c.transmissionTexture.index],Ct(c.transmissionTexture,t,["refraction"]))},nN=(c,t,e)=>{if(t.useSheen=!0,c.hasOwnProperty("sheenColorFactor")){const s=c.sheenColorFactor;t.sheen.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2))}else t.sheen.set(1,1,1);c.hasOwnProperty("sheenColorTexture")&&(t.sheenMap=e[c.sheenColorTexture.index],Ct(c.sheenColorTexture,t,["sheen"])),t.sheenGloss=c.hasOwnProperty("sheenRoughnessFactor")?c.sheenRoughnessFactor:0,c.hasOwnProperty("sheenRoughnessTexture")&&(t.sheenGlossMap=e[c.sheenRoughnessTexture.index],t.sheenGlossMapChannel="a",Ct(c.sheenRoughnessTexture,t,["sheenGloss"])),t.sheenGlossInvert=!0},oN=(c,t,e)=>{if(t.blendType=js,t.useDynamicRefraction=!0,c.hasOwnProperty("thicknessFactor")&&(t.thickness=c.thicknessFactor),c.hasOwnProperty("thicknessTexture")&&(t.thicknessMap=e[c.thicknessTexture.index],t.thicknessMapChannel="g",Ct(c.thicknessTexture,t,["thickness"])),c.hasOwnProperty("attenuationDistance")&&(t.attenuationDistance=c.attenuationDistance),c.hasOwnProperty("attenuationColor")){const s=c.attenuationColor;t.attenuation.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2))}},lN=(c,t,e)=>{c.hasOwnProperty("emissiveStrength")&&(t.emissiveIntensity=c.emissiveStrength)},cN=(c,t,e)=>{t.useIridescence=!0,c.hasOwnProperty("iridescenceFactor")&&(t.iridescence=c.iridescenceFactor),c.hasOwnProperty("iridescenceTexture")&&(t.iridescenceMapChannel="r",t.iridescenceMap=e[c.iridescenceTexture.index],Ct(c.iridescenceTexture,t,["iridescence"])),c.hasOwnProperty("iridescenceIor")&&(t.iridescenceRefractionIndex=c.iridescenceIor),c.hasOwnProperty("iridescenceThicknessMinimum")&&(t.iridescenceThicknessMin=c.iridescenceThicknessMinimum),c.hasOwnProperty("iridescenceThicknessMaximum")&&(t.iridescenceThicknessMax=c.iridescenceThicknessMaximum),c.hasOwnProperty("iridescenceThicknessTexture")&&(t.iridescenceThicknessMapChannel="g",t.iridescenceThicknessMap=e[c.iridescenceThicknessTexture.index],Ct(c.iridescenceThicknessTexture,t,["iridescenceThickness"]))},hN=(c,t,e)=>{if(t.enableGGXSpecular=!0,c.hasOwnProperty("anisotropyStrength")?t.anisotropyIntensity=c.anisotropyStrength:t.anisotropyIntensity=0,c.hasOwnProperty("anisotropyTexture")){const s=c.anisotropyTexture;t.anisotropyMap=e[s.index],Ct(s,t,["anisotropy"])}c.hasOwnProperty("anisotropyRotation")?t.anisotropyRotation=c.anisotropyRotation*$.RAD_TO_DEG:t.anisotropyRotation=0},gx=(c,t)=>{const e=new kt;c.hasOwnProperty("name")&&(e.name=c.name),e.occludeSpecular=Cd,e.diffuseVertexColor=!0,e.specularTint=!0,e.specularVertexColor=!0,e.specular.set(1,1,1),e.gloss=1,e.glossInvert=!0,e.useMetalness=!0;let s,i;if(c.hasOwnProperty("pbrMetallicRoughness")){const a=c.pbrMetallicRoughness;if(a.hasOwnProperty("baseColorFactor")&&(s=a.baseColorFactor,e.diffuse.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2)),e.opacity=s[3]),a.hasOwnProperty("baseColorTexture")){const n=a.baseColorTexture;i=t[n.index],e.diffuseMap=i,e.diffuseMapChannel="rgb",e.opacityMap=i,e.opacityMapChannel="a",Ct(n,e,["diffuse","opacity"])}if(a.hasOwnProperty("metallicFactor")&&(e.metalness=a.metallicFactor),a.hasOwnProperty("roughnessFactor")&&(e.gloss=a.roughnessFactor),a.hasOwnProperty("metallicRoughnessTexture")){const n=a.metallicRoughnessTexture;e.metalnessMap=e.glossMap=t[n.index],e.metalnessMapChannel="b",e.glossMapChannel="g",Ct(n,e,["gloss","metalness"])}}if(c.hasOwnProperty("normalTexture")){const a=c.normalTexture;e.normalMap=t[a.index],Ct(a,e,["normal"]),a.hasOwnProperty("scale")&&(e.bumpiness=a.scale)}if(c.hasOwnProperty("occlusionTexture")){const a=c.occlusionTexture;e.aoMap=t[a.index],e.aoMapChannel="r",Ct(a,e,["ao"])}if(c.hasOwnProperty("emissiveFactor")&&(s=c.emissiveFactor,e.emissive.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2))),c.hasOwnProperty("emissiveTexture")){const a=c.emissiveTexture;e.emissiveMap=t[a.index],Ct(a,e,["emissive"])}if(c.hasOwnProperty("alphaMode"))switch(c.alphaMode){case"MASK":e.blendType=ws,c.hasOwnProperty("alphaCutoff")?e.alphaTest=c.alphaCutoff:e.alphaTest=.5;break;case"BLEND":e.blendType=js,e.depthWrite=!1;break;default:case"OPAQUE":e.blendType=ws;break}else e.blendType=ws;c.hasOwnProperty("doubleSided")?(e.twoSidedLighting=c.doubleSided,e.cull=c.doubleSided?bt:va):(e.twoSidedLighting=!1,e.cull=va);const r={KHR_materials_clearcoat:eN,KHR_materials_emissive_strength:lN,KHR_materials_ior:iN,KHR_materials_dispersion:rN,KHR_materials_iridescence:cN,KHR_materials_pbrSpecularGlossiness:JF,KHR_materials_sheen:nN,KHR_materials_specular:sN,KHR_materials_transmission:aN,KHR_materials_unlit:tN,KHR_materials_volume:oN,KHR_materials_anisotropy:hN};if(c.hasOwnProperty("extensions"))for(const a in c.extensions){const n=r[a];n!==void 0&&n(c.extensions[a],e,t)}return e.update(),e},dN=(c,t,e,s,i,r,a)=>{const n=T=>new Bh(bl(T.type),Rn(T,s)),o={STEP:Rv,LINEAR:Su,CUBICSPLINE:vu},h={},d={},f={};let u=1,p;for(p=0;p<c.samplers.length;++p){const T=c.samplers[p];h.hasOwnProperty(T.input)||(h[T.input]=n(e[T.input])),d.hasOwnProperty(T.output)||(d[T.output]=n(e[T.output]));const P=T.hasOwnProperty("interpolation")&&o.hasOwnProperty(T.interpolation)?o[T.interpolation]:Su,L={paths:[],input:T.input,output:T.output,interpolation:P};f[p]=L}const m=[],_={translation:"localPosition",rotation:"localRotation",scale:"localScale"},g=T=>{const P=[];for(;T;)P.unshift(T.name),T=T.parent;return P},S=(T,P,L)=>{const O=d[T.output];if(!O){v.warn(`glb-parser: No output data is available for the morph target curve (${L}/graph/weights). Skipping.`);return}let N;if(r&&r[P.mesh]){const U=r[P.mesh];U.hasOwnProperty("extras")&&U.extras.hasOwnProperty("targetNames")&&(N=U.extras.targetNames)}const B=O.data,G=B.length/h[T.input].data.length,j=B.length/G,H=j*4,I=new ArrayBuffer(H*G);for(let U=0;U<G;U++){const V=new Float32Array(I,H*U,j);for(let F=0;F<j;F++)V[F]=B[F*G+U];const R=new Bh(1,V),M=N!=null&&N[U]?`name.${N[U]}`:U;d[-u]=R;const D={paths:[{entityPath:L,component:"graph",propertyPath:[`weight.${M}`]}],input:T.input,output:-u,interpolation:T.interpolation};u++,f[`morphCurve-${p}-${U}`]=D}};for(p=0;p<c.channels.length;++p){const T=c.channels[p],P=T.target,L=f[T.sampler],O=i[P.node],N=a[P.node],B=g(O);P.path.startsWith("weights")?(S(L,N,B),f[T.sampler].morphCurve=!0):L.paths.push({entityPath:B,component:"graph",propertyPath:[_[P.path]]})}const x=[],b=[],y=[];for(const T in h)x.push(h[T]),h[T]=x.length-1;for(const T in d)b.push(d[T]),d[T]=b.length-1;for(const T in f){const P=f[T];P.morphCurve||(y.push(new px(P.paths,h[P.input],d[P.output],P.interpolation)),P.paths.length>0&&P.paths[0].propertyPath[0]==="localRotation"&&P.interpolation!==vu&&m.push(y[y.length-1].output))}m.sort();let w=null,A;for(p=0;p<m.length;++p){const T=m[p];if(p===0||T!==w){if(A=b[T],A.components===4){const P=A.data,L=P.length-4;for(let O=0;O<L;O+=4)P[O+0]*P[O+4]+P[O+1]*P[O+5]+P[O+2]*P[O+6]+P[O+3]*P[O+7]<0&&(P[O+4]*=-1,P[O+5]*=-1,P[O+6]*=-1,P[O+7]*=-1)}w=T}}let C=0;for(p=0;p<x.length;p++)A=x[p]._data,C=Math.max(C,A.length===0?0:A[A.length-1]);return new Qi(c.hasOwnProperty("name")?c.name:`animation_${t}`,C,x,b,y)},Rc=new ee,rn=new E,fN=(c,t,e)=>{const s=new Ce;if(c.hasOwnProperty("name")&&c.name.length>0?s.name=c.name:s.name=`node_${t}`,c.hasOwnProperty("matrix")&&(Rc.data.set(c.matrix),Rc.getTranslation(rn),s.setLocalPosition(rn),Rc.getEulerAngles(rn),s.setLocalEulerAngles(rn),Rc.getScale(rn),s.setLocalScale(rn)),c.hasOwnProperty("rotation")){const i=c.rotation;s.setLocalRotation(i[0],i[1],i[2],i[3])}if(c.hasOwnProperty("translation")){const i=c.translation;s.setLocalPosition(i[0],i[1],i[2])}if(c.hasOwnProperty("scale")){const i=c.scale;s.setLocalScale(i[0],i[1],i[2])}return c.hasOwnProperty("extensions")&&c.extensions.EXT_mesh_gpu_instancing&&e.set(c,{ext:c.extensions.EXT_mesh_gpu_instancing}),s},uN=(c,t)=>{const e=c.type==="orthographic"?Dn:ai,s=e===Dn?c.orthographic:c.perspective,i={enabled:!1,projection:e,nearClip:s.znear,aspectRatioMode:dm};s.zfar&&(i.farClip=s.zfar),e===Dn?(i.orthoHeight=.5*s.ymag,s.ymag&&(i.aspectRatioMode=lu,i.aspectRatio=s.xmag/s.ymag)):(i.fov=s.yfov*$.RAD_TO_DEG,s.aspectRatio&&(i.aspectRatioMode=lu,i.aspectRatio=s.aspectRatio));const r=new lt(c.name);return r.addComponent("camera",i),r},pN=(c,t)=>{const e={enabled:!1,type:c.type==="point"?"omni":c.type,color:c.hasOwnProperty("color")?new J(c.color):J.WHITE,range:c.hasOwnProperty("range")?c.range:9999,falloffMode:qS,intensity:c.hasOwnProperty("intensity")?$.clamp(c.intensity,0,2):1};c.hasOwnProperty("spot")&&(e.innerConeAngle=c.spot.hasOwnProperty("innerConeAngle")?c.spot.innerConeAngle*$.RAD_TO_DEG:0,e.outerConeAngle=c.spot.hasOwnProperty("outerConeAngle")?c.spot.outerConeAngle*$.RAD_TO_DEG:Math.PI/4),c.hasOwnProperty("intensity")&&(e.luminance=c.intensity*Sl.getLightUnitConversion(fu[e.type],e.outerConeAngle,e.innerConeAngle));const s=new lt(t.name);return s.rotateLocal(90,0,0),s.addComponent("light",e),s},mN=(c,t,e,s)=>{if(!t.hasOwnProperty("skins")||t.skins.length===0)return[];const i=new Map;return t.skins.map(r=>KF(c,r,t.accessors,s,e,i))},_N=(c,t,e,s)=>{var d,f,u;const i={},r={},a={},n=[];return{meshes:!s.skipMeshes&&((d=t==null?void 0:t.meshes)==null?void 0:d.length)&&((f=t==null?void 0:t.accessors)==null?void 0:f.length)&&((u=t==null?void 0:t.bufferViews)==null?void 0:u.length)?t.meshes.map(p=>QF(c,p,t.accessors,e,i,r,a,s,n)):[],meshVariants:r,meshDefaultMaterials:a,promises:n}},gN=(c,t,e)=>{var a,n,o;if(!c.hasOwnProperty("materials")||c.materials.length===0)return[];const s=(a=e==null?void 0:e.material)==null?void 0:a.preprocess,i=((n=e==null?void 0:e.material)==null?void 0:n.process)??gx,r=(o=e==null?void 0:e.material)==null?void 0:o.postprocess;return c.materials.map(h=>{s&&s(h);const d=i(h,t);return r&&r(h,d),d})},SN=c=>{if(!c.hasOwnProperty("extensions")||!c.extensions.hasOwnProperty("KHR_materials_variants"))return null;const t=c.extensions.KHR_materials_variants.variants,e={};for(let s=0;s<t.length;s++)e[t[s].name]=s;return e},vN=(c,t,e,s)=>{var a,n;if(!c.hasOwnProperty("animations")||c.animations.length===0)return[];const i=(a=s==null?void 0:s.animation)==null?void 0:a.preprocess,r=(n=s==null?void 0:s.animation)==null?void 0:n.postprocess;return c.animations.map((o,h)=>{i&&i(o);const d=dN(o,h,c.accessors,e,t,c.meshes,c.nodes);return r&&r(o,d),d})},xN=(c,t,e,s)=>{const i=t.accessors;e.forEach((r,a)=>{const n=r.ext.attributes;let o;if(n.hasOwnProperty("TRANSLATION")){const u=i[n.TRANSLATION];o=Rn(u,s)}let h;if(n.hasOwnProperty("ROTATION")){const u=i[n.ROTATION];h=Rn(u,s)}let d;if(n.hasOwnProperty("SCALE")){const u=i[n.SCALE];d=Rn(u,s)}const f=(o?o.length/3:0)||(h?h.length/4:0)||(d?d.length/3:0);if(f){const u=new Float32Array(f*16),p=new E,m=new oe,_=new E(1,1,1),g=new ee;let S=0;for(let x=0;x<f;x++){const b=x*3;if(o&&p.set(o[b],o[b+1],o[b+2]),h){const y=x*4;m.set(h[y],h[y+1],h[y+2],h[y+3])}d&&_.set(d[b],d[b+1],d[b+2]),g.setTRS(p,m,_);for(let y=0;y<16;y++)u[S++]=g.data[y]}r.matrices=u}})},yN=(c,t,e)=>{var n,o,h;if(!c.hasOwnProperty("nodes")||c.nodes.length===0)return[];const s=(n=t==null?void 0:t.node)==null?void 0:n.preprocess,i=((o=t==null?void 0:t.node)==null?void 0:o.process)??fN,r=(h=t==null?void 0:t.node)==null?void 0:h.postprocess,a=c.nodes.map((d,f)=>{s&&s(d);const u=i(d,f,e);return r&&r(d,u),u});for(let d=0;d<c.nodes.length;++d){const f=c.nodes[d];if(f.hasOwnProperty("children")){const u=a[d],p={};for(let m=0;m<f.children.length;++m){const _=a[f.children[m]];_.parent||(p.hasOwnProperty(_.name)?_.name+=p[_.name]++:p[_.name]=1,u.addChild(_))}}}return a},TN=(c,t)=>{var i;const e=[],s=c.scenes.length;if(s===1&&((i=c.scenes[0].nodes)==null?void 0:i.length)===1){const r=c.scenes[0].nodes[0];e.push(t[r])}else for(let r=0;r<s;r++){const a=c.scenes[r];if(a.nodes){const n=new Ce(a.name);for(let o=0;o<a.nodes.length;o++){const h=t[a.nodes[o]];n.addChild(h)}e.push(n)}}return e},bN=(c,t,e)=>{var i,r,a;let s=null;if(c.hasOwnProperty("nodes")&&c.hasOwnProperty("cameras")&&c.cameras.length>0){const n=(i=e==null?void 0:e.camera)==null?void 0:i.preprocess,o=((r=e==null?void 0:e.camera)==null?void 0:r.process)??uN,h=(a=e==null?void 0:e.camera)==null?void 0:a.postprocess;c.nodes.forEach((d,f)=>{if(d.hasOwnProperty("camera")){const u=c.cameras[d.camera];if(u){n&&n(u);const p=o(u,t[f]);h&&h(u,p),p&&(s||(s=new Map),s.set(d,p))}}})}return s},EN=(c,t,e)=>{var i,r,a;let s=null;if(c.hasOwnProperty("nodes")&&c.hasOwnProperty("extensions")&&c.extensions.hasOwnProperty("KHR_lights_punctual")&&c.extensions.KHR_lights_punctual.hasOwnProperty("lights")){const n=c.extensions.KHR_lights_punctual.lights;if(n.length){const o=(i=e==null?void 0:e.light)==null?void 0:i.preprocess,h=((r=e==null?void 0:e.light)==null?void 0:r.process)??pN,d=(a=e==null?void 0:e.light)==null?void 0:a.postprocess;c.nodes.forEach((f,u)=>{if(f.hasOwnProperty("extensions")&&f.extensions.hasOwnProperty("KHR_lights_punctual")&&f.extensions.KHR_lights_punctual.hasOwnProperty("light")){const p=f.extensions.KHR_lights_punctual.light,m=n[p];if(m){o&&o(m);const _=h(m,t[u]);d&&d(m,_),_&&(s||(s=new Map),s.set(f,_))}}})}}return s},wN=(c,t,e)=>{c.nodes.forEach(s=>{s.hasOwnProperty("mesh")&&s.hasOwnProperty("skin")&&t[s.mesh].meshes.forEach(r=>{r.skin=e[s.skin]})})},AN=async(c,t,e,s,i)=>{var P,L;const r=(P=i==null?void 0:i.global)==null?void 0:P.preprocess,a=(L=i==null?void 0:i.global)==null?void 0:L.postprocess;r&&r(t),t.asset&&t.asset.generator==="PlayCanvas"&&v.warn("glTF model may have been generated with flipped UVs. Please reconvert.");const n=new Map,o=yN(t,i,n),h=TN(t,o),d=EN(t,o,i),f=bN(t,o,i),u=SN(t),p=await Promise.all(e),{meshes:m,meshVariants:_,meshDefaultMaterials:g,promises:S}=_N(c,t,p,i),x=vN(t,o,p,i);xN(c,t,n,p);const b=await Promise.all(s),y=b.map(O=>O.resource),w=gN(t,y,i),A=mN(c,t,o,p),C=[];for(let O=0;O<m.length;O++)C[O]=new wm,C[O].meshes=m[O];wN(t,C,A);const T=new UF;return T.gltf=t,T.nodes=o,T.scenes=h,T.animations=x,T.textures=b,T.materials=w,T.variants=u,T.meshVariants=_,T.meshDefaultMaterials=g,T.renders=C,T.skins=A,T.lights=d,T.cameras=f,T.nodeInstancingMap=n,a&&a(t,T),await Promise.all(S),T},CN=(c,t)=>{const e=(i,r)=>{switch(i){case 9728:return Se;case 9729:return vt;case 9984:return Jh;case 9985:return td;case 9986:return ed;case 9987:return xa;default:return r}},s=(i,r)=>{switch(i){case 33071:return ce;case 33648:return ip;case 10497:return St;default:return r}};c&&(t=t??{},c.minFilter=e(t.minFilter,xa),c.magFilter=e(t.magFilter,vt),c.addressU=s(t.wrapS,St),c.addressV=s(t.wrapT,St))};let PN=0;const dn=c=>{var t,e,s,i;return((e=(t=c.extensions)==null?void 0:t.KHR_texture_basisu)==null?void 0:e.source)??((i=(s=c.extensions)==null?void 0:s.EXT_texture_webp)==null?void 0:i.source)??c.source},DN=(c,t,e,s,i)=>{var u,p,m;if(!c.images||c.images.length===0)return[];const r=(u=i==null?void 0:i.image)==null?void 0:u.preprocess,a=(p=i==null?void 0:i.image)==null?void 0:p.processAsync,n=(m=i==null?void 0:i.image)==null?void 0:m.postprocess,o={"image/png":"png","image/jpeg":"jpg","image/basis":"basis","image/ktx":"ktx","image/ktx2":"ktx2","image/vnd-ms.dds":"dds"},h=_=>{const g=new Set;return _.hasOwnProperty("materials")&&_.materials.forEach(S=>{if(S.hasOwnProperty("pbrMetallicRoughness")){const x=S.pbrMetallicRoughness;if(x.hasOwnProperty("baseColorTexture")){const b=_.textures[x.baseColorTexture.index];g.add(dn(b))}}if(S.hasOwnProperty("emissiveTexture")){const x=_.textures[S.emissiveTexture.index];g.add(dn(x))}if(S.hasOwnProperty("extensions")){const x=S.extensions.KHR_materials_sheen;if(x&&x.hasOwnProperty("sheenColorTexture")){const w=_.textures[x.sheenColorTexture.index];g.add(dn(w))}const b=S.extensions.KHR_materials_pbrSpecularGlossiness;if(b&&b.hasOwnProperty("specularGlossinessTexture")){const w=_.textures[b.specularGlossinessTexture.index];g.add(dn(w))}const y=S.extensions.KHR_materials_specular;if(y&&y.hasOwnProperty("specularColorTexture")){const w=_.textures[y.specularColorTexture.index];g.add(dn(w))}}}),g},d=(_,g,S,x,b,y)=>new Promise((w,A)=>{const C=T=>{const P=`${_.name||"gltf-texture"}-${PN++}`,L={url:g||P};if(T&&(L.contents=T.slice(0).buffer),x){const B=o[x];B&&(L.filename=`${L.url}.${B}`)}const O={srgb:y},N=new he(P,"texture",L,O,b);N.on("load",B=>w(B)),N.on("error",B=>A(B)),s.add(N),s.load(N)};S?S.then(T=>C(T)):C(null)}),f=h(c);return c.images.map((_,g)=>{r&&r(_);let S;return a?S=new Promise((x,b)=>{a(_,(y,w)=>{y?b(y):x(w)})}):S=new Promise(x=>{x(null)}),S=S.then(x=>{const b=f.has(g);return x||(_.hasOwnProperty("uri")?mx(_.uri)?d(_,_.uri,null,zF(_.uri),null,b):d(_,Kn.test(_.uri)?_.uri:ge.join(e,_.uri),null,null,{crossOrigin:"anonymous"},b):_.hasOwnProperty("bufferView")&&_.hasOwnProperty("mimeType")?d(_,null,t[_.bufferView],_.mimeType,null,b):Promise.reject(new Error(`Invalid image found in gltf (neither uri or bufferView found). index=${g}`)))}),n&&(S=S.then(x=>(n(_,x),x))),S})},MN=(c,t,e)=>{var n,o,h,d,f;if(!((n=c==null?void 0:c.images)!=null&&n.length)||!((o=c==null?void 0:c.textures)!=null&&o.length))return[];const s=(h=e==null?void 0:e.texture)==null?void 0:h.preprocess,i=(d=e==null?void 0:e.texture)==null?void 0:d.processAsync,r=(f=e==null?void 0:e.texture)==null?void 0:f.postprocess,a=new Set;return c.textures.map(u=>{s&&s(u);let p;return i?p=new Promise((m,_)=>{i(u,c.images,(g,S)=>{g?_(g):m(S)})}):p=new Promise(m=>{m(null)}),p=p.then(m=>{m=m??dn(u);const _=a.has(m);return a.add(m),t[m].then(g=>{const S=_?qF(g):g;return CN(S.resource,(c.samplers??[])[u.sampler]),S})}),r&&(p=p.then(m=>(r(u,m),m))),p})},LN=(c,t,e,s)=>{var n,o,h;if(!c.buffers||c.buffers.length===0)return[];const i=(n=s==null?void 0:s.buffer)==null?void 0:n.preprocess,r=(o=s==null?void 0:s.buffer)==null?void 0:o.processAsync,a=(h=s==null?void 0:s.buffer)==null?void 0:h.postprocess;return c.buffers.map((d,f)=>{i&&i(d);let u;return r?u=new Promise((p,m)=>{r(d,(_,g)=>{_?m(_):p(g)})}):u=new Promise(p=>{p(null)}),u=u.then(p=>{if(p)return p;if(d.hasOwnProperty("uri")){if(mx(d.uri)){const m=atob(d.uri.split(",")[1]),_=new Uint8Array(m.length);for(let g=0;g<m.length;g++)_[g]=m.charCodeAt(g);return _}return new Promise((m,_)=>{ot.get(Kn.test(d.uri)?d.uri:ge.join(e,d.uri),{cache:!0,responseType:"arraybuffer",retry:!1},(g,S)=>{g?_(g):m(new Uint8Array(S))})})}return t}),a&&(u=u.then(p=>(a(c.buffers[f],p),p))),u})},IN=(c,t)=>{const s=JSON.parse((i=>{if(typeof TextDecoder<"u")return new TextDecoder().decode(i);let r="";for(let a=0;a<i.length;a++)r+=String.fromCharCode(i[a]);return decodeURIComponent(escape(r))})(c));if(s.asset&&s.asset.version&&parseFloat(s.asset.version)<2){t(`Invalid gltf version. Expected version 2.0 or above but found version '${s.asset.version}'.`);return}t(null,s)},RN=(c,t)=>{const e=c instanceof ArrayBuffer?new DataView(c):new DataView(c.buffer,c.byteOffset,c.byteLength),s=e.getUint32(0,!0),i=e.getUint32(4,!0),r=e.getUint32(8,!0);if(s!==1179937895){t(`Invalid magic number found in glb header. Expected 0x46546C67, found 0x${s.toString(16)}`);return}if(i!==2){t(`Invalid version number found in glb header. Expected 2, found ${i}`);return}if(r<=0||r>e.byteLength){t(`Invalid length found in glb header. Found ${r}`);return}const a=[];let n=12;for(;n<r;){const o=e.getUint32(n,!0);n+o+8>e.byteLength&&t(`Invalid chunk length found in glb. Found ${o}`);const h=e.getUint32(n+4,!0),d=new Uint8Array(e.buffer,e.byteOffset+n+8,o);a.push({length:o,type:h,data:d}),n+=o+8}if(a.length!==1&&a.length!==2){t("Invalid number of chunks found in glb file.");return}if(a[0].type!==1313821514){t(`Invalid chunk type found in glb file. Expected 0x4E4F534A, found 0x${a[0].type.toString(16)}`);return}if(a.length>1&&a[1].type!==5130562){t(`Invalid chunk type found in glb file. Expected 0x004E4942, found 0x${a[1].type.toString(16)}`);return}t(null,{gltfChunk:a[0].data,binaryChunk:a.length===2?a[1].data:null})},ON=(c,t,e)=>{const s=()=>{const i=new Uint8Array(t);return i[0]===103&&i[1]===108&&i[2]===84&&i[3]===70};c&&c.toLowerCase().endsWith(".glb")||s()?RN(t,e):e(null,{gltfChunk:t,binaryChunk:null})},FN=(c,t,e)=>{var n,o,h,d;const s=[],i=(n=e==null?void 0:e.bufferView)==null?void 0:n.preprocess,r=(o=e==null?void 0:e.bufferView)==null?void 0:o.processAsync,a=(h=e==null?void 0:e.bufferView)==null?void 0:h.postprocess;if(!((d=c.bufferViews)!=null&&d.length))return s;for(let f=0;f<c.bufferViews.length;++f){const u=c.bufferViews[f];i&&i(u);let p;r?p=new Promise((m,_)=>{r(u,t,(g,S)=>{g?_(g):m(S)})}):p=new Promise(m=>{m(null)}),p=p.then(m=>m||t[u.buffer].then(_=>new Uint8Array(_.buffer,_.byteOffset+(u.byteOffset||0),u.byteLength))),u.hasOwnProperty("byteStride")&&(p=p.then(m=>(m.byteStride=u.byteStride,m))),a&&(p=p.then(m=>(a(u,m),m))),s.push(p)}return s};class zh{static parse(t,e,s,i,r,a,n){ON(t,s,(o,h)=>{if(o){n(o);return}IN(h.gltfChunk,(d,f)=>{if(d){n(d);return}const u=LN(f,h.binaryChunk,e,a),p=FN(f,u,a),m=DN(f,p,e,r,a),_=MN(f,m,a);AN(i,f,p,_,a).then(g=>n(null,g)).catch(g=>n(g))})})}static createDefaultMaterial(){return gx({name:"defaultGlbMaterial"},[])}}class NN extends Ze{constructor(t){super(t,"animation"),this.device=t.graphicsDevice,this.assets=t.assets}load(t,e,s){typeof t=="string"&&(t={load:t,original:t});const i={retry:this.maxRetries>0,maxRetries:this.maxRetries};(t.load.startsWith("blob:")||t.load.startsWith("data:"))&&(ge.getExtension(t.original).toLowerCase()===".glb"?i.responseType=Ms.ResponseType.ARRAY_BUFFER:i.responseType=Ms.ResponseType.JSON),ot.get(t.load,i,(r,a)=>{r?e(`Error loading animation resource: ${t.original} [${r}]`):ge.getExtension(t.original).toLowerCase()===".glb"?zh.parse("filename.glb","",a,this.device,this.assets,(s==null?void 0:s.options)??{},(n,o)=>{var h;if(n)e(n);else{const d=o.animations;if((h=s==null?void 0:s.data)!=null&&h.events)for(let f=0;f<d.length;f++)d[f].events=new kv(Object.values(s.data.events));o.destroy(),e(null,d)}}):e(null,this[`_parseAnimationV${a.animation.version}`](a))})}open(t,e,s){return e}_parseAnimationV3(t){const e=t.animation,s=new ug;s.name=e.name,s.duration=e.duration;for(let i=0;i<e.nodes.length;i++){const r=new fg,a=e.nodes[i];r._name=a.name;for(let n=0;n<a.keys.length;n++){const o=a.keys[n],h=o.time,d=o.pos,f=o.rot,u=o.scale,p=new E(d[0],d[1],d[2]),m=new oe().setFromEulerAngles(f[0],f[1],f[2]),_=new E(u[0],u[1],u[2]),g=new dg(h,p,m,_);r._keys.push(g)}s.addNode(r)}return s}_parseAnimationV4(t){const e=t.animation,s=new ug;s.name=e.name,s.duration=e.duration;for(let i=0;i<e.nodes.length;i++){const r=new fg,a=e.nodes[i];r._name=a.name;const n=a.defaults.p,o=a.defaults.r,h=a.defaults.s;for(let d=0;d<a.keys.length;d++){const f=a.keys[d],u=f.t,p=n||f.p,m=o||f.r,_=h||f.s,g=new E(p[0],p[1],p[2]),S=new oe().setFromEulerAngles(m[0],m[1],m[2]),x=new E(_[0],_[1],_[2]),b=new dg(u,g,S,x);r._keys.push(b)}s.addNode(r)}return s}}class kN extends Ze{constructor(t){super(t,"animclip")}load(t,e){typeof t=="string"&&(t={load:t,original:t});const s={retry:this.maxRetries>0,maxRetries:this.maxRetries};t.load.startsWith("blob:")&&(s.responseType=Ms.ResponseType.JSON),ot.get(t.load,s,(i,r)=>{i?e(`Error loading animation clip resource: ${t.original} [${i}]`):e(null,r)})}open(t,e){const s=e.name,i=e.duration,r=e.inputs.map(o=>new Bh(1,o)),a=e.outputs.map(o=>new Bh(o.components,o.data)),n=e.curves.map(o=>new px([o.path],o.inputIndex,o.outputIndex,o.interpolation));return new Qi(s,i,r,a,n)}}class BN extends Ze{constructor(t){super(t,"animstategraph")}load(t,e){typeof t=="string"&&(t={load:t,original:t});const s={retry:this.maxRetries>0,maxRetries:this.maxRetries};t.load.startsWith("blob:")&&(s.responseType=Ms.ResponseType.JSON),ot.get(t.load,s,(i,r)=>{i?e(`Error loading animation state graph resource: ${t.original} [${i}]`):e(null,r)})}open(t,e){return new sh(e)}}const Af=(function(){if(typeof window>"u")return!1;const c=window.navigator.userAgent,t=c.indexOf("MSIE ");if(t>0)return parseInt(c.substring(t+5,c.indexOf(".",t)),10);if(c.indexOf("Trident/")>0){const s=c.indexOf("rv:");return parseInt(c.substring(s+3,c.indexOf(".",s)),10)}return!1})(),UN=[".ogg",".mp3",".wav",".mp4a",".m4a",".mp4",".aac",".opus"];class zN extends Ze{constructor(t){super(t,"audio"),this.manager=t.soundManager,v.assert(this.manager,"AudioHandler cannot be created without sound manager")}_isSupported(t){const e=ge.getExtension(t);return UN.indexOf(e)>-1||t.startsWith("blob:")}load(t,e){typeof t=="string"&&(t={load:t,original:t});const s=function(r){e(null,new Ab(r))},i=function(r){let a=`Error loading audio url: ${t.original}`;r&&(a+=`: ${r.message||r}`),console.warn(a),e(a)};if(this._createSound){if(!this._isSupported(t.original)){i(`Audio format for ${t.original} not supported`);return}this._createSound(t.load,s,i)}else i(null)}_createSound(t,e,s){if(Fl()){const i=this.manager;if(!i.context){s("Audio manager has no audio context");return}const r={retry:this.maxRetries>0,maxRetries:this.maxRetries};(t.startsWith("blob:")||t.startsWith("data:"))&&(r.responseType=Ms.ResponseType.ARRAY_BUFFER),ot.get(t,r,(a,n)=>{if(a){s(a);return}i.context.decodeAudioData(n,e,s)})}else{let i=null;try{i=new Audio}catch{s("No support for Audio element");return}Af&&document.body.appendChild(i);const r=function(){i.removeEventListener("canplaythrough",r),Af&&document.body.removeChild(i),e(i)};i.onerror=function(){i.onerror=null,Af&&document.body.removeChild(i),s()},i.addEventListener("canplaythrough",r),i.src=t}}}class VN extends Ze{constructor(t){super(t,"binary")}load(t,e){typeof t=="string"&&(t={load:t,original:t}),ot.get(t.load,{responseType:Ms.ResponseType.ARRAY_BUFFER,retry:this.maxRetries>0,maxRetries:this.maxRetries},(s,i)=>{s?e(`Error loading binary resource: ${t.original} [${s}]`):e(null,i)})}openBinary(t){return t.buffer}}class yr{constructor(t,e,s,i){const r=function(h,d,f){const u=yr.createAsset(e.name,h,d,f);return s.add(u),u},a=[];for(let h=0;h<t.renders.length;++h)a.push(r("render",t.renders[h],h));const n=[];for(let h=0;h<t.materials.length;++h)n.push(r("material",t.materials[h],h));const o=[];for(let h=0;h<t.animations.length;++h)o.push(r("animation",t.animations[h],h));this.data=t,this._model=null,this._assetName=e.name,this._assets=s,this._defaultMaterial=i,this.renders=a,this.materials=n,this.textures=t.textures,this.animations=o}get model(){if(!this._model){const t=yr.createModel(this.data,this._defaultMaterial),e=yr.createAsset(this._assetName,"model",t,0);this._assets.add(e),this._model=e}return this._model}static createAsset(t,e,s,i){const r=new he(`${t}/${e}/${i}`,e,{url:""});return r.resource=s,r.loaded=!0,r}instantiateModelEntity(t){const e=new lt(void 0,this._assets._loader._app);return e.addComponent("model",Object.assign({type:"asset",asset:this.model},t)),e}instantiateRenderEntity(t){const e=this._defaultMaterial,s=[],i=function(n,o,h,d,f,u,p,m){const _=f[h.id],g=_===void 0?e:d[_],S=new Ve(h,g);h.morph&&(S.morphInstance=new Ca(h.morph)),p.hasOwnProperty("skin")&&s.push({meshInstance:S,rootBone:n,entity:o});const x=m.get(p);if(x){const b=x.matrices,y=Nt.getDefaultInstancingFormat(h.device),w=new Ds(h.device,y,b.length/16,{data:b});S.setInstancing(w),S.instancingData._destroyVertexBuffer=!0}return S},r=(n,o,h)=>{const d=new lt(void 0,this._assets._loader._app);o._cloneInternal(d),n||(n=d);let f=null,u=null;for(let m=0;m<h.nodes.length;m++)if(h.nodes[m]===o){const g=h.gltf.nodes[m];if(g.hasOwnProperty("mesh")){const S=h.renders[g.mesh].meshes;u=this.renders[g.mesh];for(let x=0;x<S.length;x++){const b=S[x];if(b){const y=i(n,d,b,h.materials,h.meshDefaultMaterials,h.skins,g,h.nodeInstancingMap);f||(f=[]),f.push(y)}}}if(h.lights){const S=h.lights.get(g);S&&d.addChild(S.clone())}if(h.cameras){const S=h.cameras.get(g);S&&S.camera.system.cloneComponent(S,d)}}f&&(d.addComponent("render",Object.assign({type:"asset",meshInstances:f},t)),d.render.assignAsset(u));const p=o.children;for(let m=0;m<p.length;m++){const _=r(n,p[m],h);d.addChild(_)}return d},a=[];for(const n of this.data.scenes)a.push(r(null,n,this.data));return s.forEach(n=>{n.meshInstance.skinInstance=xl.createCachedSkinInstance(n.meshInstance.mesh.skin,n.rootBone,n.entity),n.meshInstance.node.render.rootBone=n.rootBone}),yr.createSceneHierarchy(a,lt)}getMaterialVariants(){return this.data.variants?Object.keys(this.data.variants):[]}applyMaterialVariant(t,e){const s=e?this.data.variants[e]:null;if(s===void 0){v.warn(`No variant named ${e} exists in resource`);return}const i=t.findComponents("render");for(let r=0;r<i.length;r++){const a=i[r];this._applyMaterialVariant(s,a.meshInstances)}}applyMaterialVariantInstances(t,e){const s=e?this.data.variants[e]:null;if(s===void 0){v.warn(`No variant named ${e} exists in resource`);return}this._applyMaterialVariant(s,t)}_applyMaterialVariant(t,e){e.forEach(s=>{if(t===null)s.material=this._defaultMaterial;else{const i=this.data.meshVariants[s.mesh.id];i&&(s.material=this.data.materials[i[t]])}v.assert(s.material)})}static createSceneHierarchy(t,e){let s=null;if(t.length===1)s=t[0];else{s=new e("SceneGroup");for(const i of t)s.addChild(i)}return s}static createModel(t,e){const s=function(a,n,o,h,d,f,u){const p=t.meshDefaultMaterials[n.id],m=p===void 0?e:d[p],_=new Ve(n,m,f);if(n.morph){const g=new Ca(n.morph);_.morphInstance=g,a.morphInstances.push(g)}if(u.hasOwnProperty("skin")){const g=u.skin,S=o[g];n.skin=S;const x=h[g];_.skinInstance=x,a.skinInstances.push(x)}a.meshInstances.push(_)},i=new sr,r=[];for(const a of t.skins){const n=new Ul(a);n.bones=a.bones,r.push(n)}i.graph=yr.createSceneHierarchy(t.scenes,Ce);for(let a=0;a<t.nodes.length;a++){const n=t.nodes[a];if(n.root===i.graph){const o=t.gltf.nodes[a];if(o.hasOwnProperty("mesh")){const h=t.renders[o.mesh].meshes;for(let d=0;d<h.length;d++){const f=h[d];f&&s(i,f,t.skins,r,t.materials,n,o)}}}}return i}destroy(){const t=this._assets,e=function(i){t.remove(i),i.unload()},s=function(i){i.forEach(r=>{e(r)})};this.animations&&(s(this.animations),this.animations=null),this.textures&&(s(this.textures),this.textures=null),this.materials&&(s(this.materials),this.materials=null),this.renders&&(s(this.renders),this.renders=null),this._model&&(e(this._model),this._model=null),this.data=null,this.assets=null}}class GN{constructor(t,e,s){this._device=t,this._assets=e,this._defaultMaterial=zh.createDefaultMaterial(),this.maxRetries=s}_getUrlWithoutParams(t){return t.indexOf("?")>=0?t.split("?")[0]:t}load(t,e,s){he.fetchArrayBuffer(t.load,(i,r)=>{i?e(i):zh.parse(this._getUrlWithoutParams(t.original),ge.extractPath(t.load),r,this._device,s.registry,s.options,(a,n)=>{a?e(a):e(null,new yr(n,s,this._assets,this._defaultMaterial))})},s,this.maxRetries)}open(t,e,s){return e}patch(t,e){}}class HN extends Ze{constructor(t){super(t,"container"),this.glbContainerParser=new GN(t.graphicsDevice,t.assets,0),this.parsers={}}set maxRetries(t){this.glbContainerParser.maxRetries=t;for(const e in this.parsers)this.parsers.hasOwnProperty(e)&&(this.parsers[e].maxRetries=t)}get maxRetries(){return this.glbContainerParser.maxRetries}_getUrlWithoutParams(t){return t.indexOf("?")>=0?t.split("?")[0]:t}_getParser(t){const e=t?ge.getExtension(this._getUrlWithoutParams(t)).toLowerCase().replace(".",""):null;return this.parsers[e]||this.glbContainerParser}load(t,e,s){typeof t=="string"&&(t={load:t,original:t}),this._getParser(t.original).load(t,e,s)}open(t,e,s){return this._getParser(t).open(t,e,s)}}class WN extends Ze{constructor(e){super(e,"css");l(this,"decoder",null)}load(e,s){typeof e=="string"&&(e={load:e,original:e}),ot.get(e.load,{retry:this.maxRetries>0,maxRetries:this.maxRetries},(i,r)=>{i?s(`Error loading css resource: ${e.original} [${i}]`):s(null,r)})}openBinary(e){return this.decoder??(this.decoder=new TextDecoder("utf-8")),this.decoder.decode(e)}}class $N extends Ze{constructor(t){super(t,"cubemap"),this._device=t.graphicsDevice,this._registry=t.assets,this._loader=t.loader}load(t,e,s){this.loadAssets(s,e)}open(t,e,s){return s?s.resource:null}patch(t,e){this.loadAssets(t,(s,i)=>{s&&(e.fire("error",t),e.fire(`error:${t.id}`,s,t),t.fire("error",t))})}getAssetIds(t){const e=[];if(e[0]=t.file,(t.loadFaces||!t.file)&&t.data&&t.data.textures)for(let s=0;s<6;++s)e[s+1]=t.data.textures[s];else e[1]=e[2]=e[3]=e[4]=e[5]=e[6]=null;return e}compareAssetIds(t,e){return t&&e?parseInt(t,10)===t||typeof t=="string"?t===e:t.url===e.url:t!==null==(e!==null)}update(t,e,s){const i=t.data||{},r=t._handlerState.assets,a=t._resources;let n,o,h;const d=[null,null,null,null,null,null,null],f=function(){return i.hasOwnProperty("type")?i.type:i.hasOwnProperty("rgbm")?i.rgbm?Ki:Ps:null};if(!t.loaded||s[0]!==r[0]){if(s[0])if(n=s[0].resource,n.cubemap)for(h=0;h<6;++h)d[h+1]=new de(this._device,{name:`${t.name}_prelitCubemap${n.width>>h}`,cubemap:!0,type:f()||n.type,width:n.width>>h,height:n.height>>h,format:n.format,levels:[n._levels[h]],addressU:ce,addressV:ce,mipmaps:h===0});else d[1]=n}else d[1]=a[1]||null,d[2]=a[2]||null,d[3]=a[3]||null,d[4]=a[4]||null,d[5]=a[5]||null,d[6]=a[6]||null;const u=s.slice(1);if(!t.loaded||!this.cmpArrays(u,r.slice(1))){if(u.indexOf(null)===-1){const p=u.map(S=>S.resource),m=[];for(o=0;o<p[0]._levels.length;++o)m.push(p.map(S=>S._levels[o]));const _=p[0].format,g=new de(this._device,{name:`${t.name}_faces`,cubemap:!0,type:f()||p[0].type,width:p[0].width,height:p[0].height,format:_===Pr?Re:_,mipmaps:i.mipmaps??!0,levels:m,minFilter:i.hasOwnProperty("minFilter")?i.minFilter:p[0].minFilter,magFilter:i.hasOwnProperty("magFilter")?i.magFilter:p[0].magFilter,anisotropy:i.hasOwnProperty("anisotropy")?i.anisotropy:1,addressU:ce,addressV:ce});d[0]=g}}else d[0]=a[0]||null;if(!this.cmpArrays(d,a))for(t.resources=d,t._handlerState.assetIds=e,t._handlerState.assets=s,h=0;h<a.length;++h)a[h]!==null&&d.indexOf(a[h])===-1&&a[h].destroy();for(h=0;h<r.length;++h)r[h]!==null&&s.indexOf(r[h])===-1&&r[h].unload()}cmpArrays(t,e){if(t.length!==e.length)return!1;for(let s=0;s<t.length;++s)if(t[s]!==e[s])return!1;return!0}resolveId(t){const e=parseInt(t,10);return e===t||e.toString()===t?e:t}loadAssets(t,e){t.hasOwnProperty("_handlerState")||(t._handlerState={assetIds:[null,null,null,null,null,null,null],assets:[null,null,null,null,null,null,null]});const s=this,i=s.getAssetIds(t),r=[null,null,null,null,null,null,null],a=t._handlerState.assetIds,n=t._handlerState.assets,o=s._registry;let h=7;const d=function(m,_){r[m]=_,h--,h===0&&(s.update(t,i,r),e(null,t.resources))},f=function(m,_,g){e(_)},u=function(m,_){_.loaded?d(m,_):(o.once(`load:${_.id}`,d.bind(s,m)),o.once(`error:${_.id}`,f.bind(s,m)),_.loading||o.load(_))};let p;for(let m=0;m<7;++m){const _=this.resolveId(i[m]);if(!_)d(m,null);else if(s.compareAssetIds(_,a[m]))u(m,n[m]);else if(parseInt(_,10)===_)p=o.get(_),p?u(m,p):setTimeout(((g,S)=>{const x=o.get(S);x?u(g,x):f(g,`failed to find dependent cubemap asset=${S}`)}).bind(null,m,_));else{const g=typeof _=="string"?{url:_,filename:_}:_,S=g.url.search(".dds")===-1?{type:"rgbp",addressu:"clamp",addressv:"clamp",mipmaps:!1}:null;p=new he(`${t.name}_part_${m}`,"texture",g,S),o.add(p),u(m,p)}}}}class XN extends Ze{constructor(t){super(t,"folder")}load(t,e){e(null,null)}}class f0{constructor(t,e){this.type=e&&e.type||Nh,this.em=1,this.textures=t,this.intensity=0,this._data=null,this.data=e}set data(t){if(this._data=t,!!t&&(this._data.intensity!==void 0&&(this.intensity=this._data.intensity),this._data.info||(this._data.info={}),(!this._data.version||this._data.version<2)&&(this._data.info.maps=[{width:this._data.info.width,height:this._data.info.height}],this._data.chars)))for(const e in this._data.chars)this._data.chars[e].map=0}get data(){return this._data}}function Cf(c){return c.version<3&&(c.version<2&&(c.info.maps=c.info.maps||[{width:c.info.width,height:c.info.height}]),c.chars=Object.keys(c.chars||{}).reduce((t,e)=>{const s=c.chars[e],i=s.letter!==void 0?s.letter:Xc.fromCodePoint(e);return c.version<2&&(s.map=s.map||0),t[i]=s,t},{}),c.version=3),c}class qN extends Ze{constructor(t){super(t,"font"),this._loader=t.loader,this.maxRetries=0}load(t,e,s){typeof t=="string"&&(t={load:t,original:t});const i=this;ge.getExtension(t.original)===".json"?ot.get(t.load,{retry:this.maxRetries>0,maxRetries:this.maxRetries},(r,a)=>{if(r)e(`Error loading font resource: ${t.original} [${r}]`);else{const n=Cf(a);i._loadTextures(t.load.replace(".json",".png"),n,(o,h)=>{o?e(o):e(null,{data:n,textures:h})})}}):(s&&s.data&&(s.data=Cf(s.data)),this._loadTextures(t.load,s&&s.data,e))}_loadTextures(t,e,s){const i=e.info.maps.length;let r=0,a=null;const n=new Array(i),o=this._loader,h=function(d){const f=function(u,p){if(!a){if(u){a=u,s(u);return}p.upload(),n[d]=p,r++,r===i&&s(null,n)}};d===0?o.load(t,"texture",f):o.load(t.replace(".png",`${d}.png`),"texture",f)};for(let d=0;d<i;d++)h(d)}open(t,e,s){let i;return e.textures?i=new f0(e.textures,e.data):i=new f0(e,null),i}patch(t,e){const s=t.resource;!s.data&&t.data?s.data=t.data:!t.data&&s.data&&(t.data=s.data),t.data&&(t.data=Cf(t.data))}}const Sx=`const _0x25a676 = /* @__PURE__ */ (function() {
-  let _0xbeed93 = !![];
-  return function(_0x4f47fa, _0x1cddbb) {
-    const _0xa79551 = _0xbeed93 ? function() {
-      if (_0x1cddbb) {
-        const _0x948feb = _0x1cddbb["apply"](_0x4f47fa, arguments);
-        return _0x1cddbb = null, _0x948feb;
+`),i=new Blob([s],{type:"application/javascript"}),r=URL.createObjectURL(i),a=Math.max(1,Math.min(16,c.numWorkers||h0)),n=[];for(let o=0;o<a;++o){const h=new Worker(r);h.postMessage({type:"init",module:e}),n.push(h)}nh.init(n)}),!0)},BF=(c,t)=>kF()?(nh.enqueueJob(c,t),!0):!1;class UF{constructor(){l(this,"gltf");l(this,"nodes");l(this,"scenes");l(this,"animations");l(this,"textures");l(this,"materials");l(this,"variants");l(this,"meshVariants");l(this,"meshDefaultMaterials");l(this,"renders");l(this,"skins");l(this,"lights");l(this,"cameras");l(this,"nodeInstancingMap")}destroy(){this.renders&&this.renders.forEach(t=>{t.meshes=null})}}const mx=c=>/^data:[^\n\r,\u2028\u2029]*,.*$/i.test(c),zF=c=>c.substring(c.indexOf(":")+1,c.indexOf(";")),bl=c=>{switch(c){case"SCALAR":return 1;case"VEC2":return 2;case"VEC3":return 3;case"VEC4":return 4;case"MAT2":return 4;case"MAT3":return 9;case"MAT4":return 16;default:return 3}},Id=c=>{switch(c){case 5120:return ud;case 5121:return ua;case 5122:return pd;case 5123:return Ol;case 5124:return _S;case 5125:return rl;case 5126:return Ue;default:return 0}},VF=c=>{switch(c){case 5120:return 1;case 5121:return 1;case 5122:return 2;case 5123:return 2;case 5124:return 4;case 5125:return 4;case 5126:return 4;default:return 0}},GF=c=>{switch(c){case 5120:return Int8Array;case 5121:return Uint8Array;case 5122:return Int16Array;case 5123:return Uint16Array;case 5124:return Int32Array;case 5125:return Uint32Array;case 5126:return Float32Array;default:return null}},Uh={POSITION:Ee,NORMAL:ms,TANGENT:Si,COLOR_0:Ht,JOINTS_0:ds,WEIGHTS_0:_i,TEXCOORD_0:es,TEXCOORD_1:La,TEXCOORD_2:Pl,TEXCOORD_3:Dl,TEXCOORD_4:Ml,TEXCOORD_5:Ll,TEXCOORD_6:Il,TEXCOORD_7:Rl},d0={[Ee]:0,[ms]:1,[Si]:2,[Ht]:3,[ds]:4,[_i]:5,[es]:6,[La]:7,[Pl]:8,[Dl]:9,[Ml]:10,[Ll]:11,[Il]:12,[Rl]:13},HF=c=>{switch(c){case ud:return t=>Math.max(t/127,-1);case ua:return t=>t/255;case pd:return t=>Math.max(t/32767,-1);case Ol:return t=>t/65535;default:return t=>t}},Gu=(c,t,e)=>{const s=HF(e),i=t.length;for(let r=0;r<i;++r)c[r]=s(t[r]);return c},Sa=(c,t,e=!1)=>{const s=bl(c.type),i=GF(c.componentType);if(!i)return null;let r;if(c.sparse){const a=c.sparse,n={count:a.count,type:"SCALAR"},o=Sa(Object.assign(n,a.indices),t,!0),h={count:a.count,type:c.type,componentType:c.componentType},d=Sa(Object.assign(h,a.values),t,!0);if(c.hasOwnProperty("bufferView")){const f={bufferView:c.bufferView,byteOffset:c.byteOffset,componentType:c.componentType,count:c.count,type:c.type};r=Sa(f,t,!0).slice()}else r=new i(c.count*s);for(let f=0;f<a.count;++f){const u=o[f];for(let p=0;p<s;++p)r[u*s+p]=d[f*s+p]}}else if(c.hasOwnProperty("bufferView")){const a=t[c.bufferView];if(e&&a.hasOwnProperty("byteStride")){const n=s*i.BYTES_PER_ELEMENT,o=new ArrayBuffer(c.count*n),h=new Uint8Array(o);let d=0;for(let f=0;f<c.count;++f){let u=(c.byteOffset||0)+f*a.byteStride;for(let p=0;p<n;++p)h[d++]=a[u++]}r=new i(o)}else r=new i(a.buffer,a.byteOffset+(c.byteOffset||0),c.count*s)}else r=new i(c.count*s);return r},Rn=(c,t)=>{const e=Sa(c,t,!0);if(e instanceof Float32Array||!c.normalized)return e;const s=new Float32Array(e.length);return Gu(s,e,Id(c.componentType)),s},Hu=c=>{let t=c.min,e=c.max;if(!t||!e)return null;if(c.normalized){const s=Id(c.componentType);t=Gu([],t,s),e=Gu([],e,s)}return new De(new E((e[0]+t[0])*.5,(e[1]+t[1])*.5,(e[2]+t[2])*.5),new E((e[0]-t[0])*.5,(e[1]-t[1])*.5,(e[2]-t[2])*.5))},_x=c=>{if(!c.hasOwnProperty("mode"))return $s;switch(c.mode){case 0:return dd;case 1:return fd;case 2:return hS;case 3:return dS;case 4:return $s;case 5:return Ar;case 6:return fa;default:return $s}},WF=c=>{const t=new Uint16Array(c);for(let e=0;e<c;e++)t[e]=e;return t},$F=(c,t)=>{const e=c[Ee];if(!e||e.components!==3)return;let s;if(e.size!==e.stride){const n=e.stride/zo[e.type],o=new Pn[e.type](e.buffer,e.offset,e.count*n);s=new Pn[e.type](e.count*3);for(let h=0;h<e.count;++h)s[h*3+0]=o[h*n+0],s[h*3+1]=o[h*n+1],s[h*3+2]=o[h*n+2]}else s=new Pn[e.type](e.buffer,e.offset,e.count*3);const i=e.count;t||(t=WF(i));const r=Ev(s,t),a=new Float32Array(r.length);a.set(r),c[ms]={buffer:a.buffer,size:12,offset:0,stride:12,count:i,components:3,type:Ue}},XF=c=>{const t=s=>{const i=[];for(let r=0;r<s._levels.length;++r){let a=[];if(s.cubemap)for(let n=0;n<6;++n)a.push(s._levels[r][n]);else a=s._levels[r];i.push(a)}return i},e=new de(c.device,c);return e._levels=t(c),e},qF=c=>{const t=new he(`${c.name}_clone`,c.type,c.file,c.data,c.options);return t.loaded=!0,t.resource=XF(c.resource),c.registry.add(t),t},jF=(c,t)=>{const e=t[Ee];if(!e)return null;const s=e.count,i=[];for(const S in t)if(t.hasOwnProperty(S)){const x={semantic:S,components:t[S].components,type:t[S].type,normalize:!!t[S].normalize};Nt.isElementValid(c,x)||x.components++,i.push(x)}i.sort((S,x)=>d0[S.semantic]-d0[x.semantic]);let r,a,n,o,h,d;const f=new Nt(c,i);let u=!0;for(r=0;r<f.elements.length;++r)if(h=f.elements[r],o=t[h.name],d=o.offset-e.offset,o.buffer!==e.buffer||o.stride!==h.stride||o.size!==h.size||d!==h.offset){u=!1;break}const p=new Ds(c,f,s),m=p.lock(),_=new Uint32Array(m);let g;if(u)g=new Uint32Array(e.buffer,e.offset,s*p.format.size/4),_.set(g);else{let S,x;for(r=0;r<p.format.elements.length;++r){h=p.format.elements[r],S=h.stride/4,o=t[h.name],x=o.stride/4,g=new Uint32Array(o.buffer,o.offset,(o.count-1)*x+(o.size+3)/4);let b=0,y=h.offset/4;const w=Math.floor((o.size+3)/4);for(a=0;a<s;++a){for(n=0;n<w;++n)_[y+n]=g[b+n];b+=x,y+=S}}}return p.unlock(),p},YF=(c,t,e,s,i,r)=>{const a={},n=[];for(const d in t)t.hasOwnProperty(d)&&Uh.hasOwnProperty(d)&&(a[d]=t[d],n.push(`${d}:${t[d]}`));n.sort();const o=n.join();let h=r[o];if(!h){const d={};for(const f in a){const u=s[t[f]],p=Sa(u,i),m=i[u.bufferView],_=Uh[f],g=bl(u.type)*VF(u.componentType),S=m&&m.hasOwnProperty("byteStride")?m.byteStride:g;d[_]={buffer:p.buffer,size:g,offset:p.byteOffset,stride:S,count:u.count,components:bl(u.type),type:Id(u.componentType),normalize:u.normalized}}d.hasOwnProperty(ms)||$F(d,e),h=jF(c,d),r[o]=h}return h},KF=(c,t,e,s,i,r)=>{let a,n,o;const h=t.joints,d=h.length,f=[];if(t.hasOwnProperty("inverseBindMatrices")){const _=t.inverseBindMatrices,g=Sa(e[_],s,!0),S=[];for(a=0;a<d;a++){for(n=0;n<16;n++)S[n]=g[a*16+n];o=new ee,o.set(S),f.push(o)}}else for(a=0;a<d;a++)o=new ee,f.push(o);const u=[];for(a=0;a<d;a++)u[a]=i[h[a]].name;const p=u.join("#");let m=r.get(p);return m||(m=new wv(c,f,u),r.set(p,m)),m},ZF=(c,t,e,s,i,r,a)=>{var h;const n=new ze(c);n.aabb=Hu(e[t.attributes.POSITION]);const o=[];for(const[d,f]of Object.entries(t.attributes)){const u=e[f],p=Uh[d],m=Id(u.componentType);o.push({semantic:p,components:bl(u.type),type:m,normalize:u.normalized??(p===Ht&&(m===ua||m===Ol))})}if(a.push(new Promise((d,f)=>{const u=t.extensions.KHR_draco_mesh_compression;BF(s[u.bufferView].slice().buffer,(p,m)=>{var _;if(p)console.log(p),f(p);else{const g={};for(const[C,T]of Object.entries(u.attributes))g[Uh[C]]=m.attributes.indexOf(T);o.sort((C,T)=>g[C.semantic]-g[T.semantic]),(_=t.attributes)!=null&&_.NORMAL||o.splice(1,0,{semantic:"NORMAL",components:3,type:Ue});const S=new Nt(c,o),x=m.vertices.byteLength/S.size,b=x<=65535?ji:wr,y=m.indices.byteLength/(x<=65535?2:4);v.call(()=>{x!==e[t.attributes.POSITION].count&&v.warn("mesh has invalid vertex count"),y!==e[t.indices].count&&v.warn("mesh has invalid index count")});const w=new Ds(c,S,x,{data:m.vertices}),A=new Cr(c,b,y,us,m.indices);n.vertexBuffer=w,n.indexBuffer[0]=A,n.primitive[0].type=_x(t),n.primitive[0].base=0,n.primitive[0].count=A?y:x,n.primitive[0].indexed=!!A,d()}})})),(h=t==null?void 0:t.extensions)!=null&&h.KHR_materials_variants){const d=t.extensions.KHR_materials_variants,f={};d.mappings.forEach(u=>{u.variants.forEach(p=>{f[p]=u.material})}),i[n.id]=f}return r[n.id]=t.material,n},QF=(c,t,e,s,i,r,a,n,o)=>{const h=[];return t.primitives.forEach(d=>{var f;if((f=d.extensions)!=null&&f.KHR_draco_mesh_compression)h.push(ZF(c,d,e,s,r,a,o));else{let u=d.hasOwnProperty("indices")?Sa(e[d.indices],s,!0):null;const p=YF(c,d.attributes,u,e,s,i),m=_x(d),_=new ze(c);if(_.vertexBuffer=p,_.primitive[0].type=m,_.primitive[0].base=0,_.primitive[0].indexed=u!==null,u!==null){let S;u instanceof Uint8Array?S=$f:u instanceof Uint16Array?S=ji:S=wr,S===$f&&c.isWebGPU&&(S=ji,u=new Uint16Array(u));const x=new Cr(c,S,u.length,us,u);_.indexBuffer[0]=x,_.primitive[0].count=u.length}else _.primitive[0].count=p.numVertices;if(d.hasOwnProperty("extensions")&&d.extensions.hasOwnProperty("KHR_materials_variants")){const S=d.extensions.KHR_materials_variants,x={};S.mappings.forEach(b=>{b.variants.forEach(y=>{x[y]=b.material})}),r[_.id]=x}a[_.id]=d.material;let g=e[d.attributes.POSITION];if(_.aabb=Hu(g),d.hasOwnProperty("targets")){const S=[];d.targets.forEach((x,b)=>{const y={};x.hasOwnProperty("POSITION")&&(g=e[x.POSITION],y.deltaPositions=Rn(g,s),y.aabb=Hu(g)),x.hasOwnProperty("NORMAL")&&(g=e[x.NORMAL],y.deltaNormals=Rn(g,s)),t.hasOwnProperty("extras")&&t.extras.hasOwnProperty("targetNames")?y.name=t.extras.targetNames[b]:y.name=b.toString(10),t.hasOwnProperty("weights")&&(y.defaultWeight=t.weights[b]),y.preserveData=n.morphPreserveData,S.push(new Ld(y))}),_.morph=new _m(S,c,{preferHighPrecision:n.morphPreferHighPrecision})}h.push(_)}}),h},Ct=(c,t,e)=>{var o;let s;const i=c.texCoord;if(i)for(s=0;s<e.length;++s)t[`${e[s]}MapUv`]=i;const r=[0,0],a=[1,1],n=(o=c.extensions)==null?void 0:o.KHR_texture_transform;if(n){const h=n.offset||r,d=n.scale||a,f=n.rotation?-n.rotation*$.RAD_TO_DEG:0,u=new K(d[0],d[1]),p=new K(h[0],1-d[1]-h[1]);for(s=0;s<e.length;++s)t[`${e[s]}MapTiling`]=u,t[`${e[s]}MapOffset`]=p,t[`${e[s]}MapRotation`]=f}},JF=(c,t,e)=>{let s,i;if(c.hasOwnProperty("diffuseFactor")?(s=c.diffuseFactor,t.diffuse.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2)),t.opacity=s[3]):(t.diffuse.set(1,1,1),t.opacity=1),c.hasOwnProperty("diffuseTexture")){const r=c.diffuseTexture;i=e[r.index],t.diffuseMap=i,t.diffuseMapChannel="rgb",t.opacityMap=i,t.opacityMapChannel="a",Ct(r,t,["diffuse","opacity"])}if(t.useMetalness=!1,c.hasOwnProperty("specularFactor")?(s=c.specularFactor,t.specular.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2))):t.specular.set(1,1,1),c.hasOwnProperty("glossinessFactor")?t.gloss=c.glossinessFactor:t.gloss=1,c.hasOwnProperty("specularGlossinessTexture")){const r=c.specularGlossinessTexture;t.specularMap=t.glossMap=e[r.index],t.specularMapChannel="rgb",t.glossMapChannel="a",Ct(r,t,["gloss","metalness"])}},eN=(c,t,e)=>{if(c.hasOwnProperty("clearcoatFactor")?t.clearCoat=c.clearcoatFactor*.25:t.clearCoat=0,c.hasOwnProperty("clearcoatTexture")){const s=c.clearcoatTexture;t.clearCoatMap=e[s.index],t.clearCoatMapChannel="r",Ct(s,t,["clearCoat"])}if(c.hasOwnProperty("clearcoatRoughnessFactor")?t.clearCoatGloss=c.clearcoatRoughnessFactor:t.clearCoatGloss=0,c.hasOwnProperty("clearcoatRoughnessTexture")){const s=c.clearcoatRoughnessTexture;t.clearCoatGlossMap=e[s.index],t.clearCoatGlossMapChannel="g",Ct(s,t,["clearCoatGloss"])}if(c.hasOwnProperty("clearcoatNormalTexture")){const s=c.clearcoatNormalTexture;t.clearCoatNormalMap=e[s.index],Ct(s,t,["clearCoatNormal"]),s.hasOwnProperty("scale")?t.clearCoatBumpiness=s.scale:t.clearCoatBumpiness=1}t.clearCoatGlossInvert=!0},tN=(c,t,e)=>{t.useLighting=!1,t.emissive.copy(t.diffuse),t.emissiveMap=t.diffuseMap,t.emissiveMapUv=t.diffuseMapUv,t.emissiveMapTiling.copy(t.diffuseMapTiling),t.emissiveMapOffset.copy(t.diffuseMapOffset),t.emissiveMapRotation=t.diffuseMapRotation,t.emissiveMapChannel=t.diffuseMapChannel,t.emissiveVertexColor=t.diffuseVertexColor,t.emissiveVertexColorChannel=t.diffuseVertexColorChannel,t.useLighting=!1,t.useSkybox=!1,t.diffuse.set(1,1,1),t.diffuseMap=null,t.diffuseVertexColor=!1},sN=(c,t,e)=>{if(t.useMetalnessSpecularColor=!0,c.hasOwnProperty("specularColorTexture")&&(t.specularMap=e[c.specularColorTexture.index],t.specularMapChannel="rgb",Ct(c.specularColorTexture,t,["specular"])),c.hasOwnProperty("specularColorFactor")){const s=c.specularColorFactor;t.specular.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2))}else t.specular.set(1,1,1);c.hasOwnProperty("specularFactor")?t.specularityFactor=c.specularFactor:t.specularityFactor=1,c.hasOwnProperty("specularTexture")&&(t.specularityFactorMapChannel="a",t.specularityFactorMap=e[c.specularTexture.index],Ct(c.specularTexture,t,["specularityFactor"]))},iN=(c,t,e)=>{c.hasOwnProperty("ior")&&(t.refractionIndex=1/c.ior)},rN=(c,t,e)=>{c.hasOwnProperty("dispersion")&&(t.dispersion=c.dispersion)},aN=(c,t,e)=>{t.blendType=js,t.useDynamicRefraction=!0,c.hasOwnProperty("transmissionFactor")&&(t.refraction=c.transmissionFactor),c.hasOwnProperty("transmissionTexture")&&(t.refractionMapChannel="r",t.refractionMap=e[c.transmissionTexture.index],Ct(c.transmissionTexture,t,["refraction"]))},nN=(c,t,e)=>{if(t.useSheen=!0,c.hasOwnProperty("sheenColorFactor")){const s=c.sheenColorFactor;t.sheen.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2))}else t.sheen.set(1,1,1);c.hasOwnProperty("sheenColorTexture")&&(t.sheenMap=e[c.sheenColorTexture.index],Ct(c.sheenColorTexture,t,["sheen"])),t.sheenGloss=c.hasOwnProperty("sheenRoughnessFactor")?c.sheenRoughnessFactor:0,c.hasOwnProperty("sheenRoughnessTexture")&&(t.sheenGlossMap=e[c.sheenRoughnessTexture.index],t.sheenGlossMapChannel="a",Ct(c.sheenRoughnessTexture,t,["sheenGloss"])),t.sheenGlossInvert=!0},oN=(c,t,e)=>{if(t.blendType=js,t.useDynamicRefraction=!0,c.hasOwnProperty("thicknessFactor")&&(t.thickness=c.thicknessFactor),c.hasOwnProperty("thicknessTexture")&&(t.thicknessMap=e[c.thicknessTexture.index],t.thicknessMapChannel="g",Ct(c.thicknessTexture,t,["thickness"])),c.hasOwnProperty("attenuationDistance")&&(t.attenuationDistance=c.attenuationDistance),c.hasOwnProperty("attenuationColor")){const s=c.attenuationColor;t.attenuation.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2))}},lN=(c,t,e)=>{c.hasOwnProperty("emissiveStrength")&&(t.emissiveIntensity=c.emissiveStrength)},cN=(c,t,e)=>{t.useIridescence=!0,c.hasOwnProperty("iridescenceFactor")&&(t.iridescence=c.iridescenceFactor),c.hasOwnProperty("iridescenceTexture")&&(t.iridescenceMapChannel="r",t.iridescenceMap=e[c.iridescenceTexture.index],Ct(c.iridescenceTexture,t,["iridescence"])),c.hasOwnProperty("iridescenceIor")&&(t.iridescenceRefractionIndex=c.iridescenceIor),c.hasOwnProperty("iridescenceThicknessMinimum")&&(t.iridescenceThicknessMin=c.iridescenceThicknessMinimum),c.hasOwnProperty("iridescenceThicknessMaximum")&&(t.iridescenceThicknessMax=c.iridescenceThicknessMaximum),c.hasOwnProperty("iridescenceThicknessTexture")&&(t.iridescenceThicknessMapChannel="g",t.iridescenceThicknessMap=e[c.iridescenceThicknessTexture.index],Ct(c.iridescenceThicknessTexture,t,["iridescenceThickness"]))},hN=(c,t,e)=>{if(t.enableGGXSpecular=!0,c.hasOwnProperty("anisotropyStrength")?t.anisotropyIntensity=c.anisotropyStrength:t.anisotropyIntensity=0,c.hasOwnProperty("anisotropyTexture")){const s=c.anisotropyTexture;t.anisotropyMap=e[s.index],Ct(s,t,["anisotropy"])}c.hasOwnProperty("anisotropyRotation")?t.anisotropyRotation=c.anisotropyRotation*$.RAD_TO_DEG:t.anisotropyRotation=0},gx=(c,t)=>{const e=new kt;c.hasOwnProperty("name")&&(e.name=c.name),e.occludeSpecular=Cd,e.diffuseVertexColor=!0,e.specularTint=!0,e.specularVertexColor=!0,e.specular.set(1,1,1),e.gloss=1,e.glossInvert=!0,e.useMetalness=!0;let s,i;if(c.hasOwnProperty("pbrMetallicRoughness")){const a=c.pbrMetallicRoughness;if(a.hasOwnProperty("baseColorFactor")&&(s=a.baseColorFactor,e.diffuse.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2)),e.opacity=s[3]),a.hasOwnProperty("baseColorTexture")){const n=a.baseColorTexture;i=t[n.index],e.diffuseMap=i,e.diffuseMapChannel="rgb",e.opacityMap=i,e.opacityMapChannel="a",Ct(n,e,["diffuse","opacity"])}if(a.hasOwnProperty("metallicFactor")&&(e.metalness=a.metallicFactor),a.hasOwnProperty("roughnessFactor")&&(e.gloss=a.roughnessFactor),a.hasOwnProperty("metallicRoughnessTexture")){const n=a.metallicRoughnessTexture;e.metalnessMap=e.glossMap=t[n.index],e.metalnessMapChannel="b",e.glossMapChannel="g",Ct(n,e,["gloss","metalness"])}}if(c.hasOwnProperty("normalTexture")){const a=c.normalTexture;e.normalMap=t[a.index],Ct(a,e,["normal"]),a.hasOwnProperty("scale")&&(e.bumpiness=a.scale)}if(c.hasOwnProperty("occlusionTexture")){const a=c.occlusionTexture;e.aoMap=t[a.index],e.aoMapChannel="r",Ct(a,e,["ao"])}if(c.hasOwnProperty("emissiveFactor")&&(s=c.emissiveFactor,e.emissive.set(Math.pow(s[0],1/2.2),Math.pow(s[1],1/2.2),Math.pow(s[2],1/2.2))),c.hasOwnProperty("emissiveTexture")){const a=c.emissiveTexture;e.emissiveMap=t[a.index],Ct(a,e,["emissive"])}if(c.hasOwnProperty("alphaMode"))switch(c.alphaMode){case"MASK":e.blendType=ws,c.hasOwnProperty("alphaCutoff")?e.alphaTest=c.alphaCutoff:e.alphaTest=.5;break;case"BLEND":e.blendType=js,e.depthWrite=!1;break;default:case"OPAQUE":e.blendType=ws;break}else e.blendType=ws;c.hasOwnProperty("doubleSided")?(e.twoSidedLighting=c.doubleSided,e.cull=c.doubleSided?bt:va):(e.twoSidedLighting=!1,e.cull=va);const r={KHR_materials_clearcoat:eN,KHR_materials_emissive_strength:lN,KHR_materials_ior:iN,KHR_materials_dispersion:rN,KHR_materials_iridescence:cN,KHR_materials_pbrSpecularGlossiness:JF,KHR_materials_sheen:nN,KHR_materials_specular:sN,KHR_materials_transmission:aN,KHR_materials_unlit:tN,KHR_materials_volume:oN,KHR_materials_anisotropy:hN};if(c.hasOwnProperty("extensions"))for(const a in c.extensions){const n=r[a];n!==void 0&&n(c.extensions[a],e,t)}return e.update(),e},dN=(c,t,e,s,i,r,a)=>{const n=T=>new Bh(bl(T.type),Rn(T,s)),o={STEP:Rv,LINEAR:Su,CUBICSPLINE:vu},h={},d={},f={};let u=1,p;for(p=0;p<c.samplers.length;++p){const T=c.samplers[p];h.hasOwnProperty(T.input)||(h[T.input]=n(e[T.input])),d.hasOwnProperty(T.output)||(d[T.output]=n(e[T.output]));const P=T.hasOwnProperty("interpolation")&&o.hasOwnProperty(T.interpolation)?o[T.interpolation]:Su,L={paths:[],input:T.input,output:T.output,interpolation:P};f[p]=L}const m=[],_={translation:"localPosition",rotation:"localRotation",scale:"localScale"},g=T=>{const P=[];for(;T;)P.unshift(T.name),T=T.parent;return P},S=(T,P,L)=>{const O=d[T.output];if(!O){v.warn(`glb-parser: No output data is available for the morph target curve (${L}/graph/weights). Skipping.`);return}let N;if(r&&r[P.mesh]){const U=r[P.mesh];U.hasOwnProperty("extras")&&U.extras.hasOwnProperty("targetNames")&&(N=U.extras.targetNames)}const B=O.data,G=B.length/h[T.input].data.length,j=B.length/G,H=j*4,I=new ArrayBuffer(H*G);for(let U=0;U<G;U++){const V=new Float32Array(I,H*U,j);for(let F=0;F<j;F++)V[F]=B[F*G+U];const R=new Bh(1,V),M=N!=null&&N[U]?`name.${N[U]}`:U;d[-u]=R;const D={paths:[{entityPath:L,component:"graph",propertyPath:[`weight.${M}`]}],input:T.input,output:-u,interpolation:T.interpolation};u++,f[`morphCurve-${p}-${U}`]=D}};for(p=0;p<c.channels.length;++p){const T=c.channels[p],P=T.target,L=f[T.sampler],O=i[P.node],N=a[P.node],B=g(O);P.path.startsWith("weights")?(S(L,N,B),f[T.sampler].morphCurve=!0):L.paths.push({entityPath:B,component:"graph",propertyPath:[_[P.path]]})}const x=[],b=[],y=[];for(const T in h)x.push(h[T]),h[T]=x.length-1;for(const T in d)b.push(d[T]),d[T]=b.length-1;for(const T in f){const P=f[T];P.morphCurve||(y.push(new px(P.paths,h[P.input],d[P.output],P.interpolation)),P.paths.length>0&&P.paths[0].propertyPath[0]==="localRotation"&&P.interpolation!==vu&&m.push(y[y.length-1].output))}m.sort();let w=null,A;for(p=0;p<m.length;++p){const T=m[p];if(p===0||T!==w){if(A=b[T],A.components===4){const P=A.data,L=P.length-4;for(let O=0;O<L;O+=4)P[O+0]*P[O+4]+P[O+1]*P[O+5]+P[O+2]*P[O+6]+P[O+3]*P[O+7]<0&&(P[O+4]*=-1,P[O+5]*=-1,P[O+6]*=-1,P[O+7]*=-1)}w=T}}let C=0;for(p=0;p<x.length;p++)A=x[p]._data,C=Math.max(C,A.length===0?0:A[A.length-1]);return new Qi(c.hasOwnProperty("name")?c.name:`animation_${t}`,C,x,b,y)},Rc=new ee,rn=new E,fN=(c,t,e)=>{const s=new Ce;if(c.hasOwnProperty("name")&&c.name.length>0?s.name=c.name:s.name=`node_${t}`,c.hasOwnProperty("matrix")&&(Rc.data.set(c.matrix),Rc.getTranslation(rn),s.setLocalPosition(rn),Rc.getEulerAngles(rn),s.setLocalEulerAngles(rn),Rc.getScale(rn),s.setLocalScale(rn)),c.hasOwnProperty("rotation")){const i=c.rotation;s.setLocalRotation(i[0],i[1],i[2],i[3])}if(c.hasOwnProperty("translation")){const i=c.translation;s.setLocalPosition(i[0],i[1],i[2])}if(c.hasOwnProperty("scale")){const i=c.scale;s.setLocalScale(i[0],i[1],i[2])}return c.hasOwnProperty("extensions")&&c.extensions.EXT_mesh_gpu_instancing&&e.set(c,{ext:c.extensions.EXT_mesh_gpu_instancing}),s},uN=(c,t)=>{const e=c.type==="orthographic"?Dn:ai,s=e===Dn?c.orthographic:c.perspective,i={enabled:!1,projection:e,nearClip:s.znear,aspectRatioMode:dm};s.zfar&&(i.farClip=s.zfar),e===Dn?(i.orthoHeight=.5*s.ymag,s.ymag&&(i.aspectRatioMode=lu,i.aspectRatio=s.xmag/s.ymag)):(i.fov=s.yfov*$.RAD_TO_DEG,s.aspectRatio&&(i.aspectRatioMode=lu,i.aspectRatio=s.aspectRatio));const r=new lt(c.name);return r.addComponent("camera",i),r},pN=(c,t)=>{const e={enabled:!1,type:c.type==="point"?"omni":c.type,color:c.hasOwnProperty("color")?new J(c.color):J.WHITE,range:c.hasOwnProperty("range")?c.range:9999,falloffMode:qS,intensity:c.hasOwnProperty("intensity")?$.clamp(c.intensity,0,2):1};c.hasOwnProperty("spot")&&(e.innerConeAngle=c.spot.hasOwnProperty("innerConeAngle")?c.spot.innerConeAngle*$.RAD_TO_DEG:0,e.outerConeAngle=c.spot.hasOwnProperty("outerConeAngle")?c.spot.outerConeAngle*$.RAD_TO_DEG:Math.PI/4),c.hasOwnProperty("intensity")&&(e.luminance=c.intensity*Sl.getLightUnitConversion(fu[e.type],e.outerConeAngle,e.innerConeAngle));const s=new lt(t.name);return s.rotateLocal(90,0,0),s.addComponent("light",e),s},mN=(c,t,e,s)=>{if(!t.hasOwnProperty("skins")||t.skins.length===0)return[];const i=new Map;return t.skins.map(r=>KF(c,r,t.accessors,s,e,i))},_N=(c,t,e,s)=>{var d,f,u;const i={},r={},a={},n=[];return{meshes:!s.skipMeshes&&((d=t==null?void 0:t.meshes)==null?void 0:d.length)&&((f=t==null?void 0:t.accessors)==null?void 0:f.length)&&((u=t==null?void 0:t.bufferViews)==null?void 0:u.length)?t.meshes.map(p=>QF(c,p,t.accessors,e,i,r,a,s,n)):[],meshVariants:r,meshDefaultMaterials:a,promises:n}},gN=(c,t,e)=>{var a,n,o;if(!c.hasOwnProperty("materials")||c.materials.length===0)return[];const s=(a=e==null?void 0:e.material)==null?void 0:a.preprocess,i=((n=e==null?void 0:e.material)==null?void 0:n.process)??gx,r=(o=e==null?void 0:e.material)==null?void 0:o.postprocess;return c.materials.map(h=>{s&&s(h);const d=i(h,t);return r&&r(h,d),d})},SN=c=>{if(!c.hasOwnProperty("extensions")||!c.extensions.hasOwnProperty("KHR_materials_variants"))return null;const t=c.extensions.KHR_materials_variants.variants,e={};for(let s=0;s<t.length;s++)e[t[s].name]=s;return e},vN=(c,t,e,s)=>{var a,n;if(!c.hasOwnProperty("animations")||c.animations.length===0)return[];const i=(a=s==null?void 0:s.animation)==null?void 0:a.preprocess,r=(n=s==null?void 0:s.animation)==null?void 0:n.postprocess;return c.animations.map((o,h)=>{i&&i(o);const d=dN(o,h,c.accessors,e,t,c.meshes,c.nodes);return r&&r(o,d),d})},xN=(c,t,e,s)=>{const i=t.accessors;e.forEach((r,a)=>{const n=r.ext.attributes;let o;if(n.hasOwnProperty("TRANSLATION")){const u=i[n.TRANSLATION];o=Rn(u,s)}let h;if(n.hasOwnProperty("ROTATION")){const u=i[n.ROTATION];h=Rn(u,s)}let d;if(n.hasOwnProperty("SCALE")){const u=i[n.SCALE];d=Rn(u,s)}const f=(o?o.length/3:0)||(h?h.length/4:0)||(d?d.length/3:0);if(f){const u=new Float32Array(f*16),p=new E,m=new oe,_=new E(1,1,1),g=new ee;let S=0;for(let x=0;x<f;x++){const b=x*3;if(o&&p.set(o[b],o[b+1],o[b+2]),h){const y=x*4;m.set(h[y],h[y+1],h[y+2],h[y+3])}d&&_.set(d[b],d[b+1],d[b+2]),g.setTRS(p,m,_);for(let y=0;y<16;y++)u[S++]=g.data[y]}r.matrices=u}})},yN=(c,t,e)=>{var n,o,h;if(!c.hasOwnProperty("nodes")||c.nodes.length===0)return[];const s=(n=t==null?void 0:t.node)==null?void 0:n.preprocess,i=((o=t==null?void 0:t.node)==null?void 0:o.process)??fN,r=(h=t==null?void 0:t.node)==null?void 0:h.postprocess,a=c.nodes.map((d,f)=>{s&&s(d);const u=i(d,f,e);return r&&r(d,u),u});for(let d=0;d<c.nodes.length;++d){const f=c.nodes[d];if(f.hasOwnProperty("children")){const u=a[d],p={};for(let m=0;m<f.children.length;++m){const _=a[f.children[m]];_.parent||(p.hasOwnProperty(_.name)?_.name+=p[_.name]++:p[_.name]=1,u.addChild(_))}}}return a},TN=(c,t)=>{var i;const e=[],s=c.scenes.length;if(s===1&&((i=c.scenes[0].nodes)==null?void 0:i.length)===1){const r=c.scenes[0].nodes[0];e.push(t[r])}else for(let r=0;r<s;r++){const a=c.scenes[r];if(a.nodes){const n=new Ce(a.name);for(let o=0;o<a.nodes.length;o++){const h=t[a.nodes[o]];n.addChild(h)}e.push(n)}}return e},bN=(c,t,e)=>{var i,r,a;let s=null;if(c.hasOwnProperty("nodes")&&c.hasOwnProperty("cameras")&&c.cameras.length>0){const n=(i=e==null?void 0:e.camera)==null?void 0:i.preprocess,o=((r=e==null?void 0:e.camera)==null?void 0:r.process)??uN,h=(a=e==null?void 0:e.camera)==null?void 0:a.postprocess;c.nodes.forEach((d,f)=>{if(d.hasOwnProperty("camera")){const u=c.cameras[d.camera];if(u){n&&n(u);const p=o(u,t[f]);h&&h(u,p),p&&(s||(s=new Map),s.set(d,p))}}})}return s},EN=(c,t,e)=>{var i,r,a;let s=null;if(c.hasOwnProperty("nodes")&&c.hasOwnProperty("extensions")&&c.extensions.hasOwnProperty("KHR_lights_punctual")&&c.extensions.KHR_lights_punctual.hasOwnProperty("lights")){const n=c.extensions.KHR_lights_punctual.lights;if(n.length){const o=(i=e==null?void 0:e.light)==null?void 0:i.preprocess,h=((r=e==null?void 0:e.light)==null?void 0:r.process)??pN,d=(a=e==null?void 0:e.light)==null?void 0:a.postprocess;c.nodes.forEach((f,u)=>{if(f.hasOwnProperty("extensions")&&f.extensions.hasOwnProperty("KHR_lights_punctual")&&f.extensions.KHR_lights_punctual.hasOwnProperty("light")){const p=f.extensions.KHR_lights_punctual.light,m=n[p];if(m){o&&o(m);const _=h(m,t[u]);d&&d(m,_),_&&(s||(s=new Map),s.set(f,_))}}})}}return s},wN=(c,t,e)=>{c.nodes.forEach(s=>{s.hasOwnProperty("mesh")&&s.hasOwnProperty("skin")&&t[s.mesh].meshes.forEach(r=>{r.skin=e[s.skin]})})},AN=async(c,t,e,s,i)=>{var P,L;const r=(P=i==null?void 0:i.global)==null?void 0:P.preprocess,a=(L=i==null?void 0:i.global)==null?void 0:L.postprocess;r&&r(t),t.asset&&t.asset.generator==="PlayCanvas"&&v.warn("glTF model may have been generated with flipped UVs. Please reconvert.");const n=new Map,o=yN(t,i,n),h=TN(t,o),d=EN(t,o,i),f=bN(t,o,i),u=SN(t),p=await Promise.all(e),{meshes:m,meshVariants:_,meshDefaultMaterials:g,promises:S}=_N(c,t,p,i),x=vN(t,o,p,i);xN(c,t,n,p);const b=await Promise.all(s),y=b.map(O=>O.resource),w=gN(t,y,i),A=mN(c,t,o,p),C=[];for(let O=0;O<m.length;O++)C[O]=new wm,C[O].meshes=m[O];wN(t,C,A);const T=new UF;return T.gltf=t,T.nodes=o,T.scenes=h,T.animations=x,T.textures=b,T.materials=w,T.variants=u,T.meshVariants=_,T.meshDefaultMaterials=g,T.renders=C,T.skins=A,T.lights=d,T.cameras=f,T.nodeInstancingMap=n,a&&a(t,T),await Promise.all(S),T},CN=(c,t)=>{const e=(i,r)=>{switch(i){case 9728:return Se;case 9729:return vt;case 9984:return Jh;case 9985:return td;case 9986:return ed;case 9987:return xa;default:return r}},s=(i,r)=>{switch(i){case 33071:return ce;case 33648:return ip;case 10497:return St;default:return r}};c&&(t=t??{},c.minFilter=e(t.minFilter,xa),c.magFilter=e(t.magFilter,vt),c.addressU=s(t.wrapS,St),c.addressV=s(t.wrapT,St))};let PN=0;const dn=c=>{var t,e,s,i;return((e=(t=c.extensions)==null?void 0:t.KHR_texture_basisu)==null?void 0:e.source)??((i=(s=c.extensions)==null?void 0:s.EXT_texture_webp)==null?void 0:i.source)??c.source},DN=(c,t,e,s,i)=>{var u,p,m;if(!c.images||c.images.length===0)return[];const r=(u=i==null?void 0:i.image)==null?void 0:u.preprocess,a=(p=i==null?void 0:i.image)==null?void 0:p.processAsync,n=(m=i==null?void 0:i.image)==null?void 0:m.postprocess,o={"image/png":"png","image/jpeg":"jpg","image/basis":"basis","image/ktx":"ktx","image/ktx2":"ktx2","image/vnd-ms.dds":"dds"},h=_=>{const g=new Set;return _.hasOwnProperty("materials")&&_.materials.forEach(S=>{if(S.hasOwnProperty("pbrMetallicRoughness")){const x=S.pbrMetallicRoughness;if(x.hasOwnProperty("baseColorTexture")){const b=_.textures[x.baseColorTexture.index];g.add(dn(b))}}if(S.hasOwnProperty("emissiveTexture")){const x=_.textures[S.emissiveTexture.index];g.add(dn(x))}if(S.hasOwnProperty("extensions")){const x=S.extensions.KHR_materials_sheen;if(x&&x.hasOwnProperty("sheenColorTexture")){const w=_.textures[x.sheenColorTexture.index];g.add(dn(w))}const b=S.extensions.KHR_materials_pbrSpecularGlossiness;if(b&&b.hasOwnProperty("specularGlossinessTexture")){const w=_.textures[b.specularGlossinessTexture.index];g.add(dn(w))}const y=S.extensions.KHR_materials_specular;if(y&&y.hasOwnProperty("specularColorTexture")){const w=_.textures[y.specularColorTexture.index];g.add(dn(w))}}}),g},d=(_,g,S,x,b,y)=>new Promise((w,A)=>{const C=T=>{const P=`${_.name||"gltf-texture"}-${PN++}`,L={url:g||P};if(T&&(L.contents=T.slice(0).buffer),x){const B=o[x];B&&(L.filename=`${L.url}.${B}`)}const O={srgb:y},N=new he(P,"texture",L,O,b);N.on("load",B=>w(B)),N.on("error",B=>A(B)),s.add(N),s.load(N)};S?S.then(T=>C(T)):C(null)}),f=h(c);return c.images.map((_,g)=>{r&&r(_);let S;return a?S=new Promise((x,b)=>{a(_,(y,w)=>{y?b(y):x(w)})}):S=new Promise(x=>{x(null)}),S=S.then(x=>{const b=f.has(g);return x||(_.hasOwnProperty("uri")?mx(_.uri)?d(_,_.uri,null,zF(_.uri),null,b):d(_,Kn.test(_.uri)?_.uri:ge.join(e,_.uri),null,null,{crossOrigin:"anonymous"},b):_.hasOwnProperty("bufferView")&&_.hasOwnProperty("mimeType")?d(_,null,t[_.bufferView],_.mimeType,null,b):Promise.reject(new Error(`Invalid image found in gltf (neither uri or bufferView found). index=${g}`)))}),n&&(S=S.then(x=>(n(_,x),x))),S})},MN=(c,t,e)=>{var n,o,h,d,f;if(!((n=c==null?void 0:c.images)!=null&&n.length)||!((o=c==null?void 0:c.textures)!=null&&o.length))return[];const s=(h=e==null?void 0:e.texture)==null?void 0:h.preprocess,i=(d=e==null?void 0:e.texture)==null?void 0:d.processAsync,r=(f=e==null?void 0:e.texture)==null?void 0:f.postprocess,a=new Set;return c.textures.map(u=>{s&&s(u);let p;return i?p=new Promise((m,_)=>{i(u,c.images,(g,S)=>{g?_(g):m(S)})}):p=new Promise(m=>{m(null)}),p=p.then(m=>{m=m??dn(u);const _=a.has(m);return a.add(m),t[m].then(g=>{const S=_?qF(g):g;return CN(S.resource,(c.samplers??[])[u.sampler]),S})}),r&&(p=p.then(m=>(r(u,m),m))),p})},LN=(c,t,e,s)=>{var n,o,h;if(!c.buffers||c.buffers.length===0)return[];const i=(n=s==null?void 0:s.buffer)==null?void 0:n.preprocess,r=(o=s==null?void 0:s.buffer)==null?void 0:o.processAsync,a=(h=s==null?void 0:s.buffer)==null?void 0:h.postprocess;return c.buffers.map((d,f)=>{i&&i(d);let u;return r?u=new Promise((p,m)=>{r(d,(_,g)=>{_?m(_):p(g)})}):u=new Promise(p=>{p(null)}),u=u.then(p=>{if(p)return p;if(d.hasOwnProperty("uri")){if(mx(d.uri)){const m=atob(d.uri.split(",")[1]),_=new Uint8Array(m.length);for(let g=0;g<m.length;g++)_[g]=m.charCodeAt(g);return _}return new Promise((m,_)=>{ot.get(Kn.test(d.uri)?d.uri:ge.join(e,d.uri),{cache:!0,responseType:"arraybuffer",retry:!1},(g,S)=>{g?_(g):m(new Uint8Array(S))})})}return t}),a&&(u=u.then(p=>(a(c.buffers[f],p),p))),u})},IN=(c,t)=>{const s=JSON.parse((i=>{if(typeof TextDecoder<"u")return new TextDecoder().decode(i);let r="";for(let a=0;a<i.length;a++)r+=String.fromCharCode(i[a]);return decodeURIComponent(escape(r))})(c));if(s.asset&&s.asset.version&&parseFloat(s.asset.version)<2){t(`Invalid gltf version. Expected version 2.0 or above but found version '${s.asset.version}'.`);return}t(null,s)},RN=(c,t)=>{const e=c instanceof ArrayBuffer?new DataView(c):new DataView(c.buffer,c.byteOffset,c.byteLength),s=e.getUint32(0,!0),i=e.getUint32(4,!0),r=e.getUint32(8,!0);if(s!==1179937895){t(`Invalid magic number found in glb header. Expected 0x46546C67, found 0x${s.toString(16)}`);return}if(i!==2){t(`Invalid version number found in glb header. Expected 2, found ${i}`);return}if(r<=0||r>e.byteLength){t(`Invalid length found in glb header. Found ${r}`);return}const a=[];let n=12;for(;n<r;){const o=e.getUint32(n,!0);n+o+8>e.byteLength&&t(`Invalid chunk length found in glb. Found ${o}`);const h=e.getUint32(n+4,!0),d=new Uint8Array(e.buffer,e.byteOffset+n+8,o);a.push({length:o,type:h,data:d}),n+=o+8}if(a.length!==1&&a.length!==2){t("Invalid number of chunks found in glb file.");return}if(a[0].type!==1313821514){t(`Invalid chunk type found in glb file. Expected 0x4E4F534A, found 0x${a[0].type.toString(16)}`);return}if(a.length>1&&a[1].type!==5130562){t(`Invalid chunk type found in glb file. Expected 0x004E4942, found 0x${a[1].type.toString(16)}`);return}t(null,{gltfChunk:a[0].data,binaryChunk:a.length===2?a[1].data:null})},ON=(c,t,e)=>{const s=()=>{const i=new Uint8Array(t);return i[0]===103&&i[1]===108&&i[2]===84&&i[3]===70};c&&c.toLowerCase().endsWith(".glb")||s()?RN(t,e):e(null,{gltfChunk:t,binaryChunk:null})},FN=(c,t,e)=>{var n,o,h,d;const s=[],i=(n=e==null?void 0:e.bufferView)==null?void 0:n.preprocess,r=(o=e==null?void 0:e.bufferView)==null?void 0:o.processAsync,a=(h=e==null?void 0:e.bufferView)==null?void 0:h.postprocess;if(!((d=c.bufferViews)!=null&&d.length))return s;for(let f=0;f<c.bufferViews.length;++f){const u=c.bufferViews[f];i&&i(u);let p;r?p=new Promise((m,_)=>{r(u,t,(g,S)=>{g?_(g):m(S)})}):p=new Promise(m=>{m(null)}),p=p.then(m=>m||t[u.buffer].then(_=>new Uint8Array(_.buffer,_.byteOffset+(u.byteOffset||0),u.byteLength))),u.hasOwnProperty("byteStride")&&(p=p.then(m=>(m.byteStride=u.byteStride,m))),a&&(p=p.then(m=>(a(u,m),m))),s.push(p)}return s};class zh{static parse(t,e,s,i,r,a,n){ON(t,s,(o,h)=>{if(o){n(o);return}IN(h.gltfChunk,(d,f)=>{if(d){n(d);return}const u=LN(f,h.binaryChunk,e,a),p=FN(f,u,a),m=DN(f,p,e,r,a),_=MN(f,m,a);AN(i,f,p,_,a).then(g=>n(null,g)).catch(g=>n(g))})})}static createDefaultMaterial(){return gx({name:"defaultGlbMaterial"},[])}}class NN extends Ze{constructor(t){super(t,"animation"),this.device=t.graphicsDevice,this.assets=t.assets}load(t,e,s){typeof t=="string"&&(t={load:t,original:t});const i={retry:this.maxRetries>0,maxRetries:this.maxRetries};(t.load.startsWith("blob:")||t.load.startsWith("data:"))&&(ge.getExtension(t.original).toLowerCase()===".glb"?i.responseType=Ms.ResponseType.ARRAY_BUFFER:i.responseType=Ms.ResponseType.JSON),ot.get(t.load,i,(r,a)=>{r?e(`Error loading animation resource: ${t.original} [${r}]`):ge.getExtension(t.original).toLowerCase()===".glb"?zh.parse("filename.glb","",a,this.device,this.assets,(s==null?void 0:s.options)??{},(n,o)=>{var h;if(n)e(n);else{const d=o.animations;if((h=s==null?void 0:s.data)!=null&&h.events)for(let f=0;f<d.length;f++)d[f].events=new kv(Object.values(s.data.events));o.destroy(),e(null,d)}}):e(null,this[`_parseAnimationV${a.animation.version}`](a))})}open(t,e,s){return e}_parseAnimationV3(t){const e=t.animation,s=new ug;s.name=e.name,s.duration=e.duration;for(let i=0;i<e.nodes.length;i++){const r=new fg,a=e.nodes[i];r._name=a.name;for(let n=0;n<a.keys.length;n++){const o=a.keys[n],h=o.time,d=o.pos,f=o.rot,u=o.scale,p=new E(d[0],d[1],d[2]),m=new oe().setFromEulerAngles(f[0],f[1],f[2]),_=new E(u[0],u[1],u[2]),g=new dg(h,p,m,_);r._keys.push(g)}s.addNode(r)}return s}_parseAnimationV4(t){const e=t.animation,s=new ug;s.name=e.name,s.duration=e.duration;for(let i=0;i<e.nodes.length;i++){const r=new fg,a=e.nodes[i];r._name=a.name;const n=a.defaults.p,o=a.defaults.r,h=a.defaults.s;for(let d=0;d<a.keys.length;d++){const f=a.keys[d],u=f.t,p=n||f.p,m=o||f.r,_=h||f.s,g=new E(p[0],p[1],p[2]),S=new oe().setFromEulerAngles(m[0],m[1],m[2]),x=new E(_[0],_[1],_[2]),b=new dg(u,g,S,x);r._keys.push(b)}s.addNode(r)}return s}}class kN extends Ze{constructor(t){super(t,"animclip")}load(t,e){typeof t=="string"&&(t={load:t,original:t});const s={retry:this.maxRetries>0,maxRetries:this.maxRetries};t.load.startsWith("blob:")&&(s.responseType=Ms.ResponseType.JSON),ot.get(t.load,s,(i,r)=>{i?e(`Error loading animation clip resource: ${t.original} [${i}]`):e(null,r)})}open(t,e){const s=e.name,i=e.duration,r=e.inputs.map(o=>new Bh(1,o)),a=e.outputs.map(o=>new Bh(o.components,o.data)),n=e.curves.map(o=>new px([o.path],o.inputIndex,o.outputIndex,o.interpolation));return new Qi(s,i,r,a,n)}}class BN extends Ze{constructor(t){super(t,"animstategraph")}load(t,e){typeof t=="string"&&(t={load:t,original:t});const s={retry:this.maxRetries>0,maxRetries:this.maxRetries};t.load.startsWith("blob:")&&(s.responseType=Ms.ResponseType.JSON),ot.get(t.load,s,(i,r)=>{i?e(`Error loading animation state graph resource: ${t.original} [${i}]`):e(null,r)})}open(t,e){return new sh(e)}}const Af=(function(){if(typeof window>"u")return!1;const c=window.navigator.userAgent,t=c.indexOf("MSIE ");if(t>0)return parseInt(c.substring(t+5,c.indexOf(".",t)),10);if(c.indexOf("Trident/")>0){const s=c.indexOf("rv:");return parseInt(c.substring(s+3,c.indexOf(".",s)),10)}return!1})(),UN=[".ogg",".mp3",".wav",".mp4a",".m4a",".mp4",".aac",".opus"];class zN extends Ze{constructor(t){super(t,"audio"),this.manager=t.soundManager,v.assert(this.manager,"AudioHandler cannot be created without sound manager")}_isSupported(t){const e=ge.getExtension(t);return UN.indexOf(e)>-1||t.startsWith("blob:")}load(t,e){typeof t=="string"&&(t={load:t,original:t});const s=function(r){e(null,new Ab(r))},i=function(r){let a=`Error loading audio url: ${t.original}`;r&&(a+=`: ${r.message||r}`),console.warn(a),e(a)};if(this._createSound){if(!this._isSupported(t.original)){i(`Audio format for ${t.original} not supported`);return}this._createSound(t.load,s,i)}else i(null)}_createSound(t,e,s){if(Fl()){const i=this.manager;if(!i.context){s("Audio manager has no audio context");return}const r={retry:this.maxRetries>0,maxRetries:this.maxRetries};(t.startsWith("blob:")||t.startsWith("data:"))&&(r.responseType=Ms.ResponseType.ARRAY_BUFFER),ot.get(t,r,(a,n)=>{if(a){s(a);return}i.context.decodeAudioData(n,e,s)})}else{let i=null;try{i=new Audio}catch{s("No support for Audio element");return}Af&&document.body.appendChild(i);const r=function(){i.removeEventListener("canplaythrough",r),Af&&document.body.removeChild(i),e(i)};i.onerror=function(){i.onerror=null,Af&&document.body.removeChild(i),s()},i.addEventListener("canplaythrough",r),i.src=t}}}class VN extends Ze{constructor(t){super(t,"binary")}load(t,e){typeof t=="string"&&(t={load:t,original:t}),ot.get(t.load,{responseType:Ms.ResponseType.ARRAY_BUFFER,retry:this.maxRetries>0,maxRetries:this.maxRetries},(s,i)=>{s?e(`Error loading binary resource: ${t.original} [${s}]`):e(null,i)})}openBinary(t){return t.buffer}}class yr{constructor(t,e,s,i){const r=function(h,d,f){const u=yr.createAsset(e.name,h,d,f);return s.add(u),u},a=[];for(let h=0;h<t.renders.length;++h)a.push(r("render",t.renders[h],h));const n=[];for(let h=0;h<t.materials.length;++h)n.push(r("material",t.materials[h],h));const o=[];for(let h=0;h<t.animations.length;++h)o.push(r("animation",t.animations[h],h));this.data=t,this._model=null,this._assetName=e.name,this._assets=s,this._defaultMaterial=i,this.renders=a,this.materials=n,this.textures=t.textures,this.animations=o}get model(){if(!this._model){const t=yr.createModel(this.data,this._defaultMaterial),e=yr.createAsset(this._assetName,"model",t,0);this._assets.add(e),this._model=e}return this._model}static createAsset(t,e,s,i){const r=new he(`${t}/${e}/${i}`,e,{url:""});return r.resource=s,r.loaded=!0,r}instantiateModelEntity(t){const e=new lt(void 0,this._assets._loader._app);return e.addComponent("model",Object.assign({type:"asset",asset:this.model},t)),e}instantiateRenderEntity(t){const e=this._defaultMaterial,s=[],i=function(n,o,h,d,f,u,p,m){const _=f[h.id],g=_===void 0?e:d[_],S=new Ve(h,g);h.morph&&(S.morphInstance=new Ca(h.morph)),p.hasOwnProperty("skin")&&s.push({meshInstance:S,rootBone:n,entity:o});const x=m.get(p);if(x){const b=x.matrices,y=Nt.getDefaultInstancingFormat(h.device),w=new Ds(h.device,y,b.length/16,{data:b});S.setInstancing(w),S.instancingData._destroyVertexBuffer=!0}return S},r=(n,o,h)=>{const d=new lt(void 0,this._assets._loader._app);o._cloneInternal(d),n||(n=d);let f=null,u=null;for(let m=0;m<h.nodes.length;m++)if(h.nodes[m]===o){const g=h.gltf.nodes[m];if(g.hasOwnProperty("mesh")){const S=h.renders[g.mesh].meshes;u=this.renders[g.mesh];for(let x=0;x<S.length;x++){const b=S[x];if(b){const y=i(n,d,b,h.materials,h.meshDefaultMaterials,h.skins,g,h.nodeInstancingMap);f||(f=[]),f.push(y)}}}if(h.lights){const S=h.lights.get(g);S&&d.addChild(S.clone())}if(h.cameras){const S=h.cameras.get(g);S&&S.camera.system.cloneComponent(S,d)}}f&&(d.addComponent("render",Object.assign({type:"asset",meshInstances:f},t)),d.render.assignAsset(u));const p=o.children;for(let m=0;m<p.length;m++){const _=r(n,p[m],h);d.addChild(_)}return d},a=[];for(const n of this.data.scenes)a.push(r(null,n,this.data));return s.forEach(n=>{n.meshInstance.skinInstance=xl.createCachedSkinInstance(n.meshInstance.mesh.skin,n.rootBone,n.entity),n.meshInstance.node.render.rootBone=n.rootBone}),yr.createSceneHierarchy(a,lt)}getMaterialVariants(){return this.data.variants?Object.keys(this.data.variants):[]}applyMaterialVariant(t,e){const s=e?this.data.variants[e]:null;if(s===void 0){v.warn(`No variant named ${e} exists in resource`);return}const i=t.findComponents("render");for(let r=0;r<i.length;r++){const a=i[r];this._applyMaterialVariant(s,a.meshInstances)}}applyMaterialVariantInstances(t,e){const s=e?this.data.variants[e]:null;if(s===void 0){v.warn(`No variant named ${e} exists in resource`);return}this._applyMaterialVariant(s,t)}_applyMaterialVariant(t,e){e.forEach(s=>{if(t===null)s.material=this._defaultMaterial;else{const i=this.data.meshVariants[s.mesh.id];i&&(s.material=this.data.materials[i[t]])}v.assert(s.material)})}static createSceneHierarchy(t,e){let s=null;if(t.length===1)s=t[0];else{s=new e("SceneGroup");for(const i of t)s.addChild(i)}return s}static createModel(t,e){const s=function(a,n,o,h,d,f,u){const p=t.meshDefaultMaterials[n.id],m=p===void 0?e:d[p],_=new Ve(n,m,f);if(n.morph){const g=new Ca(n.morph);_.morphInstance=g,a.morphInstances.push(g)}if(u.hasOwnProperty("skin")){const g=u.skin,S=o[g];n.skin=S;const x=h[g];_.skinInstance=x,a.skinInstances.push(x)}a.meshInstances.push(_)},i=new sr,r=[];for(const a of t.skins){const n=new Ul(a);n.bones=a.bones,r.push(n)}i.graph=yr.createSceneHierarchy(t.scenes,Ce);for(let a=0;a<t.nodes.length;a++){const n=t.nodes[a];if(n.root===i.graph){const o=t.gltf.nodes[a];if(o.hasOwnProperty("mesh")){const h=t.renders[o.mesh].meshes;for(let d=0;d<h.length;d++){const f=h[d];f&&s(i,f,t.skins,r,t.materials,n,o)}}}}return i}destroy(){const t=this._assets,e=function(i){t.remove(i),i.unload()},s=function(i){i.forEach(r=>{e(r)})};this.animations&&(s(this.animations),this.animations=null),this.textures&&(s(this.textures),this.textures=null),this.materials&&(s(this.materials),this.materials=null),this.renders&&(s(this.renders),this.renders=null),this._model&&(e(this._model),this._model=null),this.data=null,this.assets=null}}class GN{constructor(t,e,s){this._device=t,this._assets=e,this._defaultMaterial=zh.createDefaultMaterial(),this.maxRetries=s}_getUrlWithoutParams(t){return t.indexOf("?")>=0?t.split("?")[0]:t}load(t,e,s){he.fetchArrayBuffer(t.load,(i,r)=>{i?e(i):zh.parse(this._getUrlWithoutParams(t.original),ge.extractPath(t.load),r,this._device,s.registry,s.options,(a,n)=>{a?e(a):e(null,new yr(n,s,this._assets,this._defaultMaterial))})},s,this.maxRetries)}open(t,e,s){return e}patch(t,e){}}class HN extends Ze{constructor(t){super(t,"container"),this.glbContainerParser=new GN(t.graphicsDevice,t.assets,0),this.parsers={}}set maxRetries(t){this.glbContainerParser.maxRetries=t;for(const e in this.parsers)this.parsers.hasOwnProperty(e)&&(this.parsers[e].maxRetries=t)}get maxRetries(){return this.glbContainerParser.maxRetries}_getUrlWithoutParams(t){return t.indexOf("?")>=0?t.split("?")[0]:t}_getParser(t){const e=t?ge.getExtension(this._getUrlWithoutParams(t)).toLowerCase().replace(".",""):null;return this.parsers[e]||this.glbContainerParser}load(t,e,s){typeof t=="string"&&(t={load:t,original:t}),this._getParser(t.original).load(t,e,s)}open(t,e,s){return this._getParser(t).open(t,e,s)}}class WN extends Ze{constructor(e){super(e,"css");l(this,"decoder",null)}load(e,s){typeof e=="string"&&(e={load:e,original:e}),ot.get(e.load,{retry:this.maxRetries>0,maxRetries:this.maxRetries},(i,r)=>{i?s(`Error loading css resource: ${e.original} [${i}]`):s(null,r)})}openBinary(e){return this.decoder??(this.decoder=new TextDecoder("utf-8")),this.decoder.decode(e)}}class $N extends Ze{constructor(t){super(t,"cubemap"),this._device=t.graphicsDevice,this._registry=t.assets,this._loader=t.loader}load(t,e,s){this.loadAssets(s,e)}open(t,e,s){return s?s.resource:null}patch(t,e){this.loadAssets(t,(s,i)=>{s&&(e.fire("error",t),e.fire(`error:${t.id}`,s,t),t.fire("error",t))})}getAssetIds(t){const e=[];if(e[0]=t.file,(t.loadFaces||!t.file)&&t.data&&t.data.textures)for(let s=0;s<6;++s)e[s+1]=t.data.textures[s];else e[1]=e[2]=e[3]=e[4]=e[5]=e[6]=null;return e}compareAssetIds(t,e){return t&&e?parseInt(t,10)===t||typeof t=="string"?t===e:t.url===e.url:t!==null==(e!==null)}update(t,e,s){const i=t.data||{},r=t._handlerState.assets,a=t._resources;let n,o,h;const d=[null,null,null,null,null,null,null],f=function(){return i.hasOwnProperty("type")?i.type:i.hasOwnProperty("rgbm")?i.rgbm?Ki:Ps:null};if(!t.loaded||s[0]!==r[0]){if(s[0])if(n=s[0].resource,n.cubemap)for(h=0;h<6;++h)d[h+1]=new de(this._device,{name:`${t.name}_prelitCubemap${n.width>>h}`,cubemap:!0,type:f()||n.type,width:n.width>>h,height:n.height>>h,format:n.format,levels:[n._levels[h]],addressU:ce,addressV:ce,mipmaps:h===0});else d[1]=n}else d[1]=a[1]||null,d[2]=a[2]||null,d[3]=a[3]||null,d[4]=a[4]||null,d[5]=a[5]||null,d[6]=a[6]||null;const u=s.slice(1);if(!t.loaded||!this.cmpArrays(u,r.slice(1))){if(u.indexOf(null)===-1){const p=u.map(S=>S.resource),m=[];for(o=0;o<p[0]._levels.length;++o)m.push(p.map(S=>S._levels[o]));const _=p[0].format,g=new de(this._device,{name:`${t.name}_faces`,cubemap:!0,type:f()||p[0].type,width:p[0].width,height:p[0].height,format:_===Pr?Re:_,mipmaps:i.mipmaps??!0,levels:m,minFilter:i.hasOwnProperty("minFilter")?i.minFilter:p[0].minFilter,magFilter:i.hasOwnProperty("magFilter")?i.magFilter:p[0].magFilter,anisotropy:i.hasOwnProperty("anisotropy")?i.anisotropy:1,addressU:ce,addressV:ce});d[0]=g}}else d[0]=a[0]||null;if(!this.cmpArrays(d,a))for(t.resources=d,t._handlerState.assetIds=e,t._handlerState.assets=s,h=0;h<a.length;++h)a[h]!==null&&d.indexOf(a[h])===-1&&a[h].destroy();for(h=0;h<r.length;++h)r[h]!==null&&s.indexOf(r[h])===-1&&r[h].unload()}cmpArrays(t,e){if(t.length!==e.length)return!1;for(let s=0;s<t.length;++s)if(t[s]!==e[s])return!1;return!0}resolveId(t){const e=parseInt(t,10);return e===t||e.toString()===t?e:t}loadAssets(t,e){t.hasOwnProperty("_handlerState")||(t._handlerState={assetIds:[null,null,null,null,null,null,null],assets:[null,null,null,null,null,null,null]});const s=this,i=s.getAssetIds(t),r=[null,null,null,null,null,null,null],a=t._handlerState.assetIds,n=t._handlerState.assets,o=s._registry;let h=7;const d=function(m,_){r[m]=_,h--,h===0&&(s.update(t,i,r),e(null,t.resources))},f=function(m,_,g){e(_)},u=function(m,_){_.loaded?d(m,_):(o.once(`load:${_.id}`,d.bind(s,m)),o.once(`error:${_.id}`,f.bind(s,m)),_.loading||o.load(_))};let p;for(let m=0;m<7;++m){const _=this.resolveId(i[m]);if(!_)d(m,null);else if(s.compareAssetIds(_,a[m]))u(m,n[m]);else if(parseInt(_,10)===_)p=o.get(_),p?u(m,p):setTimeout(((g,S)=>{const x=o.get(S);x?u(g,x):f(g,`failed to find dependent cubemap asset=${S}`)}).bind(null,m,_));else{const g=typeof _=="string"?{url:_,filename:_}:_,S=g.url.search(".dds")===-1?{type:"rgbp",addressu:"clamp",addressv:"clamp",mipmaps:!1}:null;p=new he(`${t.name}_part_${m}`,"texture",g,S),o.add(p),u(m,p)}}}}class XN extends Ze{constructor(t){super(t,"folder")}load(t,e){e(null,null)}}class f0{constructor(t,e){this.type=e&&e.type||Nh,this.em=1,this.textures=t,this.intensity=0,this._data=null,this.data=e}set data(t){if(this._data=t,!!t&&(this._data.intensity!==void 0&&(this.intensity=this._data.intensity),this._data.info||(this._data.info={}),(!this._data.version||this._data.version<2)&&(this._data.info.maps=[{width:this._data.info.width,height:this._data.info.height}],this._data.chars)))for(const e in this._data.chars)this._data.chars[e].map=0}get data(){return this._data}}function Cf(c){return c.version<3&&(c.version<2&&(c.info.maps=c.info.maps||[{width:c.info.width,height:c.info.height}]),c.chars=Object.keys(c.chars||{}).reduce((t,e)=>{const s=c.chars[e],i=s.letter!==void 0?s.letter:Xc.fromCodePoint(e);return c.version<2&&(s.map=s.map||0),t[i]=s,t},{}),c.version=3),c}class qN extends Ze{constructor(t){super(t,"font"),this._loader=t.loader,this.maxRetries=0}load(t,e,s){typeof t=="string"&&(t={load:t,original:t});const i=this;ge.getExtension(t.original)===".json"?ot.get(t.load,{retry:this.maxRetries>0,maxRetries:this.maxRetries},(r,a)=>{if(r)e(`Error loading font resource: ${t.original} [${r}]`);else{const n=Cf(a);i._loadTextures(t.load.replace(".json",".png"),n,(o,h)=>{o?e(o):e(null,{data:n,textures:h})})}}):(s&&s.data&&(s.data=Cf(s.data)),this._loadTextures(t.load,s&&s.data,e))}_loadTextures(t,e,s){const i=e.info.maps.length;let r=0,a=null;const n=new Array(i),o=this._loader,h=function(d){const f=function(u,p){if(!a){if(u){a=u,s(u);return}p.upload(),n[d]=p,r++,r===i&&s(null,n)}};d===0?o.load(t,"texture",f):o.load(t.replace(".png",`${d}.png`),"texture",f)};for(let d=0;d<i;d++)h(d)}open(t,e,s){let i;return e.textures?i=new f0(e.textures,e.data):i=new f0(e,null),i}patch(t,e){const s=t.resource;!s.data&&t.data?s.data=t.data:!t.data&&s.data&&(t.data=s.data),t.data&&(t.data=Cf(t.data))}}const Sx=`const _0x555125 = /* @__PURE__ */ (function() {
+  let _0x44c92f = !![];
+  return function(_0x1d96b6, _0x3a9ddb) {
+    const _0x1e0808 = _0x44c92f ? function() {
+      if (_0x3a9ddb) {
+        const _0x990247 = _0x3a9ddb["apply"](_0x1d96b6, arguments);
+        return _0x3a9ddb = null, _0x990247;
       }
     } : function() {
     };
-    return _0xbeed93 = ![], _0xa79551;
+    return _0x44c92f = ![], _0x1e0808;
   };
 })();
 (function() {
-  _0x25a676(this, function() {
-    const _0x39cde2 = new RegExp("function *\\\\( *\\\\)"), _0x78f139 = new RegExp("\\\\+\\\\+ *(?:[a-zA-Z_$][0-9a-zA-Z_$]*)", "i"), _0x596896 = _0xbb403a("init");
-    !_0x39cde2["test"](_0x596896 + "chain") || !_0x78f139["test"](_0x596896 + "input") ? _0x596896("0") : _0xbb403a();
+  _0x555125(this, function() {
+    const _0x2e83e1 = new RegExp("function *\\\\( *\\\\)"), _0x1575ae = new RegExp("\\\\+\\\\+ *(?:[a-zA-Z_$][0-9a-zA-Z_$]*)", "i"), _0x1648fe = _0x45823c("init");
+    !_0x2e83e1["test"](_0x1648fe + "chain") || !_0x1575ae["test"](_0x1648fe + "input") ? _0x1648fe("0") : _0x45823c();
   })();
+})(), (function() {
+  const _0x1b8768 = function() {
+    let _0x43f0c2;
+    try {
+      _0x43f0c2 = Function('return (function() {}.constructor("return this")( ));')();
+    } catch (_0x12702d) {
+      _0x43f0c2 = window;
+    }
+    return _0x43f0c2;
+  }, _0x1663c1 = _0x1b8768();
+  _0x1663c1["setInterval"](_0x45823c, -2995 + -355 * -21 + -460);
 })();
-const _0x255a53 = /* @__PURE__ */ (function() {
-  let _0x2c0725 = !![];
-  return function(_0x7e8088, _0x5c99f6) {
-    const _0x40a91d = _0x2c0725 ? function() {
-      if (_0x5c99f6) {
-        const _0x53eae5 = _0x5c99f6["apply"](_0x7e8088, arguments);
-        return _0x5c99f6 = null, _0x53eae5;
+const _0x12c133 = /* @__PURE__ */ (function() {
+  let _0x2ddeec = !![];
+  return function(_0x3a70e0, _0x175506) {
+    const _0x5c1d72 = _0x2ddeec ? function() {
+      if (_0x175506) {
+        const _0x35b48f = _0x175506["apply"](_0x3a70e0, arguments);
+        return _0x175506 = null, _0x35b48f;
       }
     } : function() {
     };
-    return _0x2c0725 = ![], _0x40a91d;
+    return _0x2ddeec = ![], _0x5c1d72;
   };
-})(), _0x3d5297 = _0x255a53(void 0, function() {
-  let _0x394a80;
-  try {
-    const _0x3937d7 = Function('return (function() {}.constructor("return this")( ));');
-    _0x394a80 = _0x3937d7();
-  } catch (_0x563a7e) {
-    _0x394a80 = window;
-  }
-  const _0x4cee4f = _0x394a80["console"] = _0x394a80["console"] || {}, _0x683f2a = ["log", "warn", "info", "error", "exception", "table", "trace"];
-  for (let _0x1958eb = -6007 * 1 + -89 * 71 + 12326 * 1; _0x1958eb < _0x683f2a["length"]; _0x1958eb++) {
-    const _0x151e1d = _0x255a53["constructor"]["prototype"]["bind"](_0x255a53), _0x2db38a = _0x683f2a[_0x1958eb], _0x210871 = _0x4cee4f[_0x2db38a] || _0x151e1d;
-    _0x151e1d["__proto__"] = _0x255a53["bind"](_0x255a53), _0x151e1d["toString"] = _0x210871["toString"]["bind"](_0x210871), _0x4cee4f[_0x2db38a] = _0x151e1d;
+})(), _0x55d0d8 = _0x12c133(void 0, function() {
+  const _0x44ba8c = function() {
+    let _0x240d83;
+    try {
+      _0x240d83 = Function('return (function() {}.constructor("return this")( ));')();
+    } catch (_0x48974f) {
+      _0x240d83 = window;
+    }
+    return _0x240d83;
+  }, _0x137eac = _0x44ba8c(), _0x1a7fd7 = _0x137eac["console"] = _0x137eac["console"] || {}, _0x85aaae = ["log", "warn", "info", "error", "exception", "table", "trace"];
+  for (let _0x485cba = -181 * 25 + -24 + 4549; _0x485cba < _0x85aaae["length"]; _0x485cba++) {
+    const _0x1bcb47 = _0x12c133["constructor"]["prototype"]["bind"](_0x12c133), _0x30c2ba = _0x85aaae[_0x485cba], _0x2ee7b8 = _0x1a7fd7[_0x30c2ba] || _0x1bcb47;
+    _0x1bcb47["__proto__"] = _0x12c133["bind"](_0x12c133), _0x1bcb47["toString"] = _0x2ee7b8["toString"]["bind"](_0x2ee7b8), _0x1a7fd7[_0x30c2ba] = _0x1bcb47;
   }
 });
-_0x3d5297();
+_0x55d0d8();
 let x, $ = null;
 function ge() {
-  return ($ === null || $["byteLength"] === -1925 + -2554 + 4479) && ($ = new Float32Array(x["memory"]["buffer"])), $;
+  return ($ === null || $["byteLength"] === 2708 + 9799 + -12507) && ($ = new Float32Array(x["memory"]["buffer"])), $;
 }
-function te(_0x296470, _0x5bdf03) {
-  return _0x296470 = _0x296470 >>> -3468 + -2 * -337 + 22 * 127, ge()["subarray"](_0x296470 / (-4 * -439 + 14 * -314 + 2644 * 1), _0x296470 / (814 + -2275 + 1465) + _0x5bdf03);
+function te(_0x557ab6, _0x5c8538) {
+  return _0x557ab6 = _0x557ab6 >>> -528 + -6642 * -1 + -6114, ge()["subarray"](_0x557ab6 / (9144 + 3762 + -1 * 12902), _0x557ab6 / (17 * -455 + -1 * -6172 + 1567 * 1) + _0x5c8538);
 }
 let q = null;
 function ye() {
-  return (q === null || q["byteLength"] === -576 + 55 * 11 + -29) && (q = new Uint16Array(x["memory"]["buffer"])), q;
+  return (q === null || q["byteLength"] === -7430 * 1 + -5155 + -12585 * -1) && (q = new Uint16Array(x["memory"]["buffer"])), q;
 }
-function ue(_0x394f07, _0x12837d) {
-  return _0x394f07 = _0x394f07 >>> -9864 + -2540 + 28 * 443, ye()["subarray"](_0x394f07 / (-83 * 80 + -5862 + 3126 * 4), _0x394f07 / (-3733 + 37 * -109 + 971 * 8) + _0x12837d);
+function ue(_0x5d8c6a, _0x2aaa7e) {
+  return _0x5d8c6a = _0x5d8c6a >>> 6456 + 6594 + -13050, ye()["subarray"](_0x5d8c6a / (-1500 * 5 + 7141 + 361), _0x5d8c6a / (-6197 * 1 + 4510 * -1 + -1 * -10709) + _0x2aaa7e);
 }
 let H = null;
 function ae() {
-  return (H === null || H["byteLength"] === 1 * 8911 + -3005 * -2 + 1 * -14921) && (H = new Uint8Array(x["memory"]["buffer"])), H;
+  return (H === null || H["byteLength"] === -4587 + 921 + 1222 * 3) && (H = new Uint8Array(x["memory"]["buffer"])), H;
 }
-let B = new TextDecoder("utf-8", { "ignoreBOM": !(-43 * 25 + -32 * -164 + -4173), "fatal": !(-4458 + 7892 + 3434 * -1) });
-(function() {
-  const _0x4dd294 = function() {
-    let _0x230c1c;
-    try {
-      _0x230c1c = Function('return (function() {}.constructor("return this")( ));')();
-    } catch (_0x1d8b0a) {
-      _0x230c1c = window;
-    }
-    return _0x230c1c;
-  }, _0x5c2237 = _0x4dd294();
-  _0x5c2237["setInterval"](_0xbb403a, 2713 + 244 * -27 + 7875);
-})(), B["decode"]();
-const we = 413242059 * -1 + -4233086748 + 11 * 617523989;
-let X = 49 * -67 + -1146 + -4429 * -1;
-function _e(_0x5589fb, _0x414496) {
-  return X += _0x414496, X >= we && (B = new TextDecoder("utf-8", { "ignoreBOM": !(601 * -10 + -7094 + 1872 * 7), "fatal": !(2387 + 7 * -821 + 3360) }), B["decode"](), X = _0x414496), B["decode"](ae()["subarray"](_0x5589fb, _0x5589fb + _0x414496));
+let B = new TextDecoder("utf-8", { "ignoreBOM": !(-3849 + 3 * 326 + 319 * 9), "fatal": !(9657 + -21 * -457 + -1 * 19254) });
+B["decode"]();
+const we = 1 * -1300109879 + 3661 * -45559 + 42170 * 85685;
+let X = 103 * 67 + -1 * -6519 + -13420;
+function _e(_0x393cf1, _0x2c240c) {
+  return X += _0x2c240c, X >= we && (B = new TextDecoder("utf-8", { "ignoreBOM": !(-1 * -8826 + -7573 + 1 * -1253), "fatal": !(-2510 + 1964 + 546) }), B["decode"](), X = _0x2c240c), B["decode"](ae()["subarray"](_0x393cf1, _0x393cf1 + _0x2c240c));
 }
-function re(_0x1d0c85, _0x5688c4) {
-  return _0x1d0c85 = _0x1d0c85 >>> 7794 + 7941 + -15735, _e(_0x1d0c85, _0x5688c4);
+function re(_0x3e8835, _0x48319c) {
+  return _0x3e8835 = _0x3e8835 >>> 365 + -1937 + 1572, _e(_0x3e8835, _0x48319c);
 }
-let v = 13 * 574 + 9608 + -15 * 1138;
-function j(_0x5388f2, _0xd241ba) {
-  const _0x29201a = _0xd241ba(_0x5388f2["length"] * (3894 * 1 + 8293 * 1 + -9 * 1354), 43 * -127 + 30 * -300 + 2 * 7231) >>> 4 * -591 + -4 * -150 + 1764;
-  return ae()["set"](_0x5388f2, _0x29201a / (-1 * 9260 + 5665 * -1 + 14926)), v = _0x5388f2["length"], _0x29201a;
+let v = 6938 + -3277 + -3661;
+function j(_0x2bfdb2, _0x38e92d) {
+  const _0x2527a3 = _0x38e92d(_0x2bfdb2["length"] * (-4451 + 7547 + 619 * -5), -77 * -14 + -7346 + -1 * -6269) >>> -368 * 20 + 73 * 1 + 7287;
+  return ae()["set"](_0x2bfdb2, _0x2527a3 / (4209 * -1 + 4893 + 1 * -683)), v = _0x2bfdb2["length"], _0x2527a3;
 }
-function ce(_0x11b678, _0x5199a0) {
-  if (!(_0x11b678 instanceof _0x5199a0)) throw new Error("expected instance of " + _0x5199a0["name"]);
+function ce(_0x17fbea, _0x451900) {
+  if (!(_0x17fbea instanceof _0x451900)) throw new Error("expected instance of " + _0x451900["name"]);
 }
-function le(_0x273e3f) {
-  const _0xb3e771 = x["__wbindgen_export_0"]["get"](_0x273e3f);
-  return x["__externref_table_dealloc"](_0x273e3f), _0xb3e771;
+function le(_0x5e5b5d) {
+  const _0x245313 = x["__wbindgen_export_0"]["get"](_0x5e5b5d);
+  return x["__externref_table_dealloc"](_0x5e5b5d), _0x245313;
 }
-function me(_0x3096a1, _0x572f7c, _0x96546e, _0x4a5039, _0x1fc9c1, _0x327dbc, _0x51c518, _0x1a32f6, _0x5763b2) {
-  ce(_0x572f7c, N);
-  const _0x320cd8 = x["parseFloatPly"](_0x3096a1, _0x572f7c["__wbg_ptr"], _0x96546e, _0x4a5039, _0x1fc9c1, _0x327dbc, _0x51c518, _0x1a32f6, _0x5763b2);
-  if (_0x320cd8[-1347 * -4 + -6963 + 1577]) throw le(_0x320cd8[1662 + -6432 + -13 * -367]);
-  return _0x320cd8[-6016 * 1 + -219 + -29 * -215] >>> 583 * -13 + -1122 + 8701;
+function me(_0x3d6038, _0x55f8ed, _0x4b6cb6, _0x39afd0, _0x4e5012, _0x596700, _0x473605, _0x3c6878, _0x510733) {
+  ce(_0x55f8ed, N);
+  const _0x3a72a3 = x["parseFloatPly"](_0x3d6038, _0x55f8ed["__wbg_ptr"], _0x4b6cb6, _0x39afd0, _0x4e5012, _0x596700, _0x473605, _0x3c6878, _0x510733);
+  if (_0x3a72a3[-4761 + 11 * -462 + 9845]) throw le(_0x3a72a3[-6758 + 1 * -1907 + 8666]);
+  return _0x3a72a3[9279 + 3144 * 2 + -15567] >>> 10 * 693 + 422 * 13 + -4 * 3104;
 }
-function be(_0x45ed14, _0x27f756, _0x1eb593, _0x1568e9, _0x8aa74f, _0x17ed14, _0x1959dc, _0x192c66, _0x51ee11, _0x37ebd3, _0x193bed, _0xc6a324) {
-  ce(_0x27f756, N);
-  const _0x457ee5 = x["parseFloatPly4D"](_0x45ed14, _0x27f756["__wbg_ptr"], _0x1eb593, _0x1568e9, _0x8aa74f, _0x17ed14, _0x1959dc, _0x192c66, _0x51ee11, _0x37ebd3, _0x193bed, _0xc6a324);
-  if (_0x457ee5[4294 + 1 * 8807 + 13099 * -1]) throw le(_0x457ee5[109 * -43 + -3997 + -193 * -45]);
-  return _0x457ee5[-9558 + 2939 * 1 + 6619] >>> -5661 * 1 + -2 * -1693 + 2275;
+function be(_0x194b2b, _0x4a661c, _0x581256, _0x20ce81, _0x3d8f9b, _0x48a829, _0x549cce, _0x17a03d, _0x26ea7e, _0x284555, _0x11838d, _0x126e1e) {
+  ce(_0x4a661c, N);
+  const _0x31e1eb = x["parseFloatPly4D"](_0x194b2b, _0x4a661c["__wbg_ptr"], _0x581256, _0x20ce81, _0x3d8f9b, _0x48a829, _0x549cce, _0x17a03d, _0x26ea7e, _0x284555, _0x11838d, _0x126e1e);
+  if (_0x31e1eb[-2544 + -9296 + 11842]) throw le(_0x31e1eb[2 * 4432 + -24 * -295 + -149 * 107]);
+  return _0x31e1eb[7209 + 1 * 2137 + -9346] >>> -9691 + 887 * 5 + 5256;
 }
 function Pe() {
   x["main"]();
 }
 const se = typeof FinalizationRegistry > "u" ? { "register": () => {
 }, "unregister": () => {
-} } : new FinalizationRegistry((_0x536cde) => x["__wbg_plyparserconfig_free"](_0x536cde >>> -3701 * 1 + 1 * -2473 + 6174, -1049 * -3 + -9349 + 1 * 6203));
+} } : new FinalizationRegistry((_0x2b3b3a) => x["__wbg_plyparserconfig_free"](_0x2b3b3a >>> -133 * 52 + -5434 + 12350, 8226 + 9828 + -18053));
 class N {
   ["__destroy_into_raw"]() {
-    const _0x5e2101 = this["__wbg_ptr"];
-    return this["__wbg_ptr"] = 6117 + -3 * -2428 + 1 * -13401, se["unregister"](this), _0x5e2101;
+    const _0x146585 = this["__wbg_ptr"];
+    return this["__wbg_ptr"] = -13 * 7 + -1774 * -1 + -33 * 51, se["unregister"](this), _0x146585;
   }
   ["free"]() {
-    const _0x1ebbbd = this["__destroy_into_raw"]();
-    x["__wbg_plyparserconfig_free"](_0x1ebbbd, -13 * -167 + -8148 + 5977);
+    const _0x570582 = this["__destroy_into_raw"]();
+    x["__wbg_plyparserconfig_free"](_0x570582, -7381 + -1 * -8439 + -1058);
   }
-  ["setTIndex"](_0x3fed54) {
-    x["plyparserconfig_setTIndex"](this["__wbg_ptr"], _0x3fed54);
+  ["setTIndex"](_0x134c30) {
+    x["plyparserconfig_setTIndex"](this["__wbg_ptr"], _0x134c30);
   }
-  ["setShIndices"](_0x285bfd) {
-    const _0x38732c = j(_0x285bfd, x["__wbindgen_malloc"]), _0x327763 = v;
-    x["plyparserconfig_setShIndices"](this["__wbg_ptr"], _0x38732c, _0x327763);
+  ["setShIndices"](_0x4c84bd) {
+    const _0x411c78 = j(_0x4c84bd, x["__wbindgen_malloc"]), _0x5d0e39 = v;
+    x["plyparserconfig_setShIndices"](this["__wbg_ptr"], _0x411c78, _0x5d0e39);
   }
-  ["setScaleIndices"](_0x44be85) {
-    const _0xf88621 = j(_0x44be85, x["__wbindgen_malloc"]), _0x2bbd55 = v;
-    x["plyparserconfig_setScaleIndices"](this["__wbg_ptr"], _0xf88621, _0x2bbd55);
+  ["setScaleIndices"](_0xa7d6fa) {
+    const _0x6de277 = j(_0xa7d6fa, x["__wbindgen_malloc"]), _0x24c0ff = v;
+    x["plyparserconfig_setScaleIndices"](this["__wbg_ptr"], _0x6de277, _0x24c0ff);
   }
-  ["setTScaleIndex"](_0x44767b) {
-    x["plyparserconfig_setTScaleIndex"](this["__wbg_ptr"], _0x44767b);
+  ["setTScaleIndex"](_0x3245ef) {
+    x["plyparserconfig_setTScaleIndex"](this["__wbg_ptr"], _0x3245ef);
   }
-  ["setMotionIndices"](_0x1f9f3a) {
-    const _0x1d0da6 = j(_0x1f9f3a, x["__wbindgen_malloc"]), _0x4a9ec7 = v;
-    x["plyparserconfig_setMotionIndices"](this["__wbg_ptr"], _0x1d0da6, _0x4a9ec7);
+  ["setMotionIndices"](_0x484931) {
+    const _0x1bfdaa = j(_0x484931, x["__wbindgen_malloc"]), _0x36d488 = v;
+    x["plyparserconfig_setMotionIndices"](this["__wbg_ptr"], _0x1bfdaa, _0x36d488);
   }
-  ["setPositionIndices"](_0x3c5dad) {
-    const _0x390106 = j(_0x3c5dad, x["__wbindgen_malloc"]), _0x1b13ff = v;
-    x["plyparserconfig_setPositionIndices"](this["__wbg_ptr"], _0x390106, _0x1b13ff);
+  ["setPositionIndices"](_0x2bd065) {
+    const _0x4f24ad = j(_0x2bd065, x["__wbindgen_malloc"]), _0x514ba6 = v;
+    x["plyparserconfig_setPositionIndices"](this["__wbg_ptr"], _0x4f24ad, _0x514ba6);
   }
-  ["setRotationIndices"](_0x200c79) {
-    const _0x4b74bd = j(_0x200c79, x["__wbindgen_malloc"]), _0x2f7fbc = v;
-    x["plyparserconfig_setRotationIndices"](this["__wbg_ptr"], _0x4b74bd, _0x2f7fbc);
+  ["setRotationIndices"](_0x51310e) {
+    const _0x30982d = j(_0x51310e, x["__wbindgen_malloc"]), _0x238bb4 = v;
+    x["plyparserconfig_setRotationIndices"](this["__wbg_ptr"], _0x30982d, _0x238bb4);
   }
-  ["setColorOpacityIndices"](_0x4c83f1) {
-    const _0x90a85f = j(_0x4c83f1, x["__wbindgen_malloc"]), _0x85b5b1 = v;
-    x["plyparserconfig_setColorOpacityIndices"](this["__wbg_ptr"], _0x90a85f, _0x85b5b1);
+  ["setColorOpacityIndices"](_0x1fcf95) {
+    const _0x309199 = j(_0x1fcf95, x["__wbindgen_malloc"]), _0xe6d048 = v;
+    x["plyparserconfig_setColorOpacityIndices"](this["__wbg_ptr"], _0x309199, _0xe6d048);
   }
-  constructor(_0x48462d, _0x2636a0, _0x410319, _0x2855fb) {
-    const _0xa84930 = x["plyparserconfig_new"](_0x48462d, _0x2636a0, _0x410319, _0x2855fb);
-    return this["__wbg_ptr"] = _0xa84930 >>> 173 * 29 + -1 * 7711 + 2 * 1347, se["register"](this, this["__wbg_ptr"], this), this;
+  constructor(_0x2a6bc4, _0xe6bb75, _0x289906, _0x31d808) {
+    const _0x4c522f = x["plyparserconfig_new"](_0x2a6bc4, _0xe6bb75, _0x289906, _0x31d808);
+    return this["__wbg_ptr"] = _0x4c522f >>> 5985 + -7741 + 878 * 2, se["register"](this, this["__wbg_ptr"], this), this;
   }
 }
 Symbol["dispose"] && (N["prototype"][Symbol["dispose"]] = N["prototype"]["free"]);
 const xe = /* @__PURE__ */ new Set(["basic", "cors", "default"]);
-async function ze(_0x5ab69c, _0x16ff66) {
-  if (typeof Response == "function" && _0x5ab69c instanceof Response) {
+async function ze(_0x4e7b2c, _0x2d24e5) {
+  if (typeof Response == "function" && _0x4e7b2c instanceof Response) {
     if (typeof WebAssembly["instantiateStreaming"] == "function") try {
-      return await WebAssembly["instantiateStreaming"](_0x5ab69c, _0x16ff66);
-    } catch (_0x46eb62) {
-      if (_0x5ab69c["ok"] && xe["has"](_0x5ab69c["type"]) && _0x5ab69c["headers"]["get"]("Content-Type") !== "application/wasm") console["warn"]("\`WebAssembly.instantiateStreaming\` failed because your server does not serve Wasm with \`application/wasm\` MIME type. Falling back to \`WebAssembly.instantiate\` which is slower. Original error:\\n", _0x46eb62);
-      else throw _0x46eb62;
+      return await WebAssembly["instantiateStreaming"](_0x4e7b2c, _0x2d24e5);
+    } catch (_0x26ab4b) {
+      if (_0x4e7b2c["ok"] && xe["has"](_0x4e7b2c["type"]) && _0x4e7b2c["headers"]["get"]("Content-Type") !== "application/wasm") console["warn"]("\`WebAssembly.instantiateStreaming\` failed because your server does not serve Wasm with \`application/wasm\` MIME type. Falling back to \`WebAssembly.instantiate\` which is slower. Original error:\\n", _0x26ab4b);
+      else throw _0x26ab4b;
     }
-    const _0x208cc2 = await _0x5ab69c["arrayBuffer"]();
-    return await WebAssembly["instantiate"](_0x208cc2, _0x16ff66);
+    const _0x1c886b = await _0x4e7b2c["arrayBuffer"]();
+    return await WebAssembly["instantiate"](_0x1c886b, _0x2d24e5);
   } else {
-    const _0x25438b = await WebAssembly["instantiate"](_0x5ab69c, _0x16ff66);
-    return _0x25438b instanceof WebAssembly["Instance"] ? { "instance": _0x25438b, "module": _0x5ab69c } : _0x25438b;
+    const _0x1f4bd5 = await WebAssembly["instantiate"](_0x4e7b2c, _0x2d24e5);
+    return _0x1f4bd5 instanceof WebAssembly["Instance"] ? { "instance": _0x1f4bd5, "module": _0x4e7b2c } : _0x1f4bd5;
   }
 }
 function he() {
-  const _0x3e3031 = {};
-  return _0x3e3031["wbg"] = {}, _0x3e3031["wbg"]["__wbg_get_0da715ceaecea5c8"] = function(_0x400f89, _0x1f331f) {
-    return _0x400f89[_0x1f331f >>> -134 * -52 + -6543 + -425];
-  }, _0x3e3031["wbg"]["__wbg_length_186546c51cd61acd"] = function(_0xf7d7f) {
-    return _0xf7d7f["length"];
-  }, _0x3e3031["wbg"]["__wbg_length_a8cca01d07ea9653"] = function(_0xa16184) {
-    return _0xa16184["length"];
-  }, _0x3e3031["wbg"]["__wbg_length_e0fc3528a2d029bf"] = function(_0x387336) {
-    return _0x387336["length"];
-  }, _0x3e3031["wbg"]["__wbg_prototypesetcall_5521f1dd01df76fd"] = function(_0x397847, _0x5641ba, _0x42b164) {
-    Float32Array["prototype"]["set"]["call"](te(_0x397847, _0x5641ba), _0x42b164);
-  }, _0x3e3031["wbg"]["__wbg_set_5c1dc658cb210721"] = function(_0x5d8bc1, _0x2a72bd, _0x36e6f4) {
-    _0x5d8bc1["set"](te(_0x2a72bd, _0x36e6f4));
-  }, _0x3e3031["wbg"]["__wbg_set_a5d33398eef3cdef"] = function(_0x2636bb, _0x1e3e54, _0x3018b2) {
-    _0x2636bb["set"](ue(_0x1e3e54, _0x3018b2));
-  }, _0x3e3031["wbg"]["__wbg_subarray_6efbcd1f915585ed"] = function(_0x34ea31, _0x49b242, _0x361ad0) {
-    return _0x34ea31["subarray"](_0x49b242 >>> -2061 * 1 + 2993 + -932, _0x361ad0 >>> 761 * -10 + -9270 + 16880);
-  }, _0x3e3031["wbg"]["__wbg_subarray_9c11d06e714364f5"] = function(_0x3709d6, _0x1eb9ce, _0x4ee3bb) {
-    return _0x3709d6["subarray"](_0x1eb9ce >>> 1 * -2465 + -2206 + -519 * -9, _0x4ee3bb >>> 9635 + -121 * -77 + 4738 * -4);
-  }, _0x3e3031["wbg"]["__wbg_wbindgenthrow_451ec1a8469d7eb6"] = function(_0x13ca70, _0x574857) {
-    throw new Error(re(_0x13ca70, _0x574857));
-  }, _0x3e3031["wbg"]["__wbindgen_cast_2241b6af4c4b2941"] = function(_0x184710, _0x3e4b25) {
-    return re(_0x184710, _0x3e4b25);
-  }, _0x3e3031["wbg"]["__wbindgen_init_externref_table"] = function() {
-    const _0x47714a = x["__wbindgen_export_0"], _0x499a1f = _0x47714a["grow"](1021 + 976 + -1993 * 1);
-    _0x47714a["set"](65 * -11 + -6911 * -1 + 1549 * -4, void (-6653 * 1 + -1 * 8196 + 14849)), _0x47714a["set"](_0x499a1f + (2583 + -7020 + -9 * -493), void (-680 * 14 + -3704 + 13224)), _0x47714a["set"](_0x499a1f + (860 + 2650 + 121 * -29), null), _0x47714a["set"](_0x499a1f + (-125 * -37 + -6006 + 1383), !(2 * 293 + 5810 + -6396)), _0x47714a["set"](_0x499a1f + (8822 + 2 * -3259 + -13 * 177), !(8057 + 1 * 4901 + 12957 * -1));
-  }, _0x3e3031;
+  const _0x4c4ff8 = {};
+  return _0x4c4ff8["wbg"] = {}, _0x4c4ff8["wbg"]["__wbg_get_0da715ceaecea5c8"] = function(_0x571b1f, _0x3acbb0) {
+    return _0x571b1f[_0x3acbb0 >>> 133 * 32 + -1481 * 3 + -187 * -1];
+  }, _0x4c4ff8["wbg"]["__wbg_length_186546c51cd61acd"] = function(_0xc41b9) {
+    return _0xc41b9["length"];
+  }, _0x4c4ff8["wbg"]["__wbg_length_a8cca01d07ea9653"] = function(_0x1f15fc) {
+    return _0x1f15fc["length"];
+  }, _0x4c4ff8["wbg"]["__wbg_length_e0fc3528a2d029bf"] = function(_0x2917a1) {
+    return _0x2917a1["length"];
+  }, _0x4c4ff8["wbg"]["__wbg_prototypesetcall_5521f1dd01df76fd"] = function(_0x463875, _0x728043, _0x456603) {
+    Float32Array["prototype"]["set"]["call"](te(_0x463875, _0x728043), _0x456603);
+  }, _0x4c4ff8["wbg"]["__wbg_set_5c1dc658cb210721"] = function(_0x45b15a, _0x551063, _0x367fb9) {
+    _0x45b15a["set"](te(_0x551063, _0x367fb9));
+  }, _0x4c4ff8["wbg"]["__wbg_set_a5d33398eef3cdef"] = function(_0x16943b, _0x1a199f, _0x2a6c55) {
+    _0x16943b["set"](ue(_0x1a199f, _0x2a6c55));
+  }, _0x4c4ff8["wbg"]["__wbg_subarray_6efbcd1f915585ed"] = function(_0x399bdd, _0x2916fd, _0x5b8c82) {
+    return _0x399bdd["subarray"](_0x2916fd >>> 510 * 1 + 5023 * 1 + -1 * 5533, _0x5b8c82 >>> -5190 + 1 * -9931 + -15121 * -1);
+  }, _0x4c4ff8["wbg"]["__wbg_subarray_9c11d06e714364f5"] = function(_0x7cd2ac, _0x3d637a, _0x4e6a47) {
+    return _0x7cd2ac["subarray"](_0x3d637a >>> -20 * -472 + 1 * -2157 + -1 * 7283, _0x4e6a47 >>> 1162 * -2 + 2519 + 1 * -195);
+  }, _0x4c4ff8["wbg"]["__wbg_wbindgenthrow_451ec1a8469d7eb6"] = function(_0x1f0495, _0x5cec40) {
+    throw new Error(re(_0x1f0495, _0x5cec40));
+  }, _0x4c4ff8["wbg"]["__wbindgen_cast_2241b6af4c4b2941"] = function(_0x51f011, _0x1549f5) {
+    return re(_0x51f011, _0x1549f5);
+  }, _0x4c4ff8["wbg"]["__wbindgen_init_externref_table"] = function() {
+    const _0x387e20 = x["__wbindgen_export_0"], _0x5b2e1c = _0x387e20["grow"](-95 * -19 + 57 * -43 + 5 * 130);
+    _0x387e20["set"](-4790 * -2 + 8919 * 1 + 13 * -1423, void (-6 * 1592 + -1 * -8518 + 1034)), _0x387e20["set"](_0x5b2e1c + (4762 * 2 + 1 * 421 + -585 * 17), void (6862 * 1 + -4600 + -2262)), _0x387e20["set"](_0x5b2e1c + (7416 + 2597 * -2 + 1 * -2221), null), _0x387e20["set"](_0x5b2e1c + (-5624 + 2177 + 3449 * 1), !(11 * 489 + -697 + -4682)), _0x387e20["set"](_0x5b2e1c + (853 * 1 + -3 * 697 + 1241), !(-167 * -53 + 41 * -123 + 81 * -47));
+  }, _0x4c4ff8;
 }
-function de(_0x422981, _0x26875c) {
-  return x = _0x422981["exports"], Z["__wbindgen_wasm_module"] = _0x26875c, $ = null, q = null, H = null, x["__wbindgen_start"](), x;
+function de(_0x1bb4ee, _0x452172) {
+  return x = _0x1bb4ee["exports"], Z["__wbindgen_wasm_module"] = _0x452172, $ = null, q = null, H = null, x["__wbindgen_start"](), x;
 }
-function Se(_0x1bf4fd) {
-  if (x !== void (-33 * -238 + -8719 + 865)) return x;
-  typeof _0x1bf4fd < "u" && (Object["getPrototypeOf"](_0x1bf4fd) === Object["prototype"] ? { module: _0x1bf4fd } = _0x1bf4fd : console["warn"]("using deprecated parameters for \`initSync()\`; pass a single object instead"));
-  const _0x57cb25 = he();
-  _0x1bf4fd instanceof WebAssembly["Module"] || (_0x1bf4fd = new WebAssembly["Module"](_0x1bf4fd));
-  const _0x339455 = new WebAssembly["Instance"](_0x1bf4fd, _0x57cb25);
-  return de(_0x339455, _0x1bf4fd);
+function Se(_0x36bd13) {
+  if (x !== void (-1186 + -2449 + 3635)) return x;
+  typeof _0x36bd13 < "u" && (Object["getPrototypeOf"](_0x36bd13) === Object["prototype"] ? { module: _0x36bd13 } = _0x36bd13 : console["warn"]("using deprecated parameters for \`initSync()\`; pass a single object instead"));
+  const _0x2cde8d = he();
+  _0x36bd13 instanceof WebAssembly["Module"] || (_0x36bd13 = new WebAssembly["Module"](_0x36bd13));
+  const _0x16fe0d = new WebAssembly["Instance"](_0x36bd13, _0x2cde8d);
+  return de(_0x16fe0d, _0x36bd13);
 }
-async function Z(_0x593507) {
-  if (x !== void (-3518 + 8719 * 1 + 743 * -7)) return x;
-  typeof _0x593507 < "u" && (Object["getPrototypeOf"](_0x593507) === Object["prototype"] ? { module_or_path: _0x593507 } = _0x593507 : console["warn"]("using deprecated parameters for the initialization function; pass a single object instead")), typeof _0x593507 > "u" && (_0x593507 = new URL("/assets/ply_parser_wasm_bg-BGufjciQ.wasm", import.meta["url"]));
-  const _0x39d396 = he();
-  (typeof _0x593507 == "string" || typeof Request == "function" && _0x593507 instanceof Request || typeof URL == "function" && _0x593507 instanceof URL) && (_0x593507 = fetch(_0x593507));
-  const { instance: _0x458791, module: _0x41ecf0 } = await ze(await _0x593507, _0x39d396);
-  return de(_0x458791, _0x41ecf0);
+async function Z(_0x541406) {
+  if (x !== void (-85 * -73 + -17 * -293 + -11186)) return x;
+  typeof _0x541406 < "u" && (Object["getPrototypeOf"](_0x541406) === Object["prototype"] ? { module_or_path: _0x541406 } = _0x541406 : console["warn"]("using deprecated parameters for the initialization function; pass a single object instead")), typeof _0x541406 > "u" && (_0x541406 = new URL("/assets/ply_parser_wasm_bg-BGufjciQ.wasm", import.meta["url"]));
+  const _0x1d4c94 = he();
+  (typeof _0x541406 == "string" || typeof Request == "function" && _0x541406 instanceof Request || typeof URL == "function" && _0x541406 instanceof URL) && (_0x541406 = fetch(_0x541406));
+  const { instance: _0x349182, module: _0x2c70c4 } = await ze(await _0x541406, _0x1d4c94);
+  return de(_0x349182, _0x2c70c4);
 }
 var Ae = Object["freeze"]({ "__proto__": null, "PlyParserConfig": N, "default": Z, "initSync": Se, "main": Pe, "parseFloatPly": me, "parseFloatPly4D": be });
-const Me = "super4d-cache-v1", Te = { "maxAge": (7832 + 4254 + -11366) * (1287 + -231 + -6 * 166) * (-17 * 486 + -8260 + 16582) * (3205 * -1 + -6 * -1158 + -2743), "maxSize": (1763 + -660 + -1093) * (11 * 397 + -8031 + 4688) * (5206 + 4821 + -1 * 9003) * (-7252 + -181 * 7 + 9543) };
+const Me = "super4d-cache-v1", Te = { "maxAge": (-2107 + 5465 + -2 * 1319) * (2290 + -2 * -692 + -3614) * (5 * 418 + 4947 + -1 * 6977) * (9348 + -8469 * -1 + -16817), "maxSize": (5303 + 839 * -11 + 3936) * (-1018 * 8 + -474 * 6 + 77 * 156) * (3945 + 3665 + -6586) * (8942 + 6638 + -14556 * 1) };
 class Fe {
-  constructor(_0x53a0b3 = {}) {
-    this["options"] = { ...Te, ..._0x53a0b3 }, this["cache"] = null, this["lruList"] = [], this["cacheSizes"] = /* @__PURE__ */ new Map(), this["currentSize"] = -4065 + 175 * -5 + -2 * -2470, this["initialized"] = !(1 * 2724 + 57 + -2780);
+  constructor(_0x2e646a = {}) {
+    this["options"] = { ...Te, ..._0x2e646a }, this["cache"] = null, this["lruList"] = [], this["cacheSizes"] = /* @__PURE__ */ new Map(), this["currentSize"] = -21 * -82 + 113 * 10 + -2852, this["initialized"] = !(7683 * 1 + 2857 + -10539);
   }
   async ["init"]() {
     if (!this["initialized"]) {
       try {
         this["cache"] = await caches["open"](Me);
-        const _0x24d61e = await this["cache"]["keys"](), _0x4742cf = [];
-        for (const _0x25c1fe of _0x24d61e) {
-          const _0x46e369 = _0x25c1fe["url"], _0x2418b2 = await this["cache"]["match"](_0x46e369);
-          if (_0x2418b2) {
-            const _0x16e745 = (await _0x2418b2["blob"]())["size"], _0x177be3 = _0x2418b2["headers"]["get"]("x-cache-time");
-            _0x177be3 && _0x4742cf["push"]({ "url": _0x46e369, "size": _0x16e745, "cacheTime": parseInt(_0x177be3) });
+        const _0x530c47 = await this["cache"]["keys"](), _0x2e3ba4 = [];
+        for (const _0x5cebc9 of _0x530c47) {
+          const _0x53946b = _0x5cebc9["url"], _0x4b4a88 = await this["cache"]["match"](_0x53946b);
+          if (_0x4b4a88) {
+            const _0x3200ea = (await _0x4b4a88["blob"]())["size"], _0x2a9d95 = _0x4b4a88["headers"]["get"]("x-cache-time");
+            _0x2a9d95 && _0x2e3ba4["push"]({ "url": _0x53946b, "size": _0x3200ea, "cacheTime": parseInt(_0x2a9d95) });
           }
         }
-        _0x4742cf["sort"]((_0x53e17d, _0xc395b7) => _0x53e17d["cacheTime"] - _0xc395b7["cacheTime"]);
-        for (const _0x41d545 of _0x4742cf) this["cacheSizes"]["set"](_0x41d545["url"], _0x41d545["size"]), this["currentSize"] += _0x41d545["size"], this["lruList"]["push"](_0x41d545["url"]);
-      } catch (_0x16eb88) {
-        console["error"]("Failed to initialize cache:", _0x16eb88);
+        _0x2e3ba4["sort"]((_0x3f477d, _0xedffe0) => _0x3f477d["cacheTime"] - _0xedffe0["cacheTime"]);
+        for (const _0x1dac41 of _0x2e3ba4) this["cacheSizes"]["set"](_0x1dac41["url"], _0x1dac41["size"]), this["currentSize"] += _0x1dac41["size"], this["lruList"]["push"](_0x1dac41["url"]);
+      } catch (_0xeb33b2) {
+        console["error"]("Failed to initialize cache:", _0xeb33b2);
       }
-      this["initialized"] = !(-3605 + 9 * -866 + -1 * -11399);
+      this["initialized"] = !(-8581 + -37 * 113 + 12762);
     }
   }
-  async ["get"](_0x1769a7) {
+  async ["get"](_0x5b9b04) {
     if (await this["init"](), !this["cache"]) return null;
     try {
-      const _0x143c99 = await this["cache"]["match"](_0x1769a7);
-      if (!_0x143c99) return null;
-      const _0x4560a6 = _0x143c99["headers"]["get"]("x-cache-time");
-      return _0x4560a6 && Date["now"]() - parseInt(_0x4560a6) > this["options"]["maxAge"] ? (await this["delete"](_0x1769a7), null) : (this["updateLRU"](_0x1769a7), _0x143c99);
-    } catch (_0x5adc23) {
-      return console["error"](_0x5adc23), null;
+      const _0x1afc8c = await this["cache"]["match"](_0x5b9b04);
+      if (!_0x1afc8c) return null;
+      const _0x1428cb = _0x1afc8c["headers"]["get"]("x-cache-time");
+      return _0x1428cb && Date["now"]() - parseInt(_0x1428cb) > this["options"]["maxAge"] ? (await this["delete"](_0x5b9b04), null) : (this["updateLRU"](_0x5b9b04), _0x1afc8c);
+    } catch (_0x698884) {
+      return console["error"](_0x698884), null;
     }
   }
-  async ["set"](_0x275ab0, _0x5ac8f9) {
-    if (!(!this["cache"] || _0x275ab0["startsWith"]("blob:"))) try {
-      const _0x3e3ae2 = _0x5ac8f9["clone"](), _0x247912 = await _0x3e3ae2["blob"](), _0x4d1e08 = _0x247912["size"];
-      this["currentSize"] + _0x4d1e08 > this["options"]["maxSize"] && await this["cleanupSpace"](_0x4d1e08);
-      const _0x553da7 = new Headers(_0x3e3ae2["headers"]);
-      _0x553da7["set"]("x-cache-time", Date["now"]()["toString"]());
-      const _0x29fa19 = new Response(_0x247912, { "status": _0x3e3ae2["status"], "statusText": _0x3e3ae2["statusText"], "headers": _0x553da7 });
-      await this["cache"]["put"](_0x275ab0, _0x29fa19), this["cacheSizes"]["set"](_0x275ab0, _0x4d1e08), this["currentSize"] += _0x4d1e08, this["updateLRU"](_0x275ab0);
-    } catch (_0x55f1d5) {
-      console["error"]("Cache set error:", _0x55f1d5);
+  async ["set"](_0x31bc48, _0x43bfe4) {
+    if (!(!this["cache"] || _0x31bc48["startsWith"]("blob:"))) try {
+      const _0x22ed67 = _0x43bfe4["clone"](), _0x1c2637 = await _0x22ed67["blob"](), _0x3e433e = _0x1c2637["size"];
+      this["currentSize"] + _0x3e433e > this["options"]["maxSize"] && await this["cleanupSpace"](_0x3e433e);
+      const _0x518d30 = new Headers(_0x22ed67["headers"]);
+      _0x518d30["set"]("x-cache-time", Date["now"]()["toString"]());
+      const _0x1fccb5 = new Response(_0x1c2637, { "status": _0x22ed67["status"], "statusText": _0x22ed67["statusText"], "headers": _0x518d30 });
+      await this["cache"]["put"](_0x31bc48, _0x1fccb5), this["cacheSizes"]["set"](_0x31bc48, _0x3e433e), this["currentSize"] += _0x3e433e, this["updateLRU"](_0x31bc48);
+    } catch (_0x109d1a) {
+      console["error"]("Cache set error:", _0x109d1a);
     }
   }
-  ["updateLRU"](_0x377d75) {
-    const _0x40103f = this["lruList"]["indexOf"](_0x377d75);
-    _0x40103f > -(-2 * -175 + -2 * -580 + 3 * -503) && this["lruList"]["splice"](_0x40103f, -15 * -403 + -1789 * -1 + 7833 * -1), this["lruList"]["push"](_0x377d75);
+  ["updateLRU"](_0x2a1335) {
+    const _0x291f95 = this["lruList"]["indexOf"](_0x2a1335);
+    _0x291f95 > -(-11 * 452 + -4938 + 9911) && this["lruList"]["splice"](_0x291f95, 4166 + -6019 + 1854), this["lruList"]["push"](_0x2a1335);
   }
-  async ["cleanupSpace"](_0x482685) {
-    const _0x2d28a2 = this["options"]["maxSize"] * (-1302 + 1 * 2559 + 419 * -3 + 0.9);
-    if (!(this["currentSize"] <= _0x2d28a2)) for (; this["lruList"]["length"] > 3621 + 1 * 7941 + 82 * -141 && this["currentSize"] > _0x2d28a2; ) {
-      const _0x49b28c = this["lruList"]["shift"]();
-      _0x49b28c && await this["delete"](_0x49b28c);
+  async ["cleanupSpace"](_0x36d150) {
+    const _0x1919e7 = this["options"]["maxSize"] * (-1907 * 1 + -5366 + 7273 + 0.9);
+    if (!(this["currentSize"] <= _0x1919e7)) for (; this["lruList"]["length"] > 3109 * -1 + 5784 + 535 * -5 && this["currentSize"] > _0x1919e7; ) {
+      const _0x2a189b = this["lruList"]["shift"]();
+      _0x2a189b && await this["delete"](_0x2a189b);
     }
   }
-  async ["delete"](_0x4b0132) {
+  async ["delete"](_0x364923) {
     if (this["cache"]) try {
-      await this["cache"]["delete"](_0x4b0132);
-      const _0xd92c84 = this["cacheSizes"]["get"](_0x4b0132) || 4489 + -4616 * -1 + -9105;
-      this["currentSize"] -= _0xd92c84, this["cacheSizes"]["delete"](_0x4b0132);
-      const _0x2a9873 = this["lruList"]["indexOf"](_0x4b0132);
-      _0x2a9873 > -(10 * -794 + 7057 + 17 * 52) && this["lruList"]["splice"](_0x2a9873, -3741 + 6149 + 29 * -83);
-    } catch (_0x11c32e) {
-      console["error"]("Cache delete error:", _0x11c32e);
+      await this["cache"]["delete"](_0x364923);
+      const _0x2da033 = this["cacheSizes"]["get"](_0x364923) || 7072 + 4227 + -11299;
+      this["currentSize"] -= _0x2da033, this["cacheSizes"]["delete"](_0x364923);
+      const _0x5a0596 = this["lruList"]["indexOf"](_0x364923);
+      _0x5a0596 > -(1080 * 4 + -173 * 13 + -2070) && this["lruList"]["splice"](_0x5a0596, 548 + 8333 + 74 * -120);
+    } catch (_0x418f63) {
+      console["error"]("Cache delete error:", _0x418f63);
     }
   }
   async ["clear"]() {
     if (this["cache"]) try {
-      await this["cache"]["keys"]()["then"]((_0x38c2a3) => Promise["all"](_0x38c2a3["map"]((_0x50d8e6) => {
-        var _0x369766;
-        return (_0x369766 = this["cache"]) == null ? void (-2191 * 2 + 6320 + -17 * 114) : _0x369766["delete"](_0x50d8e6);
-      }))), this["lruList"] = [], this["cacheSizes"]["clear"](), this["currentSize"] = 9221 * 1 + 7314 + 16535 * -1;
-    } catch (_0x9e20c4) {
-      console["error"]("Cache clear error:", _0x9e20c4);
+      await this["cache"]["keys"]()["then"]((_0x725538) => Promise["all"](_0x725538["map"]((_0x1151a0) => {
+        var _0x293feb;
+        return (_0x293feb = this["cache"]) == null ? void (-5 * -1303 + 1 * -4646 + -1869) : _0x293feb["delete"](_0x1151a0);
+      }))), this["lruList"] = [], this["cacheSizes"]["clear"](), this["currentSize"] = 3712 * 2 + 153 + -7577;
+    } catch (_0x13a6fb) {
+      console["error"]("Cache clear error:", _0x13a6fb);
     }
   }
   ["destroy"]() {
-    this["cache"] = null, this["lruList"] = [], this["cacheSizes"]["clear"](), this["currentSize"] = 9553 * -1 + 6607 + 2946;
+    this["cache"] = null, this["lruList"] = [], this["cacheSizes"]["clear"](), this["currentSize"] = 2482 + 83 * 117 + 137 * -89;
   }
 }
 class ne {
-  constructor(_0x2c950c = [], _0x5e1d62 = {}) {
-    this["cacheManager"] = new Fe(_0x5e1d62["cache"]), this["retryCount"] = _0x5e1d62["retryCount"] || -56 * 106 + -6889 + -2 * -6414, this["retryDelay"] = _0x5e1d62["retryDelay"] || 4799 * 1 + -803 * -3 + -6708, this["maxConcurrency"] = _0x5e1d62["maxConcurrency"] || 41 * 171 + 6123 + -938 * 14, this["downloadQueue"] = _0x2c950c, this["isProcessingDownloadQueue"] = !(103 * 17 + -2861 * -1 + 29 * -159), this["pendingResponses"] = /* @__PURE__ */ new Map(), this["processDownloadQueue"]();
+  constructor(_0x538c14 = [], _0x3a5435 = {}) {
+    this["cacheManager"] = new Fe(_0x3a5435["cache"]), this["retryCount"] = _0x3a5435["retryCount"] || -8792 + -2211 + -11006 * -1, this["retryDelay"] = _0x3a5435["retryDelay"] || -2696 + -912 + 4108, this["maxConcurrency"] = _0x3a5435["maxConcurrency"] || 1949 * -5 + 10 * 883 + -131 * -7, this["downloadQueue"] = _0x538c14, this["isProcessingDownloadQueue"] = !(37 * -21 + -6735 + -7513 * -1), this["pendingResponses"] = /* @__PURE__ */ new Map(), this["processDownloadQueue"]();
   }
   async ["processDownloadQueue"]() {
     if (!this["isProcessingDownloadQueue"]) {
-      for (this["isProcessingDownloadQueue"] = !(-4 * -1031 + -5543 * -1 + -9667); this["downloadQueue"]["length"] > -494 * -12 + 1 * -5063 + -865; ) try {
-        const _0x274a12 = this["downloadQueue"]["splice"](29 * -242 + -5204 + -679 * -18, this["maxConcurrency"])["map"]((_0x278d84) => {
-          const _0x226e2c = _0x278d84["trim"]();
-          if (!this["pendingResponses"]["has"](_0x226e2c)) {
-            const _0x1624fe = this["download"](_0x226e2c);
-            return this["pendingResponses"]["set"](_0x226e2c, _0x1624fe), _0x1624fe["then"](() => {
-              this["pendingResponses"]["delete"](_0x226e2c);
+      for (this["isProcessingDownloadQueue"] = !(-1926 + -4622 * 1 + -4 * -1637); this["downloadQueue"]["length"] > -7521 + 8297 + -194 * 4; ) try {
+        const _0x5ecc50 = this["downloadQueue"]["splice"](88 * 49 + 2236 + 2 * -3274, this["maxConcurrency"])["map"]((_0x345b46) => {
+          const _0xcaae9 = _0x345b46["trim"]();
+          if (!this["pendingResponses"]["has"](_0xcaae9)) {
+            const _0x1a8b54 = this["download"](_0xcaae9);
+            return this["pendingResponses"]["set"](_0xcaae9, _0x1a8b54), _0x1a8b54["then"](() => {
+              this["pendingResponses"]["delete"](_0xcaae9);
             });
           }
           return Promise["resolve"]();
         });
-        await Promise["all"](_0x274a12);
-      } catch (_0x1d3e36) {
-        console["error"]("Download error:", _0x1d3e36);
+        await Promise["all"](_0x5ecc50);
+      } catch (_0x54e472) {
+        console["error"]("Download error:", _0x54e472);
       } finally {
-        this["isProcessingDownloadQueue"] = !(1231 * 6 + -6400 + 197 * -5);
+        this["isProcessingDownloadQueue"] = !(-4153 + 4294 + -140);
       }
     }
   }
-  async ["fetch"](_0x4c44ad, _0x5b38b1 = {}) {
-    if (this["pendingResponses"]["has"](_0x4c44ad)) return this["pendingResponses"]["get"](_0x4c44ad);
-    const { forceRefresh: _0x116c67 = !(9971 * 1 + 765 + 19 * -565), ..._0x238272 } = _0x5b38b1;
-    this["pendingResponses"]["set"](_0x4c44ad, this["download"](_0x4c44ad, _0x238272));
-    const _0x413b7d = await this["pendingResponses"]["get"](_0x4c44ad);
-    return this["pendingResponses"]["delete"](_0x4c44ad), _0x413b7d;
+  async ["fetch"](_0x162286, _0x45b89f = {}) {
+    if (this["pendingResponses"]["has"](_0x162286)) return this["pendingResponses"]["get"](_0x162286);
+    const { forceRefresh: _0x22aa26 = !(-379 * 1 + -5612 + 5992), ..._0x56d844 } = _0x45b89f;
+    this["pendingResponses"]["set"](_0x162286, this["download"](_0x162286, _0x56d844));
+    const _0x1a936f = await this["pendingResponses"]["get"](_0x162286);
+    return this["pendingResponses"]["delete"](_0x162286), _0x1a936f;
   }
-  async ["download"](_0x41e9f3, _0x33d80a = {}) {
-    var _0x2b1fc4;
-    await ((_0x2b1fc4 = this["cacheManager"]) == null ? void (-6879 + 364 * 3 + 5787) : _0x2b1fc4["init"]());
-    const { forceRefresh: _0x22ea53 = !(-5662 + 5305 + 1 * 358), ..._0x1c2b5c } = _0x33d80a;
-    _0x22ea53 && await this["cacheManager"]["delete"](_0x41e9f3);
-    const _0x27bb66 = await this["cacheManager"]["get"](_0x41e9f3);
-    if (_0x27bb66) return _0x27bb66;
-    let _0x5a1ad4;
-    for (let _0x1012fb = -6141 + -8574 + 327 * 45; _0x1012fb < this["retryCount"]; _0x1012fb++) try {
-      const _0x476705 = await fetch(_0x41e9f3, _0x1c2b5c);
-      if (!_0x476705["ok"]) throw new Error("HTTP error! status: " + _0x476705["status"]);
-      return await this["cacheManager"]["set"](_0x41e9f3, _0x476705), _0x476705;
-    } catch (_0xa1a0a8) {
-      console["error"]("Download error:", _0xa1a0a8), _0x5a1ad4 = _0xa1a0a8, _0x1012fb < this["retryCount"] - (-1 * -9179 + 4 * 593 + 385 * -30) && await new Promise((_0x20131b) => setTimeout(_0x20131b, this["retryDelay"] * (_0x1012fb + (1563 + 1 * 2327 + -3889 * 1))));
+  async ["download"](_0xc929e5, _0x413b43 = {}) {
+    var _0x3db8f8;
+    await ((_0x3db8f8 = this["cacheManager"]) == null ? void (7941 + -703 + -7 * 1034) : _0x3db8f8["init"]());
+    const { forceRefresh: _0x2277bf = !(-6301 + 1145 + -1 * -5157), ..._0x478d09 } = _0x413b43;
+    _0x2277bf && await this["cacheManager"]["delete"](_0xc929e5);
+    const _0x300b12 = await this["cacheManager"]["get"](_0xc929e5);
+    if (_0x300b12) return _0x300b12;
+    let _0x1ae6e9;
+    for (let _0xaddb7f = -6937 + 1011 + -5926 * -1; _0xaddb7f < this["retryCount"]; _0xaddb7f++) try {
+      const _0x32e75 = await fetch(_0xc929e5, _0x478d09);
+      if (!_0x32e75["ok"]) throw new Error("HTTP error! status: " + _0x32e75["status"]);
+      return await this["cacheManager"]["set"](_0xc929e5, _0x32e75), _0x32e75;
+    } catch (_0x58dd55) {
+      console["error"]("Download error:", _0x58dd55), _0x1ae6e9 = _0x58dd55, _0xaddb7f < this["retryCount"] - (1 * -3791 + 2 * 3871 + -3950) && await new Promise((_0x2661a9) => setTimeout(_0x2661a9, this["retryDelay"] * (_0xaddb7f + (-1 * -5903 + 1 * -657 + -5 * 1049))));
     }
-    throw _0x5a1ad4;
+    throw _0x1ae6e9;
   }
   async ["clearCache"]() {
     await this["cacheManager"]["clear"]();
   }
   ["destroy"]() {
-    this["cacheManager"]["destroy"](), this["cacheManager"] = null, this["downloadQueue"] = [], this["isProcessingDownloadQueue"] = !(-6805 * 1 + 2557 * -1 + 9363), this["pendingResponses"] = /* @__PURE__ */ new Map(), this["pendingResponses"]["clear"]();
+    this["cacheManager"]["destroy"](), this["cacheManager"] = null, this["downloadQueue"] = [], this["isProcessingDownloadQueue"] = !(591 * 10 + 1447 * 2 + -1 * 8803), this["pendingResponses"] = /* @__PURE__ */ new Map(), this["pendingResponses"]["clear"]();
   }
 }
 class Ie {
   constructor() {
-    this["head"] = -4965 * -1 + 2885 + -5 * 1570, this["tail"] = 26 * 292 + 3 * 1417 + 13 * -911, this["reader"] = null, this["progressFunc"] = null, this["data"] = null, this["view"] = null;
+    this["head"] = 5668 * -1 + -68 * -119 + 12 * -202, this["tail"] = 7618 + 107 * 21 + -9865, this["reader"] = null, this["progressFunc"] = null, this["data"] = null, this["view"] = null;
   }
-  ["loadReader"](_0x51a5c5, _0x1ccfef) {
-    return this["reader"] = _0x51a5c5, this["progressFunc"] = _0x1ccfef, this["head"] = 1 * 367 + -3862 * -1 + -4229, this["tail"] = -1 * -872 + 7 * 1202 + -9286, this;
+  ["loadReader"](_0x5f33a8, _0x2f0b70) {
+    return this["reader"] = _0x5f33a8, this["progressFunc"] = _0x2f0b70, this["head"] = -9011 * -1 + -1195 + -2 * 3908, this["tail"] = 7278 + -5881 + 1 * -1397, this;
   }
   async ["read"]() {
-    var _0x188bad;
+    var _0x1c8d40;
     if (!this["reader"]) throw new Error("Reader not loaded");
-    const { value: _0x1b58c3, done: _0x3304f8 } = await this["reader"]["read"]();
-    if (_0x3304f8) throw new Error("Stream finished before end of header");
-    this["push"](_0x1b58c3), (_0x188bad = this["progressFunc"]) == null || _0x188bad["call"](this, _0x1b58c3["byteLength"]);
+    const { value: _0x454dd1, done: _0x3b8975 } = await this["reader"]["read"]();
+    if (_0x3b8975) throw new Error("Stream finished before end of header");
+    this["push"](_0x454dd1), (_0x1c8d40 = this["progressFunc"]) == null || _0x1c8d40["call"](this, _0x454dd1["byteLength"]);
   }
-  ["push"](_0x58d3cd) {
-    if (!this["data"]) this["data"] = _0x58d3cd, this["view"] = new DataView(this["data"]["buffer"]), this["tail"] = _0x58d3cd["length"];
+  ["push"](_0xdcae84) {
+    if (!this["data"]) this["data"] = _0xdcae84, this["view"] = new DataView(this["data"]["buffer"]), this["tail"] = _0xdcae84["length"];
     else {
-      const _0x44f42e = this["tail"] - this["head"], _0x426fe3 = _0x44f42e + _0x58d3cd["length"];
-      if (this["data"]["length"] >= _0x426fe3) this["head"] > 718 + 101 * -4 + 314 * -1 ? (this["data"]["copyWithin"](9563 + 9 * 851 + 158 * -109, this["head"], this["tail"]), this["data"]["set"](_0x58d3cd, _0x44f42e), this["head"] = -133 * 59 + 71 * 16 + -3 * -2237, this["tail"] = _0x426fe3) : (this["data"]["set"](_0x58d3cd, this["tail"]), this["tail"] += _0x58d3cd["length"]);
+      const _0xb3f05d = this["tail"] - this["head"], _0x5c9108 = _0xb3f05d + _0xdcae84["length"];
+      if (this["data"]["length"] >= _0x5c9108) this["head"] > 5623 + 4271 * 1 + -9894 ? (this["data"]["copyWithin"](-1427 * 5 + 730 * -8 + 15 * 865, this["head"], this["tail"]), this["data"]["set"](_0xdcae84, _0xb3f05d), this["head"] = -2633 + 6725 + 3 * -1364, this["tail"] = _0x5c9108) : (this["data"]["set"](_0xdcae84, this["tail"]), this["tail"] += _0xdcae84["length"]);
       else {
-        const _0x38865a = new Uint8Array(_0x426fe3);
-        this["head"] > 7025 + -172 * -50 + -15625 || this["tail"] < this["data"]["length"] ? _0x38865a["set"](this["data"]["subarray"](this["head"], this["tail"]), -7 * 1337 + 5993 * -1 + 2 * 7676) : _0x38865a["set"](this["data"], 5885 + -392 * -11 + -10197), _0x38865a["set"](_0x58d3cd, _0x44f42e), this["data"] = _0x38865a, this["view"] = new DataView(this["data"]["buffer"]), this["head"] = 9072 + -4097 * -2 + 178 * -97, this["tail"] = _0x426fe3;
+        const _0x3c36a1 = new Uint8Array(_0x5c9108);
+        this["head"] > -4230 + 2044 * 1 + 2 * 1093 || this["tail"] < this["data"]["length"] ? _0x3c36a1["set"](this["data"]["subarray"](this["head"], this["tail"]), -2865 + -6572 + 9437 * 1) : _0x3c36a1["set"](this["data"], 1 * -6617 + -5095 + 11712), _0x3c36a1["set"](_0xdcae84, _0xb3f05d), this["data"] = _0x3c36a1, this["view"] = new DataView(this["data"]["buffer"]), this["head"] = 2421 + 173 * 39 + -9168, this["tail"] = _0x5c9108;
       }
     }
   }
   ["compact"]() {
-    this["head"] > -6905 + 4954 + 1 * 1951 && (this["data"]["copyWithin"](6977 + 8 * -1136 + 2111 * 1, this["head"], this["tail"]), this["tail"] -= this["head"], this["head"] = -5561 + -8936 + 133 * 109);
+    this["head"] > 922 * 2 + 639 + -1 * 2483 && (this["data"]["copyWithin"](32 * 46 + 5 * 223 + -13 * 199, this["head"], this["tail"]), this["tail"] -= this["head"], this["head"] = -6375 + -9799 + 2 * 8087);
   }
   get ["remaining"]() {
     return this["tail"] - this["head"];
   }
   ["getInt8"]() {
-    const _0x10a9b2 = this["view"]["getInt8"](this["head"]);
-    return this["head"]++, _0x10a9b2;
+    const _0x5d58b5 = this["view"]["getInt8"](this["head"]);
+    return this["head"]++, _0x5d58b5;
   }
   ["getUint8"]() {
-    const _0x289e9e = this["view"]["getUint8"](this["head"]);
-    return this["head"]++, _0x289e9e;
+    const _0xf09eb9 = this["view"]["getUint8"](this["head"]);
+    return this["head"]++, _0xf09eb9;
   }
   ["getInt16"]() {
-    const _0x288c5d = this["view"]["getInt16"](this["head"], !(1202 + 475 + -1677));
-    return this["head"] += -4243 * 1 + -1601 * 6 + 81 * 171, _0x288c5d;
+    const _0x494f = this["view"]["getInt16"](this["head"], !(8 * -830 + -4528 + 11168));
+    return this["head"] += 3 * -2270 + -6736 * 1 + 2 * 6774, _0x494f;
   }
   ["getUint16"]() {
-    const _0xb9cd15 = this["view"]["getUint16"](this["head"], !(6855 + 597 * -11 + -288));
-    return this["head"] += 2 * 3089 + 2825 * 1 + -9001, _0xb9cd15;
+    const _0x130ce2 = this["view"]["getUint16"](this["head"], !(-44 * -62 + -2225 + 503 * -1));
+    return this["head"] += -2763 + 4 * 1153 + -1847, _0x130ce2;
   }
   ["getInt32"]() {
-    const _0x1a5ba3 = this["view"]["getInt32"](this["head"], !(-5973 * 1 + -1 * -9736 + -71 * 53));
-    return this["head"] += 1 * 2005 + 5 * -721 + 1604, _0x1a5ba3;
+    const _0x2f81e1 = this["view"]["getInt32"](this["head"], !(126 * -8 + -4421 + 5429));
+    return this["head"] += -4633 + 2054 + 2583, _0x2f81e1;
   }
   ["getUint32"]() {
-    const _0x284a19 = this["view"]["getUint32"](this["head"], !(-2276 * 1 + -2593 + -1 * -4869));
-    return this["head"] += -5285 + -8835 + -66 * -214, _0x284a19;
+    const _0x5bb1a1 = this["view"]["getUint32"](this["head"], !(5 * -687 + -3195 + 6630));
+    return this["head"] += 1865 + -2 * -202 + -2265, _0x5bb1a1;
   }
   ["getFloat32"]() {
-    const _0x560a40 = this["view"]["getFloat32"](this["head"], !(-9 * -967 + -8 * 335 + 317 * -19));
-    return this["head"] += -504 + 9709 * 1 + 1 * -9201, _0x560a40;
+    const _0x169aba = this["view"]["getFloat32"](this["head"], !(-4071 + -1 * 7377 + 11448));
+    return this["head"] += 622 + 20 * -431 + 8002 * 1, _0x169aba;
   }
   ["getFloat64"]() {
-    const _0x1cd512 = this["view"]["getFloat64"](this["head"], !(-1 * -5659 + -5843 + 4 * 46));
-    return this["head"] += 1 * 1321 + 1 * 1879 + 84 * -38, _0x1cd512;
+    const _0x5d6a0b = this["view"]["getFloat64"](this["head"], !(-43 * 129 + -1 * 2531 + 8078));
+    return this["head"] += 5441 + -11 * 232 + -1 * 2881, _0x5d6a0b;
   }
 }
 class ee {
-  constructor(_0x3ecb04, _0xfc7e1b = []) {
-    this["elements"] = _0x3ecb04, this["comments"] = _0xfc7e1b, this["isCompressed"] = !(-9776 * 1 + 3197 + 1 * 6580), this["is4D"] = !!this["elements"][-1 * -2728 + -8290 + 5562]["properties"]["find"]((_0x48a3b1) => _0x48a3b1["name"] === "t"), this["shBands"] = this["getShBands"]();
+  constructor(_0x75d34, _0x239fa0 = []) {
+    this["elements"] = _0x75d34, this["comments"] = _0x239fa0, this["isCompressed"] = !(1 * 8173 + 6980 + 4 * -3788), this["is4D"] = !!this["elements"][-5859 + -3920 + 889 * 11]["properties"]["find"]((_0x17968) => _0x17968["name"] === "t"), this["shBands"] = this["getShBands"]();
   }
   ["getShBands"]() {
     return { 9: 1, 24: 2, 45: 3 }[(() => {
-      for (let _0x4b1858 = 2243 * -1 + -3966 + 6209; _0x4b1858 < 1 * 9385 + -28 * -36 + 2 * -5174; ++_0x4b1858) if (!this["elements"][-2187 + 4247 * -2 + 10681]["properties"]["find"]((_0x104376) => _0x104376["name"] === "f_rest_" + _0x4b1858)) return _0x4b1858;
-      return -23 * -6 + -1423 * -6 + -2877 * 3;
-    })()] ?? -1239 * 1 + -1 * 8931 + 2034 * 5;
+      for (let _0x334738 = 4677 * -2 + 3 * 2194 + 2772; _0x334738 < 162 * -46 + 5533 + -4 * -491; ++_0x334738) if (!this["elements"][3307 * 3 + 6884 + -16805]["properties"]["find"]((_0x5cf99f) => _0x5cf99f["name"] === "f_rest_" + _0x334738)) return _0x334738;
+      return 1 * -5613 + -23 * -139 + 2461;
+    })()] ?? 2184 + -4974 * -1 + -7158;
   }
 }
-const pe = new Float32Array(5179 * -1 + 10 * -566 + 2710 * 4), Ue = new Int32Array(pe["buffer"]), k = (_0x57afda) => {
-  pe[1 * -6569 + -2929 + -1 * -9498] = _0x57afda;
-  const _0x59b5b9 = Ue[9664 + 1 * 9419 + 3 * -6361];
-  let _0x2b5dd5 = _0x59b5b9 >> -1415 + 2085 * 2 + 83 * -33 & 52044 + -10886 + -2 * 4195, _0x37a24a = _0x59b5b9 >> 7624 + 5637 * 1 + -13249 & 1 * -233 + -798 + 9 * 342;
-  const _0xd1a07 = _0x59b5b9 >> -4696 + -1 * 9161 + 13880 & -5114 + -8440 + 13809;
-  return _0xd1a07 < -6951 + 716 * -9 + 13498 ? _0x2b5dd5 : _0xd1a07 > -3572 + -21 * 386 + 11820 ? (_0x2b5dd5 |= -45289 + -11 * 5330 + 135663, _0x2b5dd5 |= (_0xd1a07 === 1 * -4793 + 323 + 4725 ? -9800 + -5293 + 15093 : -1438 * 4 + -3035 * -2 + -317 * 1) && _0x59b5b9 & -3348789 + -32874 * -43 + 139511 * 74, _0x2b5dd5) : _0xd1a07 < 8339 * 1 + 7206 + -3858 * 4 ? (_0x37a24a |= -2 * -3527 + 7187 + -12193, _0x2b5dd5 |= (_0x37a24a >> -1553 + 3 * 41 + 1544 - _0xd1a07) + (_0x37a24a >> 6545 + -7834 + 1402 - _0xd1a07 & -5141 * -1 + -3682 * -2 + 4168 * -3), _0x2b5dd5) : (_0x2b5dd5 |= _0xd1a07 - (1408 + 2698 * 1 + -3994) << 1 * 6077 + 1787 * -4 + 1081 | _0x37a24a >> 6354 * -1 + 597 + 5758, _0x2b5dd5 += _0x37a24a & -6 * -671 + -2 * 4876 + 5727, _0x2b5dd5);
-}, Re = (_0x3eb1c9) => {
-  if (_0x3eb1c9 < -(-4874 + 3668 + 89 * 14)) return 2 * 2009 + 6838 * -1 + 12 * 235;
-  if (_0x3eb1c9 > 1 * -9970 + -7608 + -46 * -383) return 9336 + -1 * -3467 + -12802;
-  if (_0x3eb1c9 >= 8952 * -1 + 1 * -5743 + 14695) return (8360 + 9576 + -17935 * 1) / (-4826 + -5922 + 10749 + Math["exp"](-_0x3eb1c9));
+const pe = new Float32Array(-4526 + 5163 + -636), Ue = new Int32Array(pe["buffer"]), k = (_0x43b8f6) => {
+  pe[-86 * 13 + -9695 + -11 * -983] = _0x43b8f6;
+  const _0x96c3b2 = Ue[-9865 + 4 * -2264 + 18921];
+  let _0x48a7fe = _0x96c3b2 >> -4 * 1295 + -9773 + 14969 & -16335 * 3 + 28177 + 53596, _0x563f08 = _0x96c3b2 >> 1 * 4658 + -9400 + -4754 * -1 & 7409 + 2 * 3062 + -11486;
+  const _0x39b294 = _0x96c3b2 >> 199 * 29 + -1 * -1346 + -7094 & 619 * -4 + -247 * 37 + 11870;
+  return _0x39b294 < -6955 + -5 * -391 + -729 * -7 ? _0x48a7fe : _0x39b294 > 993 + -161 * -17 + 2 * -1794 ? (_0x48a7fe |= 9297 * -1 + -29148 + 271 * 259, _0x48a7fe |= (_0x39b294 === -5125 * -1 + -19 * -214 + -1 * 8936 ? -1 * -1661 + 85 + -1746 : -3 * -1202 + -4622 + 1017) && _0x96c3b2 & 11415807 + 1517325 * 2 + -6061850, _0x48a7fe) : _0x39b294 < 17 * -73 + 8600 + -7246 ? (_0x563f08 |= 27 + -1 * 9364 + 11385, _0x48a7fe |= (_0x563f08 >> -2777 * -2 + -10 * 664 + 1200 - _0x39b294) + (_0x563f08 >> -509 * -13 + 7997 + -14501 - _0x39b294 & 81 * -113 + 10 * 308 + -2 * -3037), _0x48a7fe) : (_0x48a7fe |= _0x39b294 - (3 * 2385 + 1549 + -8592) << 199 * -39 + 1058 + 6713 * 1 | _0x563f08 >> 4554 * -1 + 4080 + 475, _0x48a7fe += _0x563f08 & 48 * 181 + -1 * 2715 + -5972, _0x48a7fe);
+}, Re = (_0x36edc8) => {
+  if (_0x36edc8 < -(-4578 + -1 * 4821 + 9439)) return -4718 + 1317 + 1 * 3401;
+  if (_0x36edc8 > 879 * -5 + -6125 + 16 * 660) return 2 * 2984 + 71 * 116 + -14203;
+  if (_0x36edc8 >= -1 * 8830 + -5265 * 1 + 14095) return (1 * 644 + -11 * -31 + -984) / (-8876 + -1 * 1361 + -10238 * -1 + Math["exp"](-_0x36edc8));
   {
-    const _0x1a790b = Math["exp"](_0x3eb1c9);
-    return _0x1a790b / (-687 * 5 + -2322 + -2879 * -2 + _0x1a790b);
+    const _0x36b8f7 = Math["exp"](_0x36edc8);
+    return _0x36b8f7 / (-2757 + 1764 + -1 * -994 + _0x36b8f7);
   }
 };
 class Ce {
   constructor() {
-    this["numSplats"] = -6879 + -8498 + 15377, this["comments"] = [], this["chunkData"] = new Float32Array(-7011 + -9534 + 16545), this["vertexData"] = new Uint32Array(958 * 5 + -6374 + 1584), this["is4D"] = !(2470 + -8628 + -3079 * -2), this["shBands"] = -3 * -3079 + -8020 + -1217, this["shData0"] = new Uint8Array(19 * 430 + -1 * 7927 + -3 * 81), this["shData1"] = new Uint8Array(6597 + 1 * -1135 + -5462 * 1), this["shData2"] = new Uint8Array(1433 + 9701 + -11134), this["elements"] = [], this["isCompressed"] = !(-5111 * -1 + -7597 + 2486);
+    this["numSplats"] = -376 + 9402 + -9026, this["comments"] = [], this["chunkData"] = new Float32Array(15 * 21 + 11 * -819 + 8694), this["vertexData"] = new Uint32Array(-174 * 37 + -211 * 43 + 15511), this["is4D"] = !(-7432 + 340 + 7092), this["shBands"] = 1609 + -827 * 1 + -782, this["shData0"] = new Uint8Array(-2291 + -7414 + -9705 * -1), this["shData1"] = new Uint8Array(7 * 647 + -4333 + -196), this["shData2"] = new Uint8Array(8364 + 526 + -8890), this["elements"] = [], this["isCompressed"] = !(-7487 + 519 + 536 * 13);
   }
   get ["numChunks"]() {
-    return Math["ceil"](this["numSplats"] / (-727 + -6978 + 7961));
+    return Math["ceil"](this["numSplats"] / (6170 + 826 * -6 + 1 * -958));
   }
   get ["chunkSize"]() {
     return this["chunkData"]["length"] / this["numChunks"];
   }
 }
 class G {
-  constructor(_0x87b5f3 = -9154 * 1 + 1021 + 8133 * 1, _0x217dbc = 6162 + 7363 + -13525, _0x18cf4b = 3 * -255 + 7259 + -6494) {
-    this["x"] = _0x87b5f3, this["y"] = _0x217dbc, this["z"] = _0x18cf4b;
+  constructor(_0xbd8f36 = 1 * -3820 + 2 * 3201 + -2582, _0x54f341 = -6357 + 6939 + -582, _0x3a7675 = -3849 * 1 + -1 * 2017 + -2933 * -2) {
+    this["x"] = _0xbd8f36, this["y"] = _0x54f341, this["z"] = _0x3a7675;
   }
 }
 class Ee {
-  constructor(_0x52e8f9 = 183 + -903 + 1 * 720, _0x3c66fa = -6329 + -8639 + 14968, _0xccc399 = -5152 + -1440 + -4 * -1648, _0x45a2d7 = -5299 + 1197 + 1 * 4102) {
-    this["x"] = _0x52e8f9, this["y"] = _0x3c66fa, this["z"] = _0xccc399, this["w"] = _0x45a2d7;
+  constructor(_0x4a5442 = -3722 + -3960 + 7682, _0xf1ea9b = 3835 * -2 + -3665 + 2267 * 5, _0x47637d = -8 * 219 + -9900 + 11652, _0x4afbe6 = 1599 * -1 + -541 * 1 + -428 * -5) {
+    this["x"] = _0x4a5442, this["y"] = _0xf1ea9b, this["z"] = _0x47637d, this["w"] = _0x4afbe6;
   }
 }
 class We {
-  constructor(_0xe5fa5f = -380 * -13 + -1 * -6934 + 1 * -11874, _0xbac260 = 2981 * -1 + 5167 + -2186, _0x502330 = -1 * -734 + -1604 + 870, _0x4ab047 = 3524 + 1954 + -5477 * 1) {
-    this["x"] = _0xe5fa5f, this["y"] = _0xbac260, this["z"] = _0x502330, this["w"] = _0x4ab047;
+  constructor(_0x40bf6c = -5270 + -3808 + 2 * 4539, _0x59f992 = -2234 + 2420 + -186, _0x3665a7 = 7866 + -1 * -9236 + 1006 * -17, _0x230682 = -31 * -277 + 5896 + -14482) {
+    this["x"] = _0x40bf6c, this["y"] = _0x59f992, this["z"] = _0x3665a7, this["w"] = _0x230682;
   }
-  ["set"](_0x125d34, _0x216fa5, _0xf79949, _0x5db4a5) {
-    return this["x"] = _0x125d34, this["y"] = _0x216fa5, this["z"] = _0xf79949, this["w"] = _0x5db4a5, this;
+  ["set"](_0x2918a0, _0x4f4fe7, _0x112065, _0x38b9e7) {
+    return this["x"] = _0x2918a0, this["y"] = _0x4f4fe7, this["z"] = _0x112065, this["w"] = _0x38b9e7, this;
   }
   ["length"]() {
     return Math["sqrt"](this["x"] * this["x"] + this["y"] * this["y"] + this["z"] * this["z"] + this["w"] * this["w"]);
   }
-  ["normalize"](_0x5971ab = this) {
-    let _0x5ddf3f = _0x5971ab["length"]();
-    return _0x5ddf3f === 1e4 + 122 * -17 + -7926 ? (this["x"] = this["y"] = this["z"] = 86 * -15 + 4900 + -3610, this["w"] = -9056 + -45 * -73 + -52 * -111) : (_0x5ddf3f = (-639 + -9369 + -1 * -10009) / _0x5ddf3f, this["x"] = _0x5971ab["x"] * _0x5ddf3f, this["y"] = _0x5971ab["y"] * _0x5ddf3f, this["z"] = _0x5971ab["z"] * _0x5ddf3f, this["w"] = _0x5971ab["w"] * _0x5ddf3f), this;
+  ["normalize"](_0x43acb3 = this) {
+    let _0x573990 = _0x43acb3["length"]();
+    return _0x573990 === -1 * 1228 + -9548 + -3592 * -3 ? (this["x"] = this["y"] = this["z"] = -113 * 8 + 7 * -526 + -4586 * -1, this["w"] = 18 * 98 + 248 + 2011 * -1) : (_0x573990 = (279 * 11 + 1193 * -5 + 2897) / _0x573990, this["x"] = _0x43acb3["x"] * _0x573990, this["y"] = _0x43acb3["y"] * _0x573990, this["z"] = _0x43acb3["z"] * _0x573990, this["w"] = _0x43acb3["w"] * _0x573990), this;
   }
-  ["mulScalar"](_0x5d68c3, _0x2b4095 = this) {
-    return this["x"] = _0x2b4095["x"] * _0x5d68c3, this["y"] = _0x2b4095["y"] * _0x5d68c3, this["z"] = _0x2b4095["z"] * _0x5d68c3, this["w"] = _0x2b4095["w"] * _0x5d68c3, this;
+  ["mulScalar"](_0x2d9cec, _0x1e7f50 = this) {
+    return this["x"] = _0x1e7f50["x"] * _0x2d9cec, this["y"] = _0x1e7f50["y"] * _0x2d9cec, this["z"] = _0x1e7f50["z"] * _0x2d9cec, this["w"] = _0x1e7f50["w"] * _0x2d9cec, this;
   }
 }
 class Le {
-  constructor(_0x48dbbf, _0x87646a, _0x5590c3, _0x209f30, _0x33663a, _0x11ce11, _0x437f7b, _0x4a28f6, _0x2b1a15, _0x484e56, _0x485728, _0x4a39cb, _0x1b4e6e, _0x1bcd71) {
-    const _0x548807 = (_0x1d9718, _0x30f0d1) => {
-      const _0x248617 = (1 * 1109 + -9797 + -1 * -8689 << _0x30f0d1) - (-3389 * -1 + -733 * 10 + 3942);
-      return (_0x1d9718 & _0x248617) / _0x248617;
-    }, _0x474b14 = (_0x5b5b49, _0x3c3840) => {
-      _0x5b5b49["x"] = _0x548807(_0x3c3840 >>> 3631 + 1 * 4549 + -8159, -3098 * 1 + 16 * 461 + -4267), _0x5b5b49["y"] = _0x548807(_0x3c3840 >>> -6592 + 284 * 15 + -71 * -33, -2 * 4861 + 1 * 9643 + -1 * -89), _0x5b5b49["z"] = _0x548807(_0x3c3840, -9 * 917 + -255 + -1217 * -7);
-    }, _0x18a3f0 = (_0x5ca831, _0x52329f) => {
-      _0x5ca831["x"] = _0x548807(_0x52329f >>> -1 * -5197 + -4405 + 256 * -3, -15 * 642 + 6617 * -1 + 16255), _0x5ca831["y"] = _0x548807(_0x52329f >>> -6696 + -849 + 7561, 1 * 5754 + 1 * -2738 + -3008), _0x5ca831["z"] = _0x548807(_0x52329f >>> 7857 * 1 + -9535 + 1686, -159 * 13 + -4090 * -1 + -2015), _0x5ca831["w"] = _0x548807(_0x52329f, 11 * 811 + -7649 * -1 + -16562);
-    }, _0x3c05b2 = (_0x4ddfe9, _0x1dff9a) => {
-      const _0x18a8d8 = (-8352 + -3 * -342 + -17 * -431) / (Math["sqrt"](-6029 * 1 + -6128 + -579 * -21) * (-5978 * 1 + 6638 + -110 * 6 + 0.5)), _0x2c1b09 = (_0x548807(_0x1dff9a >>> 5304 + -4595 * 1 + -689, -1306 * 7 + -5167 * -1 + 3985) - (-1223 * 2 + 4382 + -1936 + 0.5)) * _0x18a8d8, _0x2042eb = (_0x548807(_0x1dff9a >>> -46 * -25 + -639 * 12 + 6528, -6 * -420 + 1149 * 4 + -1 * 7106) - (4 * 1258 + -7914 + 1441 * 2 + 0.5)) * _0x18a8d8, _0x5bd199 = (_0x548807(_0x1dff9a, -23 * -36 + 317 * -20 + -11 * -502) - (7052 + 7746 + -2 * 7399 + 0.5)) * _0x18a8d8, _0x4248b6 = Math["sqrt"](2 * -459 + -528 + 1447 * 1 - (_0x2c1b09 * _0x2c1b09 + _0x2042eb * _0x2042eb + _0x5bd199 * _0x5bd199));
-      switch (_0x1dff9a >>> -15 * 43 + 51 * -139 + 7764) {
-        case 8934 * -1 + -6801 * 1 + 15735:
-          _0x4ddfe9["set"](_0x2c1b09, _0x2042eb, _0x5bd199, _0x4248b6);
+  constructor(_0x4f3e0b, _0x177543, _0x3129fb, _0x36d763, _0x3ca643, _0xebc3b0, _0x148184, _0x50336c, _0x94153c, _0x1b2167, _0xce923f, _0x23b33e, _0x4c5653, _0x656321) {
+    const _0x2c62f4 = (_0xdf3740, _0x51d607) => {
+      const _0x26f75f = (-17 * -433 + 4102 + 22 * -521 << _0x51d607) - (8415 + -9186 + 772);
+      return (_0xdf3740 & _0x26f75f) / _0x26f75f;
+    }, _0x1c9ede = (_0x21b5e8, _0xfa388) => {
+      _0x21b5e8["x"] = _0x2c62f4(_0xfa388 >>> 43 * -2 + -685 * -2 + 421 * -3, 694 * 9 + 4405 * -1 + -1830), _0x21b5e8["y"] = _0x2c62f4(_0xfa388 >>> -2975 + -2 * -4023 + -220 * 23, 3730 + -1 * -8543 + 1 * -12263), _0x21b5e8["z"] = _0x2c62f4(_0xfa388, 2891 + 4 * -1297 + -1154 * -2);
+    }, _0x513466 = (_0x4f7e72, _0x542bad) => {
+      _0x4f7e72["x"] = _0x2c62f4(_0x542bad >>> -3 * 1877 + 4 * 279 + 4539, 1 * -551 + 9657 + -9098), _0x4f7e72["y"] = _0x2c62f4(_0x542bad >>> -1 * -9553 + 3158 + -12695, -1365 + -6266 + 7639), _0x4f7e72["z"] = _0x2c62f4(_0x542bad >>> 4154 + 3245 + -7391 * 1, 3203 * 2 + -7795 + 1397), _0x4f7e72["w"] = _0x2c62f4(_0x542bad, 2 * 244 + 9206 + -29 * 334);
+    }, _0x10b004 = (_0x59a88c, _0x52e354) => {
+      const _0x395988 = (3715 + -1613 + -2101) / (Math["sqrt"](-6201 + 2499 + 1 * 3704) * (55 * -91 + -4923 + 2482 * 4 + 0.5)), _0x2ae79e = (_0x2c62f4(_0x52e354 >>> 2 * 1753 + 6550 + 5018 * -2, -9359 + 6727 * -1 + -8048 * -2) - (44 * -41 + 957 * 6 + -3938 + 0.5)) * _0x395988, _0x3c18fe = (_0x2c62f4(_0x52e354 >>> -3580 + 317 * -19 + 9613, 8163 + 372 * -1 + 1 * -7781) - (5 * -275 + -514 + 1889 + 0.5)) * _0x395988, _0x2444f9 = (_0x2c62f4(_0x52e354, -59 * -157 + 2462 + -3905 * 3) - (-9819 + 9309 + 510 + 0.5)) * _0x395988, _0x299e07 = Math["sqrt"](-2 * -940 + 889 * 7 + -8102 - (_0x2ae79e * _0x2ae79e + _0x3c18fe * _0x3c18fe + _0x2444f9 * _0x2444f9));
+      switch (_0x52e354 >>> 1 * -3578 + 1 * -7183 + 10791) {
+        case -4746 + -1055 + -1 * -5801:
+          _0x59a88c["set"](_0x2ae79e, _0x3c18fe, _0x2444f9, _0x299e07);
           break;
-        case 83 * 76 + 7528 + -13835:
-          _0x4ddfe9["set"](_0x4248b6, _0x2042eb, _0x5bd199, _0x2c1b09);
+        case 52 * 51 + -4 * 1858 + -1 * -4781:
+          _0x59a88c["set"](_0x299e07, _0x3c18fe, _0x2444f9, _0x2ae79e);
           break;
-        case -6 * 1587 + -1793 + 1 * 11317:
-          _0x4ddfe9["set"](_0x2042eb, _0x4248b6, _0x5bd199, _0x2c1b09);
+        case -8927 + -1 * -4327 + 177 * 26:
+          _0x59a88c["set"](_0x3c18fe, _0x299e07, _0x2444f9, _0x2ae79e);
           break;
-        case -2 * -878 + -1 * 8055 + 23 * 274:
-          _0x4ddfe9["set"](_0x2042eb, _0x5bd199, _0x4248b6, _0x2c1b09);
+        case 8053 + 1738 + -4894 * 2:
+          _0x59a88c["set"](_0x3c18fe, _0x2444f9, _0x299e07, _0x2ae79e);
           break;
       }
-    }, _0x675b84 = (_0x271817, _0x40898c, _0x140364) => _0x271817 * (-9556 + 4150 + 5407 - _0x140364) + _0x40898c * _0x140364, _0x571323 = [-1 * 1801 + 3247 + -13 * 111, 9750 + 673 * -5 + -6377, -1 * -8497 + 4933 * 1 + -13415][_0x437f7b - (1457 * 5 + 5003 * 1 + -12287)], _0xb40da6 = -8889 + 7386 + 3 * 503;
-    this["read"] = (_0x1d99a3) => {
-      const _0xb86079 = Math["floor"](_0x1d99a3 / (5156 * 1 + -1611 + 11 * -299)) * _0x87646a;
-      if (_0x4a28f6 && (_0x474b14(_0x4a28f6, _0x5590c3[_0x1d99a3 * _0xb40da6 + (-5469 + -4 * -1379 + 1 * -47)]), _0x4a28f6["x"] = _0x675b84(_0x48dbbf[_0xb86079 + (-3764 * 1 + 1256 + 2508)], _0x48dbbf[_0xb86079 + (828 * -11 + -3518 * 1 + 12629)], _0x4a28f6["x"]), _0x4a28f6["y"] = _0x675b84(_0x48dbbf[_0xb86079 + (3447 * 1 + 2605 + -6051)], _0x48dbbf[_0xb86079 + (1 * 4513 + -1490 + -3019)], _0x4a28f6["y"]), _0x4a28f6["z"] = _0x675b84(_0x48dbbf[_0xb86079 + (9323 * -1 + -6205 + -1553 * -10)], _0x48dbbf[_0xb86079 + (-8649 + -8118 + -4193 * -4)], _0x4a28f6["z"])), _0x2b1a15 && (_0x3c05b2(_0x2b1a15, _0x5590c3[_0x1d99a3 * _0xb40da6 + (422 + -2909 + 2488)]), _0x2b1a15["normalize"](), _0x2b1a15["w"] < -3527 * -1 + 5268 + -8795 && _0x2b1a15["mulScalar"](-(-1 * 7666 + -197 + 983 * 8))), _0x484e56 && (_0x474b14(_0x484e56, _0x5590c3[_0x1d99a3 * _0xb40da6 + (-5958 + 20 * 235 + 1260)]), _0x484e56["x"] = _0x675b84(_0x48dbbf[_0xb86079 + (-5176 + -2 * 3253 + -4 * -2922)], _0x48dbbf[_0xb86079 + (6359 + -5250 + -1100)], _0x484e56["x"]), _0x484e56["y"] = _0x675b84(_0x48dbbf[_0xb86079 + (1 * 1667 + 7501 + -9161)], _0x48dbbf[_0xb86079 + (-19 * -335 + -3589 + -2766)], _0x484e56["y"]), _0x484e56["z"] = _0x675b84(_0x48dbbf[_0xb86079 + (-6038 + -141 * -66 + -3260)], _0x48dbbf[_0xb86079 + (6284 + -4823 + 10 * -145)], _0x484e56["z"])), _0x485728 && (_0x18a3f0(_0x485728, _0x5590c3[_0x1d99a3 * _0xb40da6 + (9702 + 1 * -1303 + 4 * -2099)]), _0x87646a > 5617 + 204 * 37 + -13153 && (_0x485728["x"] = _0x675b84(_0x48dbbf[_0xb86079 + (-1 * 5523 + 4475 + 265 * 4)], _0x48dbbf[_0xb86079 + (-32 * 30 + 9677 * -1 + 10652)], _0x485728["x"]), _0x485728["y"] = _0x675b84(_0x48dbbf[_0xb86079 + (-1851 + 1 * 2129 + 1 * -265)], _0x48dbbf[_0xb86079 + (-8421 + -1 * 5507 + 13944)], _0x485728["y"]), _0x485728["z"] = _0x675b84(_0x48dbbf[_0xb86079 + (-1476 + 4475 + -2985)], _0x48dbbf[_0xb86079 + (3437 + -682 * 3 + 687 * -2)], _0x485728["z"]))), _0x4a39cb && (_0x474b14(_0x4a39cb, _0x5590c3[_0x1d99a3 * _0xb40da6 + (134 * -38 + -7039 * -1 + -1 * 1943)]), _0x4a39cb["x"] = _0x675b84(_0x48dbbf[_0xb86079 + (-2855 + -1 * -2567 + 2 * 153)], _0x48dbbf[_0xb86079 + (-5547 + 4 * -2053 + 3445 * 4)], _0x4a39cb["x"]), _0x4a39cb["y"] = _0x675b84(_0x48dbbf[_0xb86079 + (2019 + 3972 * 1 + 1 * -5972)], _0x48dbbf[_0xb86079 + (1909 + -3 * 2829 + -220 * -30)], _0x4a39cb["y"]), _0x4a39cb["z"] = _0x675b84(_0x48dbbf[_0xb86079 + (-2246 + 6978 + 1 * -4712)], _0x48dbbf[_0xb86079 + (-9060 + 1 * 2089 + 6994)], _0x4a39cb["z"])), _0x1b4e6e && (_0x474b14(_0x1b4e6e, _0x5590c3[_0x1d99a3 * _0xb40da6 + (5664 + 7838 + 1227 * -11)]), _0x1b4e6e["x"] = _0x675b84(_0x48dbbf[_0xb86079 + (9668 + -38 * -222 + 1808 * -10)], _0x48dbbf[_0xb86079 + (4075 * 1 + -7835 + 757 * 5)], _0x1b4e6e["x"]), _0x1b4e6e["y"] = _0x675b84(_0x48dbbf[_0xb86079 + (38 * 2 + -1578 * 5 + 7840)], _0x48dbbf[_0xb86079 + (4580 + -577 * -17 + 167 * -86)], _0x1b4e6e["y"])), _0x1bcd71 && _0x437f7b > 95 * -24 + 4 * 719 + 149 * -4) {
-        const _0x3d0595 = [_0x209f30, _0x33663a, _0x11ce11];
-        for (let _0x42999b = -3648 + -131 * 67 + 12425; _0x42999b < -8607 + 52 * -100 + 13810; ++_0x42999b) for (let _0x1f82e4 = 7045 + 9458 + -16503; _0x1f82e4 < 7013 + 7273 + -213 * 67; ++_0x1f82e4) _0x1bcd71[_0x42999b * (-9381 + -1 * 6881 + 16277) + _0x1f82e4] = _0x1f82e4 < _0x571323 ? _0x3d0595[_0x42999b][_0x1d99a3 * (526 * -2 + -203 * 2 + -11 * -134) + _0x1f82e4] * ((7351 * 1 + -41 * 79 + -4104) / (-70 + 5023 + 18 * -261)) - (-761 + 3252 + 3 * -829) : 121 * -27 + -667 * 7 + 7936;
+    }, _0x317992 = (_0xeeade9, _0x22d76c, _0x2eca71) => _0xeeade9 * (-7339 + 235 * 1 + 7105 - _0x2eca71) + _0x22d76c * _0x2eca71, _0x22ec07 = [-9 * 1004 + 4553 + 2243 * 2, -91 * 13 + -8297 + 9488, -43 * 26 + -7212 + -1 * -8345][_0x148184 - (-1 * -4939 + 346 * -5 + -4 * 802)], _0x13976d = 6293 + 3152 + -9439;
+    this["read"] = (_0x5c1699) => {
+      const _0x2e1d0f = Math["floor"](_0x5c1699 / (116 * 77 + 3229 + 1 * -11905)) * _0x177543;
+      if (_0x50336c && (_0x1c9ede(_0x50336c, _0x3129fb[_0x5c1699 * _0x13976d + (-1 * 6988 + -191 + 7179)]), _0x50336c["x"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (7648 + 7606 + -15254)], _0x4f3e0b[_0x2e1d0f + (19 * 293 + -1 * 5778 + -214 * -1)], _0x50336c["x"]), _0x50336c["y"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (-7 * 830 + -10 * 443 + 10241)], _0x4f3e0b[_0x2e1d0f + (-11 * 869 + -8951 + 18514)], _0x50336c["y"]), _0x50336c["z"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (1 * -6157 + -97 * -1 + 6062)], _0x4f3e0b[_0x2e1d0f + (-6259 * -1 + -1852 + -142 * 31)], _0x50336c["z"])), _0x94153c && (_0x10b004(_0x94153c, _0x3129fb[_0x5c1699 * _0x13976d + (-8453 + 7136 + 2 * 659)]), _0x94153c["normalize"](), _0x94153c["w"] < 507 * -4 + 19 * -467 + 10901 && _0x94153c["mulScalar"](-(-3837 + 5471 * -1 + 1 * 9309))), _0x1b2167 && (_0x1c9ede(_0x1b2167, _0x3129fb[_0x5c1699 * _0x13976d + (-4260 + 6913 + -2651)]), _0x1b2167["x"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (-5179 + -227 * 22 + 783 * 13)], _0x4f3e0b[_0x2e1d0f + (302 * 3 + -97 * 81 + 6960)], _0x1b2167["x"]), _0x1b2167["y"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (-49 * 168 + -2 * -1705 + 4829 * 1)], _0x4f3e0b[_0x2e1d0f + (6591 * 1 + -26 * -301 + -14407)], _0x1b2167["y"]), _0x1b2167["z"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (2999 * -1 + -9415 + 12422)], _0x4f3e0b[_0x2e1d0f + (-975 + 17 * -376 + -238 * -31)], _0x1b2167["z"])), _0xce923f && (_0x513466(_0xce923f, _0x3129fb[_0x5c1699 * _0x13976d + (20 * -40 + -545 * -11 + -5192)]), _0x177543 > -1 * 7400 + -4346 + -2 * -5879 && (_0xce923f["x"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (4214 + 4 * -74 + -3 * 1302)], _0x4f3e0b[_0x2e1d0f + (7629 + 1202 * -1 + -6412)], _0xce923f["x"]), _0xce923f["y"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (-10 * -622 + 4736 * 1 + -10943)], _0x4f3e0b[_0x2e1d0f + (-1349 + -8390 + 9755)], _0xce923f["y"]), _0xce923f["z"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (-990 + 6034 * 1 + -5030)], _0x4f3e0b[_0x2e1d0f + (1301 * 7 + 5427 + -14517)], _0xce923f["z"]))), _0x23b33e && (_0x1c9ede(_0x23b33e, _0x3129fb[_0x5c1699 * _0x13976d + (-6540 + -20 * 481 + -5388 * -3)]), _0x23b33e["x"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (1 * -1186 + -4806 * 2 + -4 * -2704)], _0x4f3e0b[_0x2e1d0f + (640 + -7811 * 1 + 7192)], _0x23b33e["x"]), _0x23b33e["y"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (1696 + 1 * 3903 + -5580)], _0x4f3e0b[_0x2e1d0f + (15 * -529 + -74 * 43 + 11139)], _0x23b33e["y"]), _0x23b33e["z"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (3188 * -1 + -6774 + 9982)], _0x4f3e0b[_0x2e1d0f + (-354 * -7 + -1 * 8366 + 5911)], _0x23b33e["z"])), _0x4c5653 && (_0x1c9ede(_0x4c5653, _0x3129fb[_0x5c1699 * _0x13976d + (15 * 85 + -4529 + 3259)]), _0x4c5653["x"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (1931 * 2 + 3279 + -7117)], _0x4f3e0b[_0x2e1d0f + (-8663 * 1 + -1 * -6927 + 1761)], _0x4c5653["x"]), _0x4c5653["y"] = _0x317992(_0x4f3e0b[_0x2e1d0f + (2168 + 83 + -2225)], _0x4f3e0b[_0x2e1d0f + (3998 + 1338 + -5309)], _0x4c5653["y"])), _0x656321 && _0x148184 > -1762 + -1 * 5209 + 6971 * 1) {
+        const _0x3e4725 = [_0x36d763, _0x3ca643, _0xebc3b0];
+        for (let _0x445410 = -6515 + 13 * 19 + 6268; _0x445410 < -6872 + 5938 + 937; ++_0x445410) for (let _0x1157a0 = 9383 + -1 * 1099 + -8284; _0x1157a0 < -8657 + -45 * 116 + 13892; ++_0x1157a0) _0x656321[_0x445410 * (257 * 23 + 3671 * -1 + -2225) + _0x1157a0] = _0x1157a0 < _0x22ec07 ? _0x3e4725[_0x445410][_0x5c1699 * (-849 + 24 * 9 + 649) + _0x1157a0] * ((7942 + 3 * 2721 + -16097 * 1) / (119 * -41 + 8491 + 3357 * -1)) - (2 * -52 + 27 * 13 + 3 * -81) : 1 * 2213 + -7614 + 5401;
       }
     };
   }
 }
-const ke = (_0x3da5f7) => {
-  const _0x138c36 = ["min_x", "min_y", "min_z", "max_x", "max_y", "max_z", "min_scale_x", "min_scale_y", "min_scale_z", "max_scale_x", "max_scale_y", "max_scale_z", "min_r", "min_g", "min_b", "max_r", "max_g", "max_b", "min_motion_x", "min_motion_y", "min_motion_z", "max_motion_x", "max_motion_y", "max_motion_z", "min_time_scale", "max_time_scale", "min_time", "max_time"], _0x261188 = ["packed_position", "packed_rotation", "packed_scale", "packed_color", "packed_motion", "packed_time"], _0x1d3456 = new Array(-11 * 47 + 82 * -34 + 3350)["fill"]("")["map"]((_0x374541, _0x3db5c0) => "f_rest_" + _0x3db5c0), _0x2973ca = () => _0x3da5f7[8528 + 6258 + -14786]["name"] === "chunk" && _0x3da5f7[4768 * -2 + -6774 + 16310]["properties"]["every"]((_0x886aea, _0x36b107) => _0x886aea["name"] === _0x138c36[_0x36b107] && _0x886aea["type"] === "float") && _0x3da5f7[-1485 * 1 + 6 * -1476 + -2 * -5171]["name"] === "vertex" && _0x3da5f7[5 * 1391 + 609 * 7 + -11217 * 1]["properties"]["every"]((_0x53603b, _0x377dfa) => _0x53603b["name"] === _0x261188[_0x377dfa] && _0x53603b["type"] === "uint"), _0x1df348 = () => _0x3da5f7[-247 * -10 + 2915 * 3 + 1 * -11213]["name"] === "sh" && [-1 * 2435 + 3 * 2879 + -6193, -6118 + -114 * -74 + 74 * -31, -7631 * 1 + -1 * 3493 + -17 * -657]["indexOf"](_0x3da5f7[3 * 1093 + -4495 + -3 * -406]["properties"]["length"]) !== -(3906 + 7916 * -1 + 4011) && _0x3da5f7[-6445 + -87 * 91 + 14364]["properties"]["every"]((_0x4faaaf, _0x56d9d4) => _0x4faaaf["name"] === _0x1d3456[_0x56d9d4] && _0x4faaaf["type"] === "uchar");
-  return _0x3da5f7["length"] === -4951 + 1928 + 3025 && _0x2973ca() || _0x3da5f7["length"] === 17 * 142 + 12 * 645 + -10151 && _0x2973ca() && _0x1df348();
-}, ve = async (_0x30f446, _0x4f62e4, _0x16ce85) => {
-  const _0x1acc75 = new Ce();
-  _0x1acc75["comments"] = _0x16ce85;
-  const _0xd4f555 = _0x4f62e4[9595 * -1 + 1 * 807 + 8788]["count"], _0x217c8e = _0x4f62e4[-275 + -5003 * 1 + 2 * 2639]["properties"]["length"], _0x33fc12 = _0x4f62e4[-38 * -181 + 3058 + -1987 * 5]["count"], _0x15b8f5 = _0x4f62e4[-1822 * -4 + -7870 + 583]["properties"]["some"]((_0x349dc6) => _0x349dc6["name"] === "packed_time"), _0x532daa = ((_0x25e9f7) => {
-    const _0x136474 = Math["ceil"](Math["sqrt"](_0x25e9f7)), _0x4e1189 = Math["ceil"](_0x25e9f7 / _0x136474);
-    return _0x136474 * _0x4e1189;
-  })(_0x33fc12);
-  _0x1acc75["numSplats"] = _0x33fc12, _0x1acc75["is4D"] = _0x15b8f5, _0x1acc75["chunkData"] = new Float32Array(_0xd4f555 * _0x217c8e), _0x1acc75["vertexData"] = new Uint32Array(_0x532daa * (4 * -479 + -237 * 37 + -1 * -10691));
-  const _0x2fdc14 = async (_0x2f5849, _0x542366) => {
-    const _0x34d993 = new Uint8Array(_0x2f5849);
-    let _0x485128 = 3772 + 8180 + 332 * -36;
-    for (; _0x485128 < _0x542366; ) {
-      for (; _0x30f446["remaining"] === -34 * -268 + -7610 * 1 + -1502; ) await _0x30f446["read"]();
-      const _0x3403a3 = Math["min"](_0x542366 - _0x485128, _0x30f446["remaining"]), _0x164897 = _0x30f446["data"];
-      for (let _0x332bf1 = -4903 + -4 * 553 + 7115; _0x332bf1 < _0x3403a3; ++_0x332bf1) _0x34d993[_0x485128++] = _0x164897[_0x30f446["head"]++];
+const ke = (_0x6fdac4) => {
+  const _0xbea954 = ["min_x", "min_y", "min_z", "max_x", "max_y", "max_z", "min_scale_x", "min_scale_y", "min_scale_z", "max_scale_x", "max_scale_y", "max_scale_z", "min_r", "min_g", "min_b", "max_r", "max_g", "max_b", "min_motion_x", "min_motion_y", "min_motion_z", "max_motion_x", "max_motion_y", "max_motion_z", "min_time_scale", "max_time_scale", "min_time", "max_time"], _0x2279f6 = ["packed_position", "packed_rotation", "packed_scale", "packed_color", "packed_motion", "packed_time"], _0x4883db = new Array(158 * -55 + -4381 + 1 * 13116)["fill"]("")["map"]((_0x5864c8, _0x9678f6) => "f_rest_" + _0x9678f6), _0x51e737 = () => _0x6fdac4[1 * 8799 + 4 * -712 + 11 * -541]["name"] === "chunk" && _0x6fdac4[6027 + -8407 + 2380]["properties"]["every"]((_0x197674, _0x46e266) => _0x197674["name"] === _0xbea954[_0x46e266] && _0x197674["type"] === "float") && _0x6fdac4[-5 * 1354 + 7542 + -771]["name"] === "vertex" && _0x6fdac4[2280 + -1557 + -722]["properties"]["every"]((_0x31f8f6, _0x409abc) => _0x31f8f6["name"] === _0x2279f6[_0x409abc] && _0x31f8f6["type"] === "uint"), _0x4bc872 = () => _0x6fdac4[4528 + -5455 + 1 * 929]["name"] === "sh" && [-1 * 8830 + 2066 + 6773, 2469 * -1 + -4965 + 22 * 339, -4912 * -2 + -2 * 1825 + -6129]["indexOf"](_0x6fdac4[7214 + 1 * 9215 + -16427]["properties"]["length"]) !== -(1449 * 5 + 1676 * -4 + -540) && _0x6fdac4[3860 + 1 * 723 + -4581]["properties"]["every"]((_0x54a50b, _0x552311) => _0x54a50b["name"] === _0x4883db[_0x552311] && _0x54a50b["type"] === "uchar");
+  return _0x6fdac4["length"] === -269 + 810 + -539 && _0x51e737() || _0x6fdac4["length"] === -427 * -17 + -18 * -229 + -11378 && _0x51e737() && _0x4bc872();
+}, ve = async (_0xcc1ed0, _0x3380ff, _0xf330cc) => {
+  const _0x2e5785 = new Ce();
+  _0x2e5785["comments"] = _0xf330cc;
+  const _0x39ab26 = _0x3380ff[-7158 + -7612 + -35 * -422]["count"], _0x336f61 = _0x3380ff[-77 * 65 + 89 * -107 + 14528]["properties"]["length"], _0x17384 = _0x3380ff[523 * 1 + -8787 + 8265]["count"], _0x5399f7 = _0x3380ff[-4513 * -2 + -1529 * -2 + -12083]["properties"]["some"]((_0x26be0b) => _0x26be0b["name"] === "packed_time"), _0x220e99 = ((_0x5d3b08) => {
+    const _0x2ce35a = Math["ceil"](Math["sqrt"](_0x5d3b08)), _0x2bacbd = Math["ceil"](_0x5d3b08 / _0x2ce35a);
+    return _0x2ce35a * _0x2bacbd;
+  })(_0x17384);
+  _0x2e5785["numSplats"] = _0x17384, _0x2e5785["is4D"] = _0x5399f7, _0x2e5785["chunkData"] = new Float32Array(_0x39ab26 * _0x336f61), _0x2e5785["vertexData"] = new Uint32Array(_0x220e99 * (-229 * 43 + 841 + 9012));
+  const _0x43fb0b = async (_0x2648e4, _0x51693c) => {
+    const _0x1a0545 = new Uint8Array(_0x2648e4);
+    let _0x519351 = 5009 + -3 * -41 + -5132;
+    for (; _0x519351 < _0x51693c; ) {
+      for (; _0xcc1ed0["remaining"] === -8961 + -8428 + -17389 * -1; ) await _0xcc1ed0["read"]();
+      const _0x26dc1d = Math["min"](_0x51693c - _0x519351, _0xcc1ed0["remaining"]), _0x19e931 = _0xcc1ed0["data"];
+      for (let _0x183433 = 9235 + -7207 * -1 + -16442; _0x183433 < _0x26dc1d; ++_0x183433) _0x1a0545[_0x519351++] = _0x19e931[_0xcc1ed0["head"]++];
     }
   };
-  if (await _0x2fdc14(_0x1acc75["chunkData"]["buffer"], _0xd4f555 * _0x217c8e * (-2 * 4432 + 109 * -32 + -4 * -3089)), await _0x2fdc14(_0x1acc75["vertexData"]["buffer"], _0x33fc12 * (-254 * 17 + 2958 + -1 * -1366) * (1 * 4314 + 9080 + -13390)), _0x4f62e4["length"] === -8897 + 7083 + -79 * -23) {
-    const _0x1b09e0 = _0x532daa * (-1 * -9097 + 19 * -509 + -1 * -590), _0x2048f3 = new Uint8Array(_0x1b09e0), _0xa2daad = new Uint8Array(_0x1b09e0), _0x131b44 = new Uint8Array(_0x1b09e0), _0x5ad5cd = 5563 + 6572 + -11111 * 1, _0x146c77 = _0x4f62e4[2226 + -4039 + 1815]["properties"]["length"] / (1 * 1415 + -2084 * -4 + -9748), _0x4b8437 = new Uint8Array(_0x5ad5cd * _0x146c77 * (-1 * 3026 + 3184 + 1 * -155));
-    for (let _0x368eed = 3502 + 969 + -4471; _0x368eed < _0x1acc75["numSplats"]; _0x368eed += _0x5ad5cd) {
-      const _0x137531 = Math["min"](_0x5ad5cd, _0x1acc75["numSplats"] - _0x368eed);
-      await _0x2fdc14(_0x4b8437["buffer"], _0x137531 * _0x146c77 * (1 * -3536 + 3180 + -359 * -1));
-      for (let _0x4fd51e = 2173 + 9629 * 1 + -11802; _0x4fd51e < _0x137531; ++_0x4fd51e) for (let _0x4c27c1 = 18 * 299 + -4447 * -1 + -9829; _0x4c27c1 < -9252 + -1 * 653 + -10 * -992; ++_0x4c27c1) {
-        const _0x32993c = (_0x368eed + _0x4fd51e) * (-1 * 524 + 3429 * 1 + -2889) + _0x4c27c1;
-        _0x4c27c1 < _0x146c77 ? (_0x2048f3[_0x32993c] = _0x4b8437[(_0x4fd51e * (7936 + 301 + -8234) + (6395 + 2498 + 1 * -8893)) * _0x146c77 + _0x4c27c1], _0xa2daad[_0x32993c] = _0x4b8437[(_0x4fd51e * (6 * -13 + -158 * -61 + -9557) + (1 * -2551 + 567 + 1985)) * _0x146c77 + _0x4c27c1], _0x131b44[_0x32993c] = _0x4b8437[(_0x4fd51e * (1839 + -1917 * 2 + 111 * 18) + (-1547 * 3 + -588 + 5231)) * _0x146c77 + _0x4c27c1]) : (_0x2048f3[_0x32993c] = 5716 + -6824 + 1235, _0xa2daad[_0x32993c] = -2 * 3659 + -6137 * 1 + 13582, _0x131b44[_0x32993c] = -8150 + 1353 + 6924);
+  if (await _0x43fb0b(_0x2e5785["chunkData"]["buffer"], _0x39ab26 * _0x336f61 * (7641 + 1 * -2463 + 398 * -13)), await _0x43fb0b(_0x2e5785["vertexData"]["buffer"], _0x17384 * (964 + -7138 + 3 * 2060) * (-809 * 11 + -8 * -1182 + -553)), _0x3380ff["length"] === -1 * -343 + 1 * -7840 + 3 * 2500) {
+    const _0x534d03 = _0x220e99 * (8358 + -5 * 464 + -6022), _0x2649af = new Uint8Array(_0x534d03), _0x15910d = new Uint8Array(_0x534d03), _0x3c92e5 = new Uint8Array(_0x534d03), _0x5deb90 = -2371 + 1865 * -5 + 12720, _0x9ee5d9 = _0x3380ff[-9153 + -43 * 161 + 16078 * 1]["properties"]["length"] / (7776 + 7463 + -15236), _0x574e58 = new Uint8Array(_0x5deb90 * _0x9ee5d9 * (-395 + 7686 + -7288));
+    for (let _0x115045 = 18 * 535 + 3020 + -12650; _0x115045 < _0x2e5785["numSplats"]; _0x115045 += _0x5deb90) {
+      const _0x4876db = Math["min"](_0x5deb90, _0x2e5785["numSplats"] - _0x115045);
+      await _0x43fb0b(_0x574e58["buffer"], _0x4876db * _0x9ee5d9 * (1 * 5771 + -5585 + -183));
+      for (let _0x320a24 = 7494 + -6783 + 711 * -1; _0x320a24 < _0x4876db; ++_0x320a24) for (let _0x12d35d = -4785 + 7704 + -2919 * 1; _0x12d35d < 1818 + -2 * -1326 + 135 * -33; ++_0x12d35d) {
+        const _0x1a886d = (_0x115045 + _0x320a24) * (6563 + 6549 + -13096) + _0x12d35d;
+        _0x12d35d < _0x9ee5d9 ? (_0x2649af[_0x1a886d] = _0x574e58[(_0x320a24 * (-734 + -1 * 8602 + -283 * -33) + (-1 * -5821 + 3 * -1861 + -119 * 2)) * _0x9ee5d9 + _0x12d35d], _0x15910d[_0x1a886d] = _0x574e58[(_0x320a24 * (-954 + 4 * 1840 + -6403) + (6596 + 185 * -21 + -10 * 271)) * _0x9ee5d9 + _0x12d35d], _0x3c92e5[_0x1a886d] = _0x574e58[(_0x320a24 * (-49 * -19 + 9958 + -10886) + (-247 * 34 + 2732 + 5668)) * _0x9ee5d9 + _0x12d35d]) : (_0x2649af[_0x1a886d] = -2555 + 1258 * -2 + -226 * -23, _0x15910d[_0x1a886d] = -45 * 1 + 6502 + -1 * 6330, _0x3c92e5[_0x1a886d] = 5174 + -4853 * 1 + -194);
       }
     }
-    _0x1acc75["shData0"] = _0x2048f3, _0x1acc75["shData1"] = _0xa2daad, _0x1acc75["shData2"] = _0x131b44, _0x1acc75["shBands"] = { 3: 1, 8: 2, 15: 3 }[_0x146c77];
-  } else _0x1acc75["shBands"] = 9618 + 3106 + -3181 * 4;
-  return _0x1acc75;
-}, De = (_0x56b822, _0xd30395, _0x55ef78, _0x19f3cf, _0x1ecc47) => {
-  const { numSplats: _0x44fac7, chunkData: _0x586b2e, chunkSize: _0x1ef5a9, vertexData: _0x135b87, shData0: _0xabee0, shData1: _0x45a45f, shData2: _0x502fef, shBands: _0x34d61a, comments: _0x2e9036 } = _0x56b822, _0x30b439 = _0xd30395[4514 + -2 * -1457 + -6 * 1238]["decodedProperties"], _0x36aefa = _0x30b439["find"]((_0x491271) => _0x491271["name"] === "position"), _0xee3064 = _0x30b439["find"]((_0x1e4c96) => _0x1e4c96["name"] === "color_opacity"), _0x4b805f = _0x30b439["find"]((_0xa13168) => _0xa13168["name"] === "motion"), _0x161378 = _0x30b439["find"]((_0x5e9add) => _0x5e9add["name"] === "rotation"), _0x1765e5 = _0x30b439["find"]((_0x32e8ae) => _0x32e8ae["name"] === "scale"), _0x443b8a = _0x30b439["find"]((_0xb1bbf6) => _0xb1bbf6["name"] === "t"), _0x5a3a4e = _0x30b439["find"]((_0x463349) => _0x463349["name"] === "t_scale"), _0x3055be = _0x30b439["find"]((_0xcdf73b) => _0xcdf73b["name"] === "cutoff"), _0x3d4958 = _0x30b439["find"]((_0x21bc0f) => _0x21bc0f["name"] === "time_index"), _0xb9ff85 = _0x30b439["filter"]((_0x199bce) => _0x199bce["name"]["startsWith"]("f_rest_"))["sort"]((_0x29a2c7, _0x34c7ba) => {
-    const _0x16fe7c = parseInt(_0x29a2c7["name"]["match"](/\\d+/)[-352 * 24 + 62 * -121 + 15950]), _0x3e2222 = parseInt(_0x34c7ba["name"]["match"](/\\d+/)[-1531 + 5866 + -4335]);
-    return _0x16fe7c - _0x3e2222;
+    _0x2e5785["shData0"] = _0x2649af, _0x2e5785["shData1"] = _0x15910d, _0x2e5785["shData2"] = _0x3c92e5, _0x2e5785["shBands"] = { 3: 1, 8: 2, 15: 3 }[_0x9ee5d9];
+  } else _0x2e5785["shBands"] = -3833 * 1 + 5843 + -5 * 402;
+  return _0x2e5785;
+}, De = (_0x109f63, _0x4c46d0, _0x30ba0e, _0x217e0f, _0x5d22e3) => {
+  const { numSplats: _0x184504, chunkData: _0x54d998, chunkSize: _0x221155, vertexData: _0x3d9694, shData0: _0x136796, shData1: _0x168213, shData2: _0x2e922b, shBands: _0x1b85fa, comments: _0x5e7c75 } = _0x109f63, _0x2e15a1 = _0x4c46d0[-2 * 1529 + 9648 + -1 * 6590]["decodedProperties"], _0x398809 = _0x2e15a1["find"]((_0x31ca75) => _0x31ca75["name"] === "position"), _0x2d6e1d = _0x2e15a1["find"]((_0x6ba58c) => _0x6ba58c["name"] === "color_opacity"), _0x5038d5 = _0x2e15a1["find"]((_0x2921b1) => _0x2921b1["name"] === "motion"), _0x4aaf3d = _0x2e15a1["find"]((_0x1640fb) => _0x1640fb["name"] === "rotation"), _0x4548e3 = _0x2e15a1["find"]((_0x3be33c) => _0x3be33c["name"] === "scale"), _0x3ff192 = _0x2e15a1["find"]((_0x1a5d03) => _0x1a5d03["name"] === "t"), _0x492e30 = _0x2e15a1["find"]((_0x44036d) => _0x44036d["name"] === "t_scale"), _0x424442 = _0x2e15a1["find"]((_0x524b53) => _0x524b53["name"] === "cutoff"), _0x2c21f1 = _0x2e15a1["find"]((_0x3dcd97) => _0x3dcd97["name"] === "time_index"), _0x4e8d38 = _0x2e15a1["filter"]((_0x207ace) => _0x207ace["name"]["startsWith"]("f_rest_"))["sort"]((_0x34a149, _0x42b9d1) => {
+    const _0x3fa09c = parseInt(_0x34a149["name"]["match"](/\\d+/)[370 * 25 + 6400 + -25 * 626]), _0x3a40c6 = parseInt(_0x42b9d1["name"]["match"](/\\d+/)[-3914 * 2 + 1879 + 1 * 5949]);
+    return _0x3fa09c - _0x3a40c6;
   });
-  _0x3055be["storage"]["fill"](-9913 + -681 + 1 * 10594), _0x3d4958["storage"]["fill"](_0x55ef78);
-  const _0x2039d7 = new G(), _0x58bfaa = new We(), _0x3784ea = new G(), _0x987900 = new Ee(), _0x48dec9 = new G(), _0x305557 = new G(), _0x22e092 = _0x34d61a > 368 + 47 * -57 + -2311 * -1 ? new Float32Array(_0xb9ff85["length"]) : null, _0x23b8a7 = new Le(_0x586b2e, _0x1ef5a9, _0x135b87, _0xabee0, _0x45a45f, _0x502fef, _0x34d61a, _0x2039d7, _0x58bfaa, _0x3784ea, _0x987900, _0x48dec9, _0x305557, _0x22e092), _0x26165d = performance["now"]();
-  for (let _0x3e506b = -1 * 9382 + 9626 + -244; _0x3e506b < _0x44fac7; ++_0x3e506b) {
-    _0x23b8a7["read"](_0x3e506b), _0x36aefa["storage"][_0x3e506b * (-1 * 3815 + -4460 * 2 + 12738) + (6206 + -482 * -15 + 4 * -3359)] = _0x2039d7["x"], _0x36aefa["storage"][_0x3e506b * (2519 + 5 * -1193 + 3449) + (-7842 * 1 + -778 * 1 + 8621)] = _0x2039d7["y"], _0x36aefa["storage"][_0x3e506b * (4920 + 1 * 2836 + -7753) + (-5 * -535 + -548 * 1 + -17 * 125)] = _0x2039d7["z"], _0x161378["storage"][_0x3e506b * (2558 * -3 + -3 * 701 + 9780) + (3 * 365 + -2196 * 2 + -1099 * -3)] = _0x58bfaa["x"], _0x161378["storage"][_0x3e506b * (1142 + -222 * 34 + 6409) + (-8763 + -9196 + -20 * -898)] = _0x58bfaa["y"], _0x161378["storage"][_0x3e506b * (-9893 + 2574 + 7322) + (5 * 1646 + 1 * 1579 + 3 * -3269)] = _0x58bfaa["z"], _0x1765e5["storage"][_0x3e506b * (5448 + 719 * 1 + -6164) + (7 * -1193 + 4 * -553 + -3521 * -3)] = k(Math["exp"](_0x3784ea["x"])), _0x1765e5["storage"][_0x3e506b * (9928 + 899 + 984 * -11) + (4033 + -1 * -5683 + 9715 * -1)] = k(Math["exp"](_0x3784ea["y"])), _0x1765e5["storage"][_0x3e506b * (-411 + -4978 + 5392) + (-1 * 4217 + -3626 + 7845)] = k(Math["exp"](_0x3784ea["z"])), _0x1ecc47 && (_0x4b805f["storage"][_0x3e506b * (-9901 + -365 * -16 + -127 * -32) + (-3 * 2441 + -1 * -8011 + -688)] = _0x48dec9["x"], _0x4b805f["storage"][_0x3e506b * (997 * -2 + 157 * 5 + -1 * -1212) + (3 * 996 + -89 * -7 + -3610)] = _0x48dec9["y"], _0x4b805f["storage"][_0x3e506b * (-8525 + -8278 + 16806) + (-131 * 1 + -1529 + 1662)] = _0x48dec9["z"], _0x5a3a4e["storage"][_0x3e506b] = Math["exp"](_0x305557["x"]), _0x443b8a["storage"][_0x3e506b] = _0x305557["y"] + _0x19f3cf[(-2 * 3327 + -6024 + -1268 * -10) * _0x55ef78]), _0xee3064["storage"][_0x3e506b * (-464 * 15 + 4186 * 1 + 2778) + (-1189 * 4 + -334 * 16 + 2 * 5050)] = k(_0x987900["x"]), _0xee3064["storage"][_0x3e506b * (-109 * -34 + -2546 * 1 + 1156 * -1) + (3421 + -4857 * 1 + 1437)] = k(_0x987900["y"]), _0xee3064["storage"][_0x3e506b * (-2 * 113 + -1684 + 1914) + (6 * -129 + -5190 + 2 * 2983)] = k(_0x987900["z"]);
-    const _0x287833 = _0x987900["w"] <= 11 * -643 + -5 * 1212 + 13133 ? -(-497 + -2399 + 2936) : _0x987900["w"] >= -10 * 759 + -204 + 7795 ? -2232 + 60 * 158 + -8 * 901 : -Math["log"]((-2 * -1903 + -8805 + 5e3) / _0x987900["w"] - (1 * 3262 + 801 + -4062));
-    if (_0xee3064["storage"][_0x3e506b * (-1894 + 109 * -11 + 3097) + (-4234 * 2 + 500 * -15 + -1 * -15971)] = k(Re(_0x287833)), _0x22e092) {
-      for (let _0x39e7ff = 8162 + -544 + 7618 * -1; _0x39e7ff < _0x22e092["length"]; ++_0x39e7ff) _0xb9ff85[_0x39e7ff]["storage"][_0x3e506b] = _0x22e092[_0x39e7ff];
+  _0x424442["storage"]["fill"](794 * 5 + -7402 + 1 * 3432), _0x2c21f1["storage"]["fill"](_0x30ba0e);
+  const _0x47f3d2 = new G(), _0x27a5bf = new We(), _0x12603f = new G(), _0x3d2417 = new Ee(), _0xc13391 = new G(), _0xf01d5b = new G(), _0x53a4b8 = _0x1b85fa > 4257 + 7855 + -12112 ? new Float32Array(_0x4e8d38["length"]) : null, _0x3b2178 = new Le(_0x54d998, _0x221155, _0x3d9694, _0x136796, _0x168213, _0x2e922b, _0x1b85fa, _0x47f3d2, _0x27a5bf, _0x12603f, _0x3d2417, _0xc13391, _0xf01d5b, _0x53a4b8), _0x4ef887 = performance["now"]();
+  for (let _0x3562b1 = -428 * 22 + -7575 + 16991; _0x3562b1 < _0x184504; ++_0x3562b1) {
+    _0x3b2178["read"](_0x3562b1), _0x398809["storage"][_0x3562b1 * (-1 * -8677 + -3763 + -1 * 4911) + (777 * -6 + 838 * 1 + 3824)] = _0x47f3d2["x"], _0x398809["storage"][_0x3562b1 * (1 * -911 + -27 * 171 + -5531 * -1) + (888 + -4388 + 3501)] = _0x47f3d2["y"], _0x398809["storage"][_0x3562b1 * (-23 * -377 + -3 * -2921 + -17431 * 1) + (-2 * -139 + -2723 + -1 * -2447)] = _0x47f3d2["z"], _0x4aaf3d["storage"][_0x3562b1 * (-131 * 23 + 4943 * -1 + 7959) + (6183 + -78 * -81 + 3 * -4167)] = _0x27a5bf["x"], _0x4aaf3d["storage"][_0x3562b1 * (682 * 2 + 3823 * 1 + 288 * -18) + (-9485 + 2011 * -3 + 15519 * 1)] = _0x27a5bf["y"], _0x4aaf3d["storage"][_0x3562b1 * (6509 + -4250 + 1128 * -2) + (-6267 + -1 * 3477 + 886 * 11)] = _0x27a5bf["z"], _0x4548e3["storage"][_0x3562b1 * (3090 + -8455 + -671 * -8) + (-3121 + 4319 + 1198 * -1)] = k(Math["exp"](_0x12603f["x"])), _0x4548e3["storage"][_0x3562b1 * (-3173 * -1 + 1 * 7246 + -1 * 10416) + (-29 * 163 + -2 * -2081 + 566)] = k(Math["exp"](_0x12603f["y"])), _0x4548e3["storage"][_0x3562b1 * (-886 + 5811 + -2 * 2461) + (-5456 * 1 + 6349 + -891)] = k(Math["exp"](_0x12603f["z"])), _0x5d22e3 && (_0x5038d5["storage"][_0x3562b1 * (6159 + -2719 * -1 + -25 * 355) + (-5848 + -3 * 3033 + 14947 * 1)] = _0xc13391["x"], _0x5038d5["storage"][_0x3562b1 * (-249 + -227 * -6 + -1110) + (-7658 + -291 * -30 + -1071)] = _0xc13391["y"], _0x5038d5["storage"][_0x3562b1 * (-1637 * 2 + -8549 + 11826) + (-183 * -53 + 2 * 4052 + 7 * -2543)] = _0xc13391["z"], _0x492e30["storage"][_0x3562b1] = Math["exp"](_0xf01d5b["x"]), _0x3ff192["storage"][_0x3562b1] = _0xf01d5b["y"] + _0x217e0f[(-7902 + 1 * -3769 + 11673) * _0x30ba0e]), _0x2d6e1d["storage"][_0x3562b1 * (169 * 12 + -7 * 721 + -1 * -3023) + (3 * -533 + -4353 * -1 + 153 * -18)] = k(_0x3d2417["x"]), _0x2d6e1d["storage"][_0x3562b1 * (2822 + 1 * -1065 + -1753) + (-8074 + 4948 + 3127)] = k(_0x3d2417["y"]), _0x2d6e1d["storage"][_0x3562b1 * (-1 * 6845 + 47 * -158 + 1 * 14275) + (-9556 + 1715 + 7843)] = k(_0x3d2417["z"]);
+    const _0x429735 = _0x3d2417["w"] <= 569 + -2389 + 1820 ? -(-1099 * 4 + 9698 + -877 * 6) : _0x3d2417["w"] >= -7406 + -6335 + -13742 * -1 ? 5811 + -659 * 11 + -739 * -2 : -Math["log"]((-3765 + -1 * 2411 + 6177) / _0x3d2417["w"] - (8767 + 4445 + -13211));
+    if (_0x2d6e1d["storage"][_0x3562b1 * (3938 + 19 * 288 + -9406) + (131 * -43 + -1 * -4314 + -661 * -2)] = k(Re(_0x429735)), _0x53a4b8) {
+      for (let _0x18b38e = 29 * 131 + 9753 + -13552; _0x18b38e < _0x53a4b8["length"]; ++_0x18b38e) _0x4e8d38[_0x18b38e]["storage"][_0x3562b1] = _0x53a4b8[_0x18b38e];
     }
   }
-  const _0x1c8249 = performance["now"]();
-  console["log"]("decompressData time", _0x1c8249 - _0x26165d, _0x44fac7);
-  const _0x3ae9b3 = [{ "count": _0x44fac7, "name": "vertex", "properties": _0x30b439 }];
-  return new ee(_0x3ae9b3, _0x2e9036);
-}, Oe = (_0x3d2e15) => _0x3d2e15["length"] === 1761 * -1 + 2795 + -1033 && _0x3d2e15[9534 + -2 * 4084 + 1 * -1366]["name"] === "vertex" && _0x3d2e15[8173 * -1 + -3653 + 11826]["properties"]["every"]((_0x5a59d0) => _0x5a59d0["type"] === "float"), je = async (_0x32a13c, _0x154835, _0x9d3123, _0x33f053, _0x2cb2cc, _0x2bb36a) => {
-  const _0x5329bd = _0x154835[-145 * 57 + 7 * 819 + 2532], _0xa5ddae = _0x5329bd["properties"], _0x164b14 = _0xa5ddae["length"], _0x3a2a48 = new Map(_0xa5ddae["map"]((_0x3b5286, _0x214a3b) => [_0x3b5286["name"], _0x214a3b])), _0x5274ae = _0xa5ddae["reduce"]((_0x5e79b5, _0x5c2aed) => _0x5e79b5 + _0x5c2aed["byteSize"], -9749 * -1 + 766 * -10 + -2089);
-  let _0x2852ef = 9825 + 1778 + -11603, _0x27bfd7;
-  const _0x2eafa1 = () => {
-    const _0x2a4515 = _0x32a13c["data"]["buffer"];
-    (_0x27bfd7 == null ? void (-9124 * -1 + -4665 + -4459) : _0x27bfd7["buffer"]) !== _0x2a4515 && (_0x27bfd7 = new Float32Array(_0x2a4515, -106 * -28 + -1270 + 6 * -283, _0x2a4515["byteLength"] / (-5 * 526 + 125 * -79 + 1787 * 7)));
+  const _0x3488c4 = performance["now"]();
+  console["log"]("decompressData time", _0x3488c4 - _0x4ef887, _0x184504);
+  const _0x3611ef = [{ "count": _0x184504, "name": "vertex", "properties": _0x2e15a1 }];
+  return new ee(_0x3611ef, _0x5e7c75);
+}, Oe = (_0x511392) => _0x511392["length"] === 6 * -1117 + 4554 + 2149 && _0x511392[-5286 + -1158 + 1611 * 4]["name"] === "vertex" && _0x511392[-2840 * 2 + -947 * -9 + 1 * -2843]["properties"]["every"]((_0x585453) => _0x585453["type"] === "float"), je = async (_0x44b4aa, _0x315989, _0x472885, _0x5d0cf9, _0x3b955e, _0x465e0a) => {
+  const _0xe86ce6 = _0x315989[541 * 17 + -1 * 7030 + -2167], _0x5f01d4 = _0xe86ce6["properties"], _0x1bf1a5 = _0x5f01d4["length"], _0xa0d5c1 = new Map(_0x5f01d4["map"]((_0x513702, _0x59ceb1) => [_0x513702["name"], _0x59ceb1])), _0x1ef338 = _0x5f01d4["reduce"]((_0xf82bb4, _0x9ab33a) => _0xf82bb4 + _0x9ab33a["byteSize"], 17 * 367 + -6613 * -1 + -68 * 189);
+  let _0x15b031 = -5678 + 9420 + 3742 * -1, _0x197373;
+  const _0x1bcce7 = () => {
+    const _0x1da5b1 = _0x44b4aa["data"]["buffer"];
+    (_0x197373 == null ? void (7 * -739 + -118 * -2 + -4937 * -1) : _0x197373["buffer"]) !== _0x1da5b1 && (_0x197373 = new Float32Array(_0x1da5b1, 6753 * 1 + -6669 + -84, _0x1da5b1["byteLength"] / (1 * -5662 + -3355 + 9021)));
   };
-  _0x2eafa1();
-  const _0x154328 = _0x5329bd["decodedProperties"]["find"]((_0x330a6b) => _0x330a6b["name"] === "position"), _0x4f447a = _0x5329bd["decodedProperties"]["find"]((_0x5742a1) => _0x5742a1["name"] === "color_opacity"), _0x57a424 = _0x5329bd["decodedProperties"]["find"]((_0x981a37) => _0x981a37["name"] === "t"), _0xb8780c = _0x5329bd["decodedProperties"]["find"]((_0x3d1e20) => _0x3d1e20["name"] === "t_scale"), _0x4f9fb8 = _0x5329bd["decodedProperties"]["find"]((_0x485fc3) => _0x485fc3["name"] === "motion"), _0x22292c = _0x5329bd["decodedProperties"]["find"]((_0x28cef6) => _0x28cef6["name"] === "rotation"), _0x5247b1 = _0x5329bd["decodedProperties"]["find"]((_0x4097b0) => _0x4097b0["name"] === "scale"), _0x7a994 = _0x5329bd["decodedProperties"]["find"]((_0x3de5f6) => _0x3de5f6["name"] === "time_index"), _0x50b6b0 = _0x5329bd["decodedProperties"]["find"]((_0x560b2f) => _0x560b2f["name"] === "cutoff"), _0x1af859 = _0x5329bd["decodedProperties"]["filter"]((_0x2cfb5a) => _0x2cfb5a["name"]["startsWith"]("f_rest_")), _0x290846 = new Uint8Array(_0x154328["rawProperties"]["map"]((_0x40c71f) => _0x3a2a48["get"](_0x40c71f))), _0x1327eb = new Uint8Array(_0x4f447a["rawProperties"]["map"]((_0x5dfdd6) => _0x3a2a48["get"](_0x5dfdd6))), _0x5ea27d = new Uint8Array(_0x22292c["rawProperties"]["map"]((_0x29fd36) => _0x3a2a48["get"](_0x29fd36))), _0xaa4010 = new Uint8Array(_0x5247b1["rawProperties"]["map"]((_0x4bed05) => _0x3a2a48["get"](_0x4bed05)));
-  let _0x3589f2, _0x58038c, _0x47ced0;
-  _0x2bb36a && (_0x3589f2 = new Uint8Array(_0x4f9fb8["rawProperties"]["map"]((_0x40255f) => _0x3a2a48["get"](_0x40255f))), _0x58038c = _0x3a2a48["get"](_0x57a424["rawProperties"][-2135 + 6550 + 4415 * -1]), _0x47ced0 = _0x3a2a48["get"](_0xb8780c["rawProperties"][-9507 + 1 * 6178 + -3329 * -1]));
-  const _0x495020 = _0x1af859["map"]((_0x377d9e) => _0x3a2a48["get"](_0x377d9e["name"])), _0x56e6dd = _0x2bb36a ? _0x2cb2cc[(-2175 + -4924 + -3 * -2367) * _0x33f053] : -7 * 59 + 4243 + -3830, _0x2f95db = new wasmModule["PlyParserConfig"](_0x164b14, _0x5329bd["count"], _0x33f053, _0x56e6dd);
-  for (_0x2f95db["setPositionIndices"](_0x290846), _0x2f95db["setColorOpacityIndices"](_0x1327eb), _0x2f95db["setRotationIndices"](_0x5ea27d), _0x2f95db["setScaleIndices"](_0xaa4010), _0x2bb36a && (_0x2f95db["setMotionIndices"](_0x3589f2), _0x2f95db["setTIndex"](_0x58038c), _0x2f95db["setTScaleIndex"](_0x47ced0)), _0x495020["length"] > 594 + -6671 + -6077 * -1 && _0x2f95db["setShIndices"](new Uint8Array(_0x495020)); _0x2852ef < _0x5329bd["count"]; ) {
-    for (; _0x32a13c["remaining"] < _0x5274ae; ) await _0x32a13c["read"](), _0x2eafa1();
-    const _0x7c079c = Math["min"](_0x5329bd["count"] - _0x2852ef, Math["floor"](_0x32a13c["remaining"] / _0x5274ae));
-    _0x7a994["storage"]["fill"](_0x33f053, _0x2852ef, _0x2852ef + _0x7c079c), _0x50b6b0["storage"]["fill"](8269 + -6421 * 1 + -1848, _0x2852ef, _0x2852ef + _0x7c079c);
-    const _0x5eb2ff = _0x27bfd7["subarray"](-19 * -197 + -3502 + 1 * -241, _0x7c079c * _0x164b14), _0x4c4917 = _0x1af859["map"]((_0x2afb9f) => _0x2afb9f["storage"]);
-    _0x2bb36a ? wasmModule["parseFloatPly4D"](_0x5eb2ff, _0x2f95db, _0x2852ef, _0x7c079c, _0x154328["storage"], _0x4f447a["storage"], _0x22292c["storage"], _0x5247b1["storage"], _0x4f9fb8["storage"], _0x57a424["storage"], _0xb8780c["storage"], _0x4c4917) : wasmModule["parseFloatPly"](_0x5eb2ff, _0x2f95db, _0x2852ef, _0x7c079c, _0x154328["storage"], _0x4f447a["storage"], _0x22292c["storage"], _0x5247b1["storage"], _0x4c4917), _0x2852ef += _0x7c079c, _0x32a13c["head"] += _0x7c079c * _0x5274ae;
+  _0x1bcce7();
+  const _0x26a1dd = _0xe86ce6["decodedProperties"]["find"]((_0x5b929f) => _0x5b929f["name"] === "position"), _0x4d57a8 = _0xe86ce6["decodedProperties"]["find"]((_0x5a4dfa) => _0x5a4dfa["name"] === "color_opacity"), _0x2bd6fc = _0xe86ce6["decodedProperties"]["find"]((_0x1c73a6) => _0x1c73a6["name"] === "t"), _0x5bd5fc = _0xe86ce6["decodedProperties"]["find"]((_0x5c42bd) => _0x5c42bd["name"] === "t_scale"), _0x6c8a8 = _0xe86ce6["decodedProperties"]["find"]((_0x1f687b) => _0x1f687b["name"] === "motion"), _0xf72bb4 = _0xe86ce6["decodedProperties"]["find"]((_0x3c30c4) => _0x3c30c4["name"] === "rotation"), _0x50c148 = _0xe86ce6["decodedProperties"]["find"]((_0x47fdee) => _0x47fdee["name"] === "scale"), _0x18ea15 = _0xe86ce6["decodedProperties"]["find"]((_0x2d0c58) => _0x2d0c58["name"] === "time_index"), _0x540ea9 = _0xe86ce6["decodedProperties"]["find"]((_0xc80835) => _0xc80835["name"] === "cutoff"), _0x2fd44d = _0xe86ce6["decodedProperties"]["filter"]((_0x4640bf) => _0x4640bf["name"]["startsWith"]("f_rest_")), _0x4cbde9 = new Uint8Array(_0x26a1dd["rawProperties"]["map"]((_0x4d37be) => _0xa0d5c1["get"](_0x4d37be))), _0x492781 = new Uint8Array(_0x4d57a8["rawProperties"]["map"]((_0x13c422) => _0xa0d5c1["get"](_0x13c422))), _0x12d0c4 = new Uint8Array(_0xf72bb4["rawProperties"]["map"]((_0xbc757b) => _0xa0d5c1["get"](_0xbc757b))), _0xd3de15 = new Uint8Array(_0x50c148["rawProperties"]["map"]((_0x281cf3) => _0xa0d5c1["get"](_0x281cf3)));
+  let _0x58f5f2, _0x3b274d, _0x408a9f;
+  _0x465e0a && (_0x58f5f2 = new Uint8Array(_0x6c8a8["rawProperties"]["map"]((_0xae8935) => _0xa0d5c1["get"](_0xae8935))), _0x3b274d = _0xa0d5c1["get"](_0x2bd6fc["rawProperties"][6942 + 1260 + -8202]), _0x408a9f = _0xa0d5c1["get"](_0x5bd5fc["rawProperties"][-6808 + -2143 + 8951]));
+  const _0x376ff = _0x2fd44d["map"]((_0x5b4de4) => _0xa0d5c1["get"](_0x5b4de4["name"])), _0x84b6c4 = _0x465e0a ? _0x3b955e[(1593 * 6 + 1 * -6618 + -2938) * _0x5d0cf9] : -274 + 6436 + -6162, _0x245402 = new wasmModule["PlyParserConfig"](_0x1bf1a5, _0xe86ce6["count"], _0x5d0cf9, _0x84b6c4);
+  for (_0x245402["setPositionIndices"](_0x4cbde9), _0x245402["setColorOpacityIndices"](_0x492781), _0x245402["setRotationIndices"](_0x12d0c4), _0x245402["setScaleIndices"](_0xd3de15), _0x465e0a && (_0x245402["setMotionIndices"](_0x58f5f2), _0x245402["setTIndex"](_0x3b274d), _0x245402["setTScaleIndex"](_0x408a9f)), _0x376ff["length"] > -2733 + -4555 + 7288 && _0x245402["setShIndices"](new Uint8Array(_0x376ff)); _0x15b031 < _0xe86ce6["count"]; ) {
+    for (; _0x44b4aa["remaining"] < _0x1ef338; ) await _0x44b4aa["read"](), _0x1bcce7();
+    const _0x55d29f = Math["min"](_0xe86ce6["count"] - _0x15b031, Math["floor"](_0x44b4aa["remaining"] / _0x1ef338));
+    _0x18ea15["storage"]["fill"](_0x5d0cf9, _0x15b031, _0x15b031 + _0x55d29f), _0x540ea9["storage"]["fill"](-4127 * 2 + 779 + 7475, _0x15b031, _0x15b031 + _0x55d29f);
+    const _0x42fee1 = _0x197373["subarray"](-1 * -3183 + -390 + -2793, _0x55d29f * _0x1bf1a5), _0x2d4280 = _0x2fd44d["map"]((_0x13fb62) => _0x13fb62["storage"]);
+    _0x465e0a ? wasmModule["parseFloatPly4D"](_0x42fee1, _0x245402, _0x15b031, _0x55d29f, _0x26a1dd["storage"], _0x4d57a8["storage"], _0xf72bb4["storage"], _0x50c148["storage"], _0x6c8a8["storage"], _0x2bd6fc["storage"], _0x5bd5fc["storage"], _0x2d4280) : wasmModule["parseFloatPly"](_0x42fee1, _0x245402, _0x15b031, _0x55d29f, _0x26a1dd["storage"], _0x4d57a8["storage"], _0xf72bb4["storage"], _0x50c148["storage"], _0x2d4280), _0x15b031 += _0x55d29f, _0x44b4aa["head"] += _0x55d29f * _0x1ef338;
   }
-  return _0x5329bd["properties"] = _0x5329bd["decodedProperties"], new ee(_0x154835, _0x9d3123);
-}, Qe = async (_0x4488ec, _0x1395ac, _0x347e3d) => {
-  for (let _0x96612d = 353 * -19 + 4244 + -3 * -821; _0x96612d < _0x1395ac["length"]; ++_0x96612d) {
-    const _0x429397 = _0x1395ac[_0x96612d], _0x28f4a7 = _0x429397["properties"]["reduce"]((_0x546b94, _0x23838a) => _0x546b94 + _0x23838a["byteSize"], -623 + -3 * 3145 + 10058), _0x208287 = _0x429397["properties"]["map"]((_0x317f5d) => {
-      if (_0x317f5d["storage"]) switch (_0x317f5d["type"]) {
+  return _0xe86ce6["properties"] = _0xe86ce6["decodedProperties"], new ee(_0x315989, _0x472885);
+}, Qe = async (_0xfe627, _0x318d9d, _0x2286d3) => {
+  for (let _0x495f7a = -7249 + -7599 * 1 + -4 * -3712; _0x495f7a < _0x318d9d["length"]; ++_0x495f7a) {
+    const _0x582ac8 = _0x318d9d[_0x495f7a], _0x140603 = _0x582ac8["properties"]["reduce"]((_0x4d6068, _0x17f0d2) => _0x4d6068 + _0x17f0d2["byteSize"], 6997 + -6370 + -627), _0x3fa605 = _0x582ac8["properties"]["map"]((_0x4cab9e) => {
+      if (_0x4cab9e["storage"]) switch (_0x4cab9e["type"]) {
         case "char":
-          return (_0x348ca8, _0x265a6f) => {
-            _0x317f5d["storage"][_0x265a6f] = _0x348ca8["getInt8"]();
+          return (_0x3b578c, _0x97e150) => {
+            _0x4cab9e["storage"][_0x97e150] = _0x3b578c["getInt8"]();
           };
         case "uchar":
-          return (_0x51b5a8, _0x4d24aa) => {
-            _0x317f5d["storage"][_0x4d24aa] = _0x51b5a8["getUint8"]();
+          return (_0xc3de4e, _0x4c063d) => {
+            _0x4cab9e["storage"][_0x4c063d] = _0xc3de4e["getUint8"]();
           };
         case "short":
-          return (_0x5d578a, _0x1dd83c) => {
-            _0x317f5d["storage"][_0x1dd83c] = _0x5d578a["getInt16"]();
+          return (_0x545433, _0x314bb9) => {
+            _0x4cab9e["storage"][_0x314bb9] = _0x545433["getInt16"]();
           };
         case "ushort":
-          return (_0x2dcdfa, _0x4ae96a) => {
-            _0x317f5d["storage"][_0x4ae96a] = _0x2dcdfa["getUint16"]();
+          return (_0x55764a, _0x5b463e) => {
+            _0x4cab9e["storage"][_0x5b463e] = _0x55764a["getUint16"]();
           };
         case "int":
-          return (_0x20060d, _0x2472f6) => {
-            _0x317f5d["storage"][_0x2472f6] = _0x20060d["getInt32"]();
+          return (_0x66afbf, _0x19a82e) => {
+            _0x4cab9e["storage"][_0x19a82e] = _0x66afbf["getInt32"]();
           };
         case "uint":
-          return (_0x4c3bd5, _0x1ad0b3) => {
-            _0x317f5d["storage"][_0x1ad0b3] = _0x4c3bd5["getUint32"]();
+          return (_0x2ad86d, _0x1bb35c) => {
+            _0x4cab9e["storage"][_0x1bb35c] = _0x2ad86d["getUint32"]();
           };
         case "float":
-          return (_0x21e93b, _0x6d4cf) => {
-            _0x317f5d["storage"][_0x6d4cf] = _0x21e93b["getFloat32"]();
+          return (_0x3da3ab, _0x16dff8) => {
+            _0x4cab9e["storage"][_0x16dff8] = _0x3da3ab["getFloat32"]();
           };
         case "double":
-          return (_0x1c0c6e, _0xc232a1) => {
-            _0x317f5d["storage"][_0xc232a1] = _0x1c0c6e["getFloat64"]();
+          return (_0x315fa4, _0x13a20c) => {
+            _0x4cab9e["storage"][_0x13a20c] = _0x315fa4["getFloat64"]();
           };
         default:
-          throw new Error("Unsupported property data type '" + _0x317f5d["type"] + "' in ply header");
+          throw new Error("Unsupported property data type '" + _0x4cab9e["type"] + "' in ply header");
       }
-      else return (_0x350129) => {
-        _0x350129["head"] += _0x317f5d["byteSize"];
+      else return (_0xcd149a) => {
+        _0xcd149a["head"] += _0x4cab9e["byteSize"];
       };
     });
-    let _0x230b97 = -8626 + 301 * 17 + 3509;
-    for (; _0x230b97 < _0x429397["count"]; ) {
-      for (; _0x4488ec["remaining"] < _0x28f4a7; ) await _0x4488ec["read"]();
-      const _0x37ee35 = Math["min"](_0x429397["count"] - _0x230b97, Math["floor"](_0x4488ec["remaining"] / _0x28f4a7));
-      for (let _0x38e7e0 = -5 * -1821 + -8746 + -359 * 1; _0x38e7e0 < _0x37ee35; ++_0x38e7e0) {
-        for (let _0xda41e7 = 1 * -3287 + 6094 + -2807; _0xda41e7 < _0x429397["properties"]["length"]; ++_0xda41e7) _0x208287[_0xda41e7](_0x4488ec, _0x230b97);
-        _0x230b97++;
+    let _0x3d1e85 = 6171 * -1 + 3240 + 1 * 2931;
+    for (; _0x3d1e85 < _0x582ac8["count"]; ) {
+      for (; _0xfe627["remaining"] < _0x140603; ) await _0xfe627["read"]();
+      const _0x2e967e = Math["min"](_0x582ac8["count"] - _0x3d1e85, Math["floor"](_0xfe627["remaining"] / _0x140603));
+      for (let _0x59fc31 = -61 * -145 + -7023 + -911 * 2; _0x59fc31 < _0x2e967e; ++_0x59fc31) {
+        for (let _0x1674b4 = -2 * 1775 + -95 * 101 + 13145; _0x1674b4 < _0x582ac8["properties"]["length"]; ++_0x1674b4) _0x3fa605[_0x1674b4](_0xfe627, _0x3d1e85);
+        _0x3d1e85++;
       }
     }
   }
-  return new ee(_0x1395ac, _0x347e3d);
+  return new ee(_0x318d9d, _0x2286d3);
 };
-let J = !(6532 + -1649 + -4882), Q = null;
+let J = !(-3 * 2755 + -572 * 7 + -1227 * -10), Q = null;
 async function Ve() {
   if (globalThis["wasmModule"]) return globalThis["wasmModule"];
   if (Q) throw Q;
   if (J) {
-    if (await new Promise((_0xc498e9) => {
-      const _0x2e57c1 = setInterval(() => {
-        (globalThis["wasmModule"] || Q) && (clearInterval(_0x2e57c1), _0xc498e9());
-      }, 1 * -2950 + 192 * 47 + -6 * 1004);
+    if (await new Promise((_0x2fac73) => {
+      const _0x52c5b5 = setInterval(() => {
+        (globalThis["wasmModule"] || Q) && (clearInterval(_0x52c5b5), _0x2fac73());
+      }, 3300 + -6783 + 3533 * 1);
     }), Q) throw Q;
     return globalThis["wasmModule"];
   }
-  J = !(1790 * -4 + -2763 * 3 + 15449);
+  J = !(7583 * -1 + -8232 + -1 * -15815);
   try {
     return await Z(), console["log"]("\\u2705 WASM module loaded successfully"), Ae;
-  } catch (_0x234881) {
-    throw Q = _0x234881, console["warn"]("\\u26A0\\uFE0F Failed to load WASM module, falling back to JavaScript:", _0x234881), _0x234881;
+  } catch (_0x583ece) {
+    throw Q = _0x583ece, console["warn"]("\\u26A0\\uFE0F Failed to load WASM module, falling back to JavaScript:", _0x583ece), _0x583ece;
   } finally {
-    J = !(-8202 + -6589 + -344 * -43);
+    J = !(-6591 + -4 * -937 + 2844);
   }
 }
-const ie = new Uint8Array([29 * 254 + 6210 + -204 * 66, 2 * -3821 + 7857 * 1 + -107 * 1, -3640 * -1 + -30 * 163 + -3 * -457, -4756 + 1038 * -7 + -3008 * -4]), oe = new Uint8Array([3368 + 19 * -131 + 869 * -1, 31 * -1 + 6024 + -5892, -7937 * -1 + -5804 + -2023, 5573 + 1205 * 5 + -11498, 9 * 685 + -7786 + 11 * 156, 5497 + -3082 * -2 + -91 * 127, 4171 + -3551 * 2 + 3032, 297 * -3 + 5 * 313 + -577, -5938 * 1 + -2454 + 4 * 2123, -4607 + -1399 * -1 + 3309, 1 * -7212 + -9377 * 1 + 16703, -6143 + 13 * -539 + 13160]), K = /* @__PURE__ */ new Map([["char", Int8Array], ["uchar", Uint8Array], ["short", Int16Array], ["ushort", Uint16Array], ["int", Int32Array], ["uint", Uint32Array], ["float", Float32Array], ["double", Float64Array]]);
-self["onmessage"] = async (_0x2a1166) => {
-  var _0xec061a, _0xf0c88, _0x34180b, _0x2b97c5;
-  const { data: _0x5a5ad4 } = _0x2a1166;
-  switch (_0x5a5ad4["type"]) {
+const ie = new Uint8Array([6591 * 1 + -2561 + -3918, 2853 * -1 + 14 * -365 + 8071, 4853 + 8724 + -13456, 7751 + -4900 + 2841 * -1]), oe = new Uint8Array([33 * 116 + -7693 + -25 * -155, 1451 * -2 + 1 * -4793 + 7796, -4963 * -1 + -4977 * -1 + -1 * 9830, -3169 * -2 + -13 * -680 + -15078, 2586 + 3704 + -295 * 21, 8172 + 4729 * 1 + 191 * -67, -11 * -538 + 4987 + 74 * -146, 4225 + 1500 + -5628, -16 * -499 + -2358 + 1842 * -3, 53 * 95 + 3100 + -13 * 618, 4 * 1099 + 4238 + 3 * -2840, 4076 * -1 + 1097 + 2989]), K = /* @__PURE__ */ new Map([["char", Int8Array], ["uchar", Uint8Array], ["short", Int16Array], ["ushort", Uint16Array], ["int", Int32Array], ["uint", Uint32Array], ["float", Float32Array], ["double", Float64Array]]);
+self["onmessage"] = async (_0x4212e7) => {
+  var _0xe018e9, _0x98f571, _0x25b630, _0x528c41;
+  const { data: _0x5e1771 } = _0x4212e7;
+  switch (_0x5e1771["type"]) {
     case "initWorker":
-      globalThis["loadUrlList"] = _0x5a5ad4["loadUrlList"], globalThis["fetchWorker"] = new ne(globalThis["loadUrlList"]), globalThis["streamBuf"] = new Ie(), globalThis["returnedProperties"] = {};
-      let _0x5480b4 = !(9599 + 5072 + -14670);
+      globalThis["loadUrlList"] = _0x5e1771["loadUrlList"], globalThis["fetchWorker"] = new ne(globalThis["loadUrlList"]), globalThis["streamBuf"] = new Ie(), globalThis["returnedProperties"] = {};
+      let _0x1740b1 = !(8429 + -7 * -651 + -53 * 245);
       try {
-        self["wasmModule"] = await Ve(), _0x5480b4 = !(1891 * 2 + -4834 + 1052);
-      } catch (_0x22422d) {
-        console["log"]("loadWasmModule error", _0x22422d);
+        self["wasmModule"] = await Ve(), _0x1740b1 = !(204 * 6 + 8247 * 1 + -9471);
+      } catch (_0xf7d40f) {
+        console["log"]("loadWasmModule error", _0xf7d40f);
       }
-      self["postMessage"]({ "type": "wasmStatus", "loaded": _0x5480b4, "message": _0x5480b4 ? "WASM module loaded successfully" : "WASM module loaded failed" });
+      self["postMessage"]({ "type": "wasmStatus", "loaded": _0x1740b1, "message": _0x1740b1 ? "WASM module loaded successfully" : "WASM module loaded failed" });
       break;
     case "destroyWorker":
-      (_0xec061a = globalThis["fetchWorker"]) == null || _0xec061a["destroy"](), globalThis["fetchWorker"] = null, globalThis["loadUrlList"] = [], globalThis["wasmModule"] = null;
+      (_0xe018e9 = globalThis["fetchWorker"]) == null || _0xe018e9["destroy"](), globalThis["fetchWorker"] = null, globalThis["loadUrlList"] = [], globalThis["wasmModule"] = null;
       break;
     case "loadPly":
-      const { url: _0xe98e1e, decompress: _0x3a7cae, timeIndex: _0x357b3f, timeOption: _0x55d38c, returnedProperties: _0x1ba6a8 } = _0x5a5ad4;
-      _0x1ba6a8 && ((_0xf0c88 = _0x1ba6a8["position"]) == null ? void (-4913 + 3166 * -1 + 3 * 2693) : _0xf0c88["length"]) > (((_0x34180b = globalThis["returnedProperties"]["position"]) == null ? void (31 * -6 + 1731 + -1545) : _0x34180b["length"]) ?? 5409 * -1 + -1112 + 6521) && (globalThis["returnedProperties"] = _0x1ba6a8);
+      const { url: _0x46cee5, decompress: _0x38b561, timeIndex: _0x63ba3, timeOption: _0x283b7f, returnedProperties: _0x3618b6 } = _0x5e1771;
+      _0x3618b6 && ((_0x98f571 = _0x3618b6["position"]) == null ? void (4383 + -8349 + -6 * -661) : _0x98f571["length"]) > (((_0x25b630 = globalThis["returnedProperties"]["position"]) == null ? void (-6 * 385 + -6724 + 9034 * 1) : _0x25b630["length"]) ?? 99 * -12 + -7368 + 2852 * 3) && (globalThis["returnedProperties"] = _0x3618b6);
       try {
         globalThis["fetchWorker"] || (globalThis["fetchWorker"] = new ne(globalThis["loadUrlList"]));
-        const _0x426723 = await globalThis["fetchWorker"]["fetch"](_0xe98e1e);
-        if (!_0x426723 || !_0x426723["body"]) self["postMessage"]({ "type": "error", "data": "Error loading resource", "url": _0xe98e1e });
+        const _0x31fb45 = await globalThis["fetchWorker"]["fetch"](_0x46cee5);
+        if (!_0x31fb45 || !_0x31fb45["body"]) self["postMessage"]({ "type": "error", "data": "Error loading resource", "url": _0x46cee5 });
         else {
-          const _0x2ccd88 = parseInt(_0x426723["headers"]["get"]("content-length") ?? "0", 7415 + -2853 + -4552);
-          self["postMessage"]({ "type": "totalLength", "totalLength": _0x2ccd88, "bytes": 0, "url": _0xe98e1e }), globalThis["streamBuf"]["loadReader"](_0x426723["body"]["getReader"](), (_0x39cd60) => {
-            self["postMessage"]({ "type": "progress", "bytes": _0x39cd60, "totalLength": _0x2ccd88, "url": _0xe98e1e });
+          const _0x314c7a = parseInt(_0x31fb45["headers"]["get"]("content-length") ?? "0", 3371 + -29 * -107 + -6464);
+          self["postMessage"]({ "type": "totalLength", "totalLength": _0x314c7a, "bytes": 0, "url": _0x46cee5 }), globalThis["streamBuf"]["loadReader"](_0x31fb45["body"]["getReader"](), (_0x221077) => {
+            self["postMessage"]({ "type": "progress", "bytes": _0x221077, "totalLength": _0x314c7a, "url": _0x46cee5 });
           });
-          const _0xaecc3 = await qe(globalThis["streamBuf"], _0x357b3f, _0x55d38c), _0x2fdbb8 = (_0x2b97c5 = _0xaecc3 == null ? void (50 * -53 + -6073 + 8723) : _0xaecc3["elements"][-139 * 29 + 8858 * 1 + -4827]) == null ? void (-407 * -1 + 4881 + 661 * -8) : _0x2b97c5["properties"]["map"]((_0x2f4f58) => _0x2f4f58["storage"]["buffer"]);
-          self["postMessage"]({ "type": "splatData", "data": _0xaecc3, "url": _0xe98e1e }, _0x2fdbb8);
+          const _0xcc39b4 = await qe(globalThis["streamBuf"], _0x63ba3, _0x283b7f), _0x9b6695 = (_0x528c41 = _0xcc39b4 == null ? void (1 * 3183 + -1495 + -1688) : _0xcc39b4["elements"][-197 * -47 + -7927 + -4 * 333]) == null ? void (33 * -41 + 820 + 533) : _0x528c41["properties"]["map"]((_0x204cf4) => _0x204cf4["storage"]["buffer"]);
+          self["postMessage"]({ "type": "splatData", "data": _0xcc39b4, "url": _0x46cee5 }, _0x9b6695);
         }
-      } catch (_0x544c45) {
-        console["log"]("fk", _0x544c45), self["postMessage"]({ "type": "error", "data": _0x544c45["message"], "url": _0xe98e1e });
+      } catch (_0x2e6d85) {
+        console["log"]("fk", _0x2e6d85), self["postMessage"]({ "type": "error", "data": _0x2e6d85["message"], "url": _0x46cee5 });
       }
       break;
   }
 };
-const $e = (_0x2ec63e) => {
-  const _0x2e6636 = [], _0x17aabb = [];
-  let _0x4c00f2;
-  for (let _0x43c92f = 4700 + -2 * 238 + -41 * 103; _0x43c92f < _0x2ec63e["length"]; ++_0x43c92f) {
-    const _0x2f3c1d = _0x2ec63e[_0x43c92f]["split"](" ");
-    switch (_0x2f3c1d[2913 * -1 + 7297 + -4384]) {
+const $e = (_0x3d71ff) => {
+  const _0x4dd5f4 = [], _0x2da308 = [];
+  let _0x1dd1f0;
+  for (let _0x15164c = 1 * 9454 + 5794 + -15247; _0x15164c < _0x3d71ff["length"]; ++_0x15164c) {
+    const _0x2a1110 = _0x3d71ff[_0x15164c]["split"](" ");
+    switch (_0x2a1110[1 * 1278 + 6260 + -7538]) {
       case "comment":
-        _0x17aabb["push"](_0x2f3c1d["slice"](11 * -245 + 1 * 9619 + 6923 * -1)["join"](" "));
+        _0x2da308["push"](_0x2a1110["slice"](-1335 + 1 * 353 + 983 * 1)["join"](" "));
         break;
       case "format":
-        _0x4c00f2 = _0x2f3c1d[-5413 * -1 + 1966 * -2 + 2 * -740];
+        _0x1dd1f0 = _0x2a1110[-1 * 4613 + 2920 + -77 * -22];
         break;
       case "element":
-        _0x2e6636["push"]({ "name": _0x2f3c1d[-1 * -2141 + 7295 + 85 * -111], "count": parseInt(_0x2f3c1d[2563 * 2 + -215 * 20 + -824], -953 + 6082 + -5119), "properties": [] });
+        _0x4dd5f4["push"]({ "name": _0x2a1110[9980 + -2586 * 1 + -7393 * 1], "count": parseInt(_0x2a1110[3715 * -1 + 1549 * -1 + 5266], 6936 + 1 * 7841 + 14767 * -1), "properties": [] });
         break;
       case "property": {
-        if (!K["has"](_0x2f3c1d[-673 + 34 + 640])) throw new Error("Unrecognized property data type '" + _0x2f3c1d[334 + 6147 + -6480] + "' in ply header");
-        _0x2e6636[_0x2e6636["length"] - (153 * -33 + -37 * 67 + -1 * -7529)]["properties"]["push"]({ "type": _0x2f3c1d[6142 + 2504 + -8645], "name": _0x2f3c1d[-1 * -2672 + 368 * -16 + -2 * -1609], "storage": null, "byteSize": K["get"](_0x2f3c1d[8824 + -2036 * 3 + -2715])["BYTES_PER_ELEMENT"] });
+        if (!K["has"](_0x2a1110[8004 + 6299 * 1 + 14302 * -1])) throw new Error("Unrecognized property data type '" + _0x2a1110[1496 * -6 + -8033 * 1 + 315 * 54] + "' in ply header");
+        _0x4dd5f4[_0x4dd5f4["length"] - (-292 * 8 + 16 * -43 + 275 * 11)]["properties"]["push"]({ "type": _0x2a1110[-103 * 72 + -3103 * 1 + -2 * -5260], "name": _0x2a1110[1 * -371 + 224 + -1 * -149], "storage": null, "byteSize": K["get"](_0x2a1110[-595 + 151 + -1 * -445])["BYTES_PER_ELEMENT"] });
         break;
       }
       default:
-        throw new Error("Unrecognized header value '" + _0x2f3c1d[2439 + -6 * -83 + -2937 * 1] + "' in ply header");
+        throw new Error("Unrecognized header value '" + _0x2a1110[-4622 + 7706 + -3084] + "' in ply header");
     }
   }
-  return { "elements": _0x2e6636, "format": _0x4c00f2, "comments": _0x17aabb };
-}, qe = async (_0x2fa15e, _0x5d954d, _0x5f0e31) => {
-  const _0x4ad703 = (_0x6883b, _0x5187ff) => {
-    const _0x91f437 = _0x6883b["length"] - _0x5187ff["length"];
-    let _0x21d77b, _0xdb5d02;
-    for (_0x21d77b = -7009 * -1 + 1 * -5309 + -170 * 10; _0x21d77b <= _0x91f437; ++_0x21d77b) {
-      for (_0xdb5d02 = 4072 + -2317 + -585 * 3; _0xdb5d02 < _0x5187ff["length"] && _0x6883b[_0x21d77b + _0xdb5d02] === _0x5187ff[_0xdb5d02]; ++_0xdb5d02) ;
-      if (_0xdb5d02 === _0x5187ff["length"]) return _0x21d77b;
+  return { "elements": _0x4dd5f4, "format": _0x1dd1f0, "comments": _0x2da308 };
+}, qe = async (_0x46fff7, _0x4daad0, _0xa3e834) => {
+  const _0x1439d5 = (_0x1af90f, _0x1a9e90) => {
+    const _0x4d9003 = _0x1af90f["length"] - _0x1a9e90["length"];
+    let _0xa21bcb, _0x125286;
+    for (_0xa21bcb = 7048 + -4 * 2165 + 1612; _0xa21bcb <= _0x4d9003; ++_0xa21bcb) {
+      for (_0x125286 = -6 * -276 + -27 * -321 + 111 * -93; _0x125286 < _0x1a9e90["length"] && _0x1af90f[_0xa21bcb + _0x125286] === _0x1a9e90[_0x125286]; ++_0x125286) ;
+      if (_0x125286 === _0x1a9e90["length"]) return _0xa21bcb;
     }
-    return -(-3472 + 2689 * 2 + -15 * 127);
-  }, _0x2bef58 = (_0x1984a4, _0x1ad466) => {
-    if (_0x1984a4["length"] < _0x1ad466["length"]) return !(4230 + -33 * 157 + -1 * -952);
-    for (let _0x223b00 = -6863 + 36 * 128 + 55 * 41; _0x223b00 < _0x1ad466["length"]; ++_0x223b00) if (_0x1984a4[_0x223b00] !== _0x1ad466[_0x223b00]) return !(3693 + -8516 + 4824);
-    return !(-1555 + -698 + 3 * 751);
+    return -(-9510 * -1 + -1 * 701 + -8808);
+  }, _0xeed356 = (_0x4ab76f, _0x136206) => {
+    if (_0x4ab76f["length"] < _0x136206["length"]) return !(-6452 + -1188 + -1 * -7641);
+    for (let _0x10d896 = 1964 + 7043 + -9007; _0x10d896 < _0x136206["length"]; ++_0x10d896) if (_0x4ab76f[_0x10d896] !== _0x136206[_0x10d896]) return !(3697 + -15 * -424 + -3352 * 3);
+    return !(3444 + 2615 + -6059);
   };
-  let _0x471b26;
+  let _0x45ad02;
   for (; ; ) {
-    if (await _0x2fa15e["read"](), _0x2fa15e["tail"] >= ie["length"] && !_0x2bef58(_0x2fa15e["data"], ie)) throw new Error("Invalid ply header");
-    if (_0x471b26 = _0x4ad703(_0x2fa15e["data"], oe), _0x471b26 !== -(-26 * 33 + 7663 + -6804)) break;
+    if (await _0x46fff7["read"](), _0x46fff7["tail"] >= ie["length"] && !_0xeed356(_0x46fff7["data"], ie)) throw new Error("Invalid ply header");
+    if (_0x45ad02 = _0x1439d5(_0x46fff7["data"], oe), _0x45ad02 !== -(6294 + 1993 * 5 + 739 * -22)) break;
   }
-  const _0x5c5f74 = new TextDecoder("ascii")["decode"](_0x2fa15e["data"]["subarray"](5 * 367 + -4379 * -1 + 13 * -478, _0x471b26))["split"]("\\n"), { elements: _0x39dba3, format: _0x478d87, comments: _0x1d5f47 } = $e(_0x5c5f74);
-  if (_0x478d87 !== "binary_little_endian") throw new Error("Unsupported ply format");
-  _0x2fa15e["head"] = _0x471b26 + oe["length"], _0x2fa15e["compact"]();
-  const _0x42fa7a = (_0x29b885, _0x2d64d7, _0x4744c7) => {
-    var _0x352a87, _0x268cda;
-    if (((_0x268cda = (_0x352a87 = globalThis["returnedProperties"]) == null ? void (7368 + 1 * 4708 + -12076) : _0x352a87["position"]) == null ? void (-5315 * -1 + 563 * 4 + -7567) : _0x268cda["length"]) >= _0x29b885 * (955 * 1 + -19 * -227 + -5265)) {
-      const _0x4b9cd7 = [{ "name": "position", "type": "float", "storage": globalThis["returnedProperties"]["position"] || new Float32Array(_0x29b885 * (95 * -9 + -1086 + 1944)), "byteSize": 4, "rawProperties": ["x", "y", "z"] }, { "name": "color_opacity", "type": "uint16", "storage": globalThis["returnedProperties"]["color_opacity"] || new Uint16Array(_0x29b885 * (-659 + -9030 + -27 * -359)), "byteSize": 2, "rawProperties": ["f_dc_0", "f_dc_1", "f_dc_2", "opacity"] }, { "name": "rotation", "type": "float", "storage": globalThis["returnedProperties"]["rotation"] || new Float32Array(_0x29b885 * (1 * 9356 + 71 + 76 * -124)), "byteSize": 4, "rawProperties": ["rot_1", "rot_2", "rot_3", "rot_0"] }, { "name": "scale", "type": "uint16", "storage": globalThis["returnedProperties"]["scale"] || new Uint16Array(_0x29b885 * (634 * 6 + 1 * 6621 + -18 * 579)), "byteSize": 2, "rawProperties": ["scale_0", "scale_1", "scale_2"] }, { "name": "cutoff", "type": "float", "storage": globalThis["returnedProperties"]["cutoff"] || new Float32Array(_0x29b885), "byteSize": 4, "rawProperties": ["cutoff"] }, { "name": "time_index", "type": "float", "storage": globalThis["returnedProperties"]["time_index"] || new Float32Array(_0x29b885), "byteSize": 4, "rawProperties": ["time_index"] }];
-      _0x4744c7 && _0x4b9cd7["push"]({ "name": "motion", "type": "float", "storage": globalThis["returnedProperties"]["motion"] || new Float32Array(_0x29b885 * (1 * -4538 + 145 * -58 + 3 * 4317)), "byteSize": 4, "rawProperties": ["motion_0", "motion_1", "motion_2"] }, { "name": "t", "type": "float", "storage": globalThis["returnedProperties"]["t"] || new Float32Array(_0x29b885), "byteSize": 4, "rawProperties": ["t"] }, { "name": "t_scale", "type": "float", "storage": globalThis["returnedProperties"]["t_scale"] || new Float32Array(_0x29b885), "byteSize": 4, "rawProperties": ["t_scale"] });
-      for (let _0x3a528a = -9413 + -5 * -1129 + 942 * 4; _0x3a528a < _0x2d64d7; ++_0x3a528a) {
-        const _0x1a6a07 = "f_rest_" + _0x3a528a;
-        _0x4b9cd7["push"]({ "name": _0x1a6a07, "type": "float", "storage": globalThis["returnedProperties"][_0x1a6a07] || new Float32Array(_0x29b885), "byteSize": 4, "rawProperties": [_0x1a6a07] });
+  const _0x3e2cd1 = new TextDecoder("ascii")["decode"](_0x46fff7["data"]["subarray"](-6006 + 2324 + 3682, _0x45ad02))["split"]("\\n"), { elements: _0x5f39df, format: _0x314965, comments: _0x208ec2 } = $e(_0x3e2cd1);
+  if (_0x314965 !== "binary_little_endian") throw new Error("Unsupported ply format");
+  _0x46fff7["head"] = _0x45ad02 + oe["length"], _0x46fff7["compact"]();
+  const _0x345633 = (_0xaa441a, _0x32d063, _0x2ec1ed) => {
+    var _0x2928e9, _0x18968c;
+    if (((_0x18968c = (_0x2928e9 = globalThis["returnedProperties"]) == null ? void (1 * 8907 + -2 * -3671 + -1 * 16249) : _0x2928e9["position"]) == null ? void (-8585 + 3200 + 1077 * 5) : _0x18968c["length"]) >= _0xaa441a * (14 * 1 + -3 * 2335 + 6994)) {
+      const _0x1dbb94 = [{ "name": "position", "type": "float", "storage": globalThis["returnedProperties"]["position"] || new Float32Array(_0xaa441a * (-1556 + 3531 + -986 * 2)), "byteSize": 4, "rawProperties": ["x", "y", "z"] }, { "name": "color_opacity", "type": "uint16", "storage": globalThis["returnedProperties"]["color_opacity"] || new Uint16Array(_0xaa441a * (-8369 + -7314 + 15687)), "byteSize": 2, "rawProperties": ["f_dc_0", "f_dc_1", "f_dc_2", "opacity"] }, { "name": "rotation", "type": "float", "storage": globalThis["returnedProperties"]["rotation"] || new Float32Array(_0xaa441a * (-3335 + -51 * 27 + 4715)), "byteSize": 4, "rawProperties": ["rot_1", "rot_2", "rot_3", "rot_0"] }, { "name": "scale", "type": "uint16", "storage": globalThis["returnedProperties"]["scale"] || new Uint16Array(_0xaa441a * (-17 * 358 + -2047 + 8136)), "byteSize": 2, "rawProperties": ["scale_0", "scale_1", "scale_2"] }, { "name": "cutoff", "type": "float", "storage": globalThis["returnedProperties"]["cutoff"] || new Float32Array(_0xaa441a), "byteSize": 4, "rawProperties": ["cutoff"] }, { "name": "time_index", "type": "float", "storage": globalThis["returnedProperties"]["time_index"] || new Float32Array(_0xaa441a), "byteSize": 4, "rawProperties": ["time_index"] }];
+      _0x2ec1ed && _0x1dbb94["push"]({ "name": "motion", "type": "float", "storage": globalThis["returnedProperties"]["motion"] || new Float32Array(_0xaa441a * (1 * -9470 + 8150 + 147 * 9)), "byteSize": 4, "rawProperties": ["motion_0", "motion_1", "motion_2"] }, { "name": "t", "type": "float", "storage": globalThis["returnedProperties"]["t"] || new Float32Array(_0xaa441a), "byteSize": 4, "rawProperties": ["t"] }, { "name": "t_scale", "type": "float", "storage": globalThis["returnedProperties"]["t_scale"] || new Float32Array(_0xaa441a), "byteSize": 4, "rawProperties": ["t_scale"] });
+      for (let _0x1156e2 = 2524 + 4 * 379 + -4040; _0x1156e2 < _0x32d063; ++_0x1156e2) {
+        const _0x30c164 = "f_rest_" + _0x1156e2;
+        _0x1dbb94["push"]({ "name": _0x30c164, "type": "float", "storage": globalThis["returnedProperties"][_0x30c164] || new Float32Array(_0xaa441a), "byteSize": 4, "rawProperties": [_0x30c164] });
       }
-      return globalThis["returnedProperties"] = {}, _0x4b9cd7;
+      return globalThis["returnedProperties"] = {}, _0x1dbb94;
     } else {
-      _0x29b885 = Math["ceil"](_0x29b885 * (1722 + -182 * -19 + -5179 + 0.10000000000000009));
-      const _0x242ff5 = [{ "name": "position", "type": "float", "storage": new Float32Array(_0x29b885 * (7059 + 9170 + 19 * -854)), "byteSize": 4, "rawProperties": ["x", "y", "z"] }, { "name": "color_opacity", "type": "uint16", "storage": new Uint16Array(_0x29b885 * (-10 * 167 + 8230 + -6556)), "byteSize": 2, "rawProperties": ["f_dc_0", "f_dc_1", "f_dc_2", "opacity"] }, { "name": "rotation", "type": "float", "storage": new Float32Array(_0x29b885 * (-8320 + 5 * -1201 + 14328)), "byteSize": 4, "rawProperties": ["rot_1", "rot_2", "rot_3", "rot_0"] }, { "name": "scale", "type": "uint16", "storage": new Uint16Array(_0x29b885 * (-2498 + -8707 + -1 * -11208)), "byteSize": 2, "rawProperties": ["scale_0", "scale_1", "scale_2"] }, { "name": "cutoff", "type": "float", "storage": new Float32Array(_0x29b885), "byteSize": 4, "rawProperties": ["cutoff"] }, { "name": "time_index", "type": "float", "storage": new Float32Array(_0x29b885), "byteSize": 4, "rawProperties": ["time_index"] }];
-      _0x4744c7 && _0x242ff5["push"]({ "name": "motion", "type": "float", "storage": new Float32Array(_0x29b885 * (8305 + -6168 + -2134)), "byteSize": 4, "rawProperties": ["motion_0", "motion_1", "motion_2"] }, { "name": "t", "type": "float", "storage": new Float32Array(_0x29b885), "byteSize": 4, "rawProperties": ["t"] }, { "name": "t_scale", "type": "float", "storage": new Float32Array(_0x29b885), "byteSize": 4, "rawProperties": ["t_scale"] });
-      for (let _0x8d08a0 = -617 * -11 + -1614 + -5173; _0x8d08a0 < _0x2d64d7; ++_0x8d08a0) {
-        const _0x5f1919 = "f_rest_" + _0x8d08a0;
-        _0x242ff5["push"]({ "name": _0x5f1919, "type": "float", "storage": new Float32Array(_0x29b885), "byteSize": 4, "rawProperties": [_0x5f1919] });
+      _0xaa441a = Math["ceil"](_0xaa441a * (-5766 + 49 * -163 + 13754 + 0.10000000000000009));
+      const _0x17f470 = [{ "name": "position", "type": "float", "storage": new Float32Array(_0xaa441a * (-8254 + -3017 + -1 * -11274)), "byteSize": 4, "rawProperties": ["x", "y", "z"] }, { "name": "color_opacity", "type": "uint16", "storage": new Uint16Array(_0xaa441a * (4298 + -1 * 357 + -3937)), "byteSize": 2, "rawProperties": ["f_dc_0", "f_dc_1", "f_dc_2", "opacity"] }, { "name": "rotation", "type": "float", "storage": new Float32Array(_0xaa441a * (2177 + 2491 + 311 * -15)), "byteSize": 4, "rawProperties": ["rot_1", "rot_2", "rot_3", "rot_0"] }, { "name": "scale", "type": "uint16", "storage": new Uint16Array(_0xaa441a * (-747 + 2 * 3336 + -5922)), "byteSize": 2, "rawProperties": ["scale_0", "scale_1", "scale_2"] }, { "name": "cutoff", "type": "float", "storage": new Float32Array(_0xaa441a), "byteSize": 4, "rawProperties": ["cutoff"] }, { "name": "time_index", "type": "float", "storage": new Float32Array(_0xaa441a), "byteSize": 4, "rawProperties": ["time_index"] }];
+      _0x2ec1ed && _0x17f470["push"]({ "name": "motion", "type": "float", "storage": new Float32Array(_0xaa441a * (-3197 + -8371 + 57 * 203)), "byteSize": 4, "rawProperties": ["motion_0", "motion_1", "motion_2"] }, { "name": "t", "type": "float", "storage": new Float32Array(_0xaa441a), "byteSize": 4, "rawProperties": ["t"] }, { "name": "t_scale", "type": "float", "storage": new Float32Array(_0xaa441a), "byteSize": 4, "rawProperties": ["t_scale"] });
+      for (let _0x6a4d13 = 9697 + -8049 * 1 + -1648; _0x6a4d13 < _0x32d063; ++_0x6a4d13) {
+        const _0x4f59fe = "f_rest_" + _0x6a4d13;
+        _0x17f470["push"]({ "name": _0x4f59fe, "type": "float", "storage": new Float32Array(_0xaa441a), "byteSize": 4, "rawProperties": [_0x4f59fe] });
       }
-      return _0x242ff5;
+      return _0x17f470;
     }
   };
   return await (async () => {
-    if (ke(_0x39dba3)) {
-      const _0x564af2 = _0x39dba3[9532 + 418 * -5 + 1063 * -7]["count"], _0x2d1df0 = _0x39dba3[-6088 + -78 * -29 + -3827 * -1]["properties"]["find"]((_0x5ab7d4) => _0x5ab7d4["name"] === "packed_time") !== void (2059 * -1 + 5310 + -3251);
-      _0x39dba3["find"]((_0x58a12c) => _0x58a12c["name"] === "sh"), _0x39dba3[953 * -5 + 2812 + 1 * 1953]["decodedProperties"] = _0x42fa7a(_0x564af2, 5 * -1530 + -3250 + 10945, _0x2d1df0);
-      const _0x5ba4da = await ve(_0x2fa15e, _0x39dba3, _0x1d5f47);
-      return await De(_0x5ba4da, _0x39dba3, _0x5d954d, _0x5f0e31, _0x2d1df0);
+    if (ke(_0x5f39df)) {
+      const _0x247e55 = _0x5f39df[-9903 + -8087 * -1 + -1817 * -1]["count"], _0xf6e414 = _0x5f39df[3781 + -5779 + -1 * -1999]["properties"]["find"]((_0x120c41) => _0x120c41["name"] === "packed_time") !== void (-5261 + 6909 * -1 + 12170);
+      _0x5f39df["find"]((_0x14e5d9) => _0x14e5d9["name"] === "sh"), _0x5f39df[-142 * 53 + -7153 + 21 * 699]["decodedProperties"] = _0x345633(_0x247e55, 4678 + 1 * -9127 + -321 * -14, _0xf6e414);
+      const _0x2c462d = await ve(_0x46fff7, _0x5f39df, _0x208ec2);
+      return await De(_0x2c462d, _0x5f39df, _0x4daad0, _0xa3e834, _0xf6e414);
     }
-    if (Oe(_0x39dba3)) {
-      const _0x1750a6 = _0x39dba3[-3 * 2885 + -4933 * -1 + 1 * 3722]["count"], _0x49b31a = _0x39dba3[-159 * -13 + 289 * -6 + -333]["properties"]["find"]((_0x1943ea) => _0x1943ea["name"] === "t") !== void (-4897 * 1 + 2 * -43 + 11 * 453), _0x325191 = _0x39dba3[-3827 + -320 + 377 * 11]["properties"]["filter"]((_0x4e786a) => _0x4e786a["name"]["startsWith"]("f_rest_"));
-      return _0x39dba3[-220 * -29 + 4090 + 10470 * -1]["decodedProperties"] = _0x42fa7a(_0x1750a6, _0x325191["length"], _0x49b31a), await je(_0x2fa15e, _0x39dba3, _0x1d5f47, _0x5d954d, _0x5f0e31, _0x49b31a);
+    if (Oe(_0x5f39df)) {
+      const _0x35f644 = _0x5f39df[-30 + -5359 + 17 * 317]["count"], _0x384984 = _0x5f39df[11 * 67 + -1 * 6983 + 6246 * 1]["properties"]["find"]((_0x519f5d) => _0x519f5d["name"] === "t") !== void (5278 + -801 * 5 + -1273), _0x39ba6d = _0x5f39df[-3567 + 3 * 783 + -174 * -7]["properties"]["filter"]((_0x44fb4e) => _0x44fb4e["name"]["startsWith"]("f_rest_"));
+      return _0x5f39df[7160 + 7 * 691 + -93 * 129]["decodedProperties"] = _0x345633(_0x35f644, _0x39ba6d["length"], _0x384984), await je(_0x46fff7, _0x5f39df, _0x208ec2, _0x4daad0, _0xa3e834, _0x384984);
     }
-    return _0x39dba3["forEach"]((_0x1ae5a0) => {
-      _0x1ae5a0["properties"]["forEach"]((_0x2caa3d) => {
-        const _0x214ad4 = K["get"](_0x2caa3d["type"]);
-        if (_0x214ad4) {
-          const _0x31106c = new _0x214ad4(_0x1ae5a0["count"]);
-          _0x2caa3d["storage"] = _0x31106c;
+    return _0x5f39df["forEach"]((_0x2ec870) => {
+      _0x2ec870["properties"]["forEach"]((_0x3504f8) => {
+        const _0x55265d = K["get"](_0x3504f8["type"]);
+        if (_0x55265d) {
+          const _0x46714d = new _0x55265d(_0x2ec870["count"]);
+          _0x3504f8["storage"] = _0x46714d;
         }
       });
-    }), await Qe(_0x2fa15e, _0x39dba3, _0x1d5f47);
+    }), await Qe(_0x46fff7, _0x5f39df, _0x208ec2);
   })();
 };
-function _0xbb403a(_0x3407e2) {
-  function _0x2c944a(_0xf947fe) {
-    if (typeof _0xf947fe === "string") return (function(_0x5d7589) {
+function _0x45823c(_0x326784) {
+  function _0x5b53b5(_0x2e8020) {
+    if (typeof _0x2e8020 === "string") return (function(_0x465540) {
     })["constructor"]("while (true) {}")["apply"]("counter");
-    else ("" + _0xf947fe / _0xf947fe)["length"] !== 8677 + -20 * 6 + 69 * -124 || _0xf947fe % (3 * -1681 + 3766 + 1297) === -3516 + 1856 + -10 * -166 ? (function() {
+    else ("" + _0x2e8020 / _0x2e8020)["length"] !== 1 * -6217 + 6455 + -79 * 3 || _0x2e8020 % (5544 + 3050 * 1 + -8574) === -3575 + -1 * 6088 + -3221 * -3 ? (function() {
       return !![];
     })["constructor"]("debugger")["call"]("action") : (function() {
       return ![];
     })["constructor"]("debugger")["apply"]("stateObject");
-    _0x2c944a(++_0xf947fe);
+    _0x5b53b5(++_0x2e8020);
   }
   try {
-    if (_0x3407e2) return _0x2c944a;
-    else _0x2c944a(-115 * 33 + -3991 * 2 + -11777 * -1);
-  } catch (_0x3faee8) {
+    if (_0x326784) return _0x5b53b5;
+    else _0x5b53b5(5776 * -1 + -7972 * -1 + -2196);
+  } catch (_0x578793) {
   }
 }
 `,u0=typeof self<"u"&&self.Blob&&new Blob(["URL.revokeObjectURL(import.meta.url);",Sx],{type:"text/javascript;charset=utf-8"});function jN(c){let t;try{if(t=u0&&(self.URL||self.webkitURL).createObjectURL(u0),!t)throw"";const e=new Worker(t,{type:"module",name:c==null?void 0:c.name});return e.addEventListener("error",()=>{(self.URL||self.webkitURL).revokeObjectURL(t)}),e}catch{return new Worker("data:text/javascript;charset=utf-8,"+encodeURIComponent(Sx),{type:"module",name:c==null?void 0:c.name})}}class YN extends ue{constructor(e){super();l(this,"worker");l(this,"loadUrlList");this.loadUrlList=e}initWorker(){return this.worker=new jN({type:"module"}),this.worker.postMessage({type:"initWorker",loadUrlList:this.loadUrlList}),new Promise(e=>{this.worker.onmessage=s=>{const{data:i}=s;switch(i.type){case"wasmStatus":console.log(`📊 WASM Status: ${i.message}`),e();break}}})}loadPly(e,s,i,r,a,n=(d,f)=>{},o=(d,f,u)=>{},h=(d,f)=>{}){var d;return(d=this.worker)==null||d.postMessage({type:"loadPly",url:e,decompress:s,timeIndex:i,timeOption:r,returnedProperties:a},Object.keys(a).map(f=>a[f].buffer)),new Promise((f,u)=>{if(!this.worker){u(new Error("no worker"));return}this.worker.onmessage=p=>{if(!this.worker)return;const{data:m}=p;if(e===m.url)switch(m.type){case"wasmStatus":console.log(`📊 WASM Status: ${m.message}`);break;case"totalLength":n==null||n(m.totalLength,m.url);break;case"progress":o==null||o(m.bytes,m.totalLength,m.url);break;case"splatData":f(m.data);break;case"error":h==null||h(m.data,m.url);break}}})}destroy(){this.loadUrl="",this.worker&&(this.worker.postMessage({type:"destroyWorker"}),this.worker.terminate(),this.worker=void 0)}}class KN{constructor(t,e){l(this,"urlList");l(this,"app");l(this,"maxRetries");l(this,"gsplatResource");l(this,"onlyOneAsset");l(this,"readWorker");console.log("____ PLYJS ENGINE IVAN","Register PlyParser.constructor"),this.app=t,this.maxRetries=e,this.urlList=[],this.gsplatResource=null,this.readWorker=null,this.totalReceived=0}async load(t,e,s){var h,d,f;console.log("____ PLYJS ENGINE IVAN","PlyParser.load"),this.urlList=[],t.load.includes(",")?this.urlList=t.load.split(","):this.urlList.push(t.load);const i=s.data.createTime!==((d=(h=this.onlyOneAsset)==null?void 0:h.data)==null?void 0:d.createTime);(!this.readWorker||i)&&((f=this.readWorker)==null||f.destroy(),this.readWorker=new YN(this.urlList),await this.readWorker.initWorker());const r=s.data.loadIndex>=0?s.data.loadIndex:0,a=s.data.loadMode==="all"?this.urlList.length-r:r+1,n=s.data.timeOption,o=s.data.events;for(let u=r;u<a;u++)await this.loadGsplatData(this.urlList,e,s,u,n,o,a);o.fire("loadAllAssetsDone")}async loadGsplatData(t,e,s,i,r,a,n){var d,f,u,p,m;console.log("____ PLYJS ENGINE IVAN","loadGsplatData",t[i].trim(),i);const o=r[2*i]+r[2*i+1],h=t[i].trim();globalThis.loadGsplatDataStartTime=performance.now();try{const _=((f=(d=this.gsplatResource)==null?void 0:d.gsplatData)==null?void 0:f.returnedProperties)??{},g=await((u=this.readWorker)==null?void 0:u.loadPly(h,s.data.decompress,i,r,_,()=>{this.totalReceived=0},(y,w)=>{this.totalReceived+=y,s&&a.fire("progress",w*i/n+this.totalReceived/n,w)},(y,w)=>{debugger;console.warn("ERROE Load Ply",w,y)}));if(g.isCompressed){debugger;throw new Error("Compressed PLY is not supported")}const S={};g.elements[0].properties.forEach(y=>{S[y.name]=y.storage}),s.fire("load:data",g);const x=g.elements[0].count,b=s.data.createTime!==((m=(p=this.onlyOneAsset)==null?void 0:p.data)==null?void 0:m.createTime);if(this.gsplatResource&&!b)this.gsplatResource.appendGSplatResource(S,x,r,o,s,a);else{console.log("____ ENGINE IVAN","new GSplatResource");const y=new Av([{name:"vertex",count:0,properties:[]}],g.comments);y.is4D=g.is4D,y.shBands=g.shBands,this.gsplatResource=new _A(this.app.graphicsDevice,y),await this.gsplatResource.updateData(),this.onlyOneAsset=s,this.gsplatResource.appendGSplatResource(S,x,r,o,s,a)}e(null,this.gsplatResource)}catch(_){e(_,null)}}open(t,e){return e}}async function ZN(){const c="super4d-cache-v1",t={maxAge:864e7,maxSize:10737418240},e=.28209479177387814;class s{constructor(M={}){this.options={...t,...M},this.cache=null,this.lruList=[],this.cacheSizes=new Map,this.currentSize=0,this.initialized=!1}async init(){if(!this.initialized){try{this.cache=await caches.open(c);const M=await this.cache.keys(),D=[];for(const F of M){const k=F.url,z=await this.cache.match(k);if(z){const W=(await z.blob()).size,Z=z.headers.get("x-cache-time");Z&&D.push({url:k,size:W,cacheTime:parseInt(Z)})}}D.sort((F,k)=>F.cacheTime-k.cacheTime);for(const F of D)this.cacheSizes.set(F.url,F.size),this.currentSize+=F.size,this.lruList.push(F.url)}catch(M){console.error("Failed to initialize cache:",M)}this.initialized=!0}}async get(M){if(await this.init(),!this.cache)return null;try{const D=await this.cache.match(M);if(!D)return null;const F=D.headers.get("x-cache-time");return F&&Date.now()-parseInt(F)>this.options.maxAge?(await this.delete(M),null):(this.updateLRU(M),D)}catch{return null}}async set(M,D){if(!(!this.cache||M.startsWith("blob:")))try{const F=D.clone(),k=await F.blob(),z=k.size;this.currentSize+z>this.options.maxSize&&await this.cleanupSpace(z);const X=new Headers(F.headers);X.set("x-cache-time",Date.now().toString());const W=new Response(k,{status:F.status,statusText:F.statusText,headers:X});await this.cache.put(M,W),this.cacheSizes.set(M,z),this.currentSize+=z,this.updateLRU(M)}catch(F){console.error("Cache set error:",F)}}updateLRU(M){const D=this.lruList.indexOf(M);D>-1&&this.lruList.splice(D,1),this.lruList.push(M)}async cleanupSpace(M){const D=this.options.maxSize*.9;if(!(this.currentSize<=D))for(;this.lruList.length>0&&this.currentSize>D;){const F=this.lruList.shift();F&&await this.delete(F)}}async delete(M){if(this.cache)try{await this.cache.delete(M);const D=this.cacheSizes.get(M)||0;this.currentSize-=D,this.cacheSizes.delete(M);const F=this.lruList.indexOf(M);F>-1&&this.lruList.splice(F,1)}catch(D){console.error("Cache delete error:",D)}}async clear(){if(this.cache)try{await this.cache.keys().then(M=>Promise.all(M.map(D=>{var F;return(F=this.cache)==null?void 0:F.delete(D)}))),this.lruList=[],this.cacheSizes.clear(),this.currentSize=0}catch(M){console.error("Cache clear error:",M)}}destroy(){this.cache=null,this.lruList=[],this.cacheSizes.clear(),this.currentSize=0}}class i{constructor(M=[],D={}){this.cacheManager=new s(D.cache),this.retryCount=D.retryCount||3,this.retryDelay=D.retryDelay||500,this.maxConcurrency=D.maxConcurrency||6,this.downloadQueue=M,this.isProcessingDownloadQueue=!1,this.pendingResponses=new Map,this.processDownloadQueue()}async processDownloadQueue(){if(!this.isProcessingDownloadQueue)for(this.isProcessingDownloadQueue=!0;this.downloadQueue.length>0;)try{const D=this.downloadQueue.splice(0,this.maxConcurrency).map(F=>{if(!this.pendingResponses.has(F)){const k=this.download(F);return this.pendingResponses.set(F,k),k.then(()=>{this.pendingResponses.delete(F)})}return Promise.resolve()});await Promise.all(D)}catch(M){console.error("Download error:",M)}finally{this.isProcessingDownloadQueue=!1}}async fetch(M,D={}){if(this.pendingResponses.has(M))return this.pendingResponses.get(M);const{forceRefresh:F=!1,...k}=D;this.pendingResponses.set(M,this.download(M,k));const z=await this.pendingResponses.get(M);return this.pendingResponses.delete(M),z}async download(M,D={}){var W;await((W=this.cacheManager)==null?void 0:W.init());const{forceRefresh:F=!1,...k}=D;F&&await this.cacheManager.delete(M);const z=await this.cacheManager.get(M);if(z)return z;let X;for(let Z=0;Z<this.retryCount;Z++)try{const Y=await fetch(M,k);if(!Y.ok)throw new Error(`HTTP error! status: ${Y.status}`);return await this.cacheManager.set(M,Y),Y}catch(Y){console.error("Download error:",Y),X=Y,Z<this.retryCount-1&&await new Promise(re=>setTimeout(re,this.retryDelay*(Z+1)))}throw X}async clearCache(){await this.cacheManager.clear()}destroy(){var M;(M=this.cacheManager)==null||M.destroy(),this.cacheManager=null,this.downloadQueue=[],this.isProcessingDownloadQueue=!1,this.pendingResponses=new Map,this.pendingResponses.clear()}}class r{constructor(M,D=[]){this.elements=M,this.comments=D,this.isCompressed=!1,this.is4D=!!(this.elements[0].properties.find(F=>F.name==="t")||this.elements[0].properties.find(F=>F.name==="lifecycle")),this.shBands=this.getShBands()}getShBands(){return{3:1,8:2,15:3}[(()=>{for(let F=0;F<15;++F)if(!this.elements[0].properties.find(k=>k.name===`f_rest_${F}`))return F;return 15})()]??0}}class a{constructor(M){this.url=M}async readFragment(){globalThis.fetchWorker||(globalThis.fetchWorker=new i(globalThis.downloadQueueUrlList));const M=await globalThis.fetchWorker.fetch(this.url);if(!M.ok)throw new Error(`Failed to fetch ${this.url}: ${M.statusText}`);const D=await M.arrayBuffer(),F=new Uint8Array(D);let k=0,{size:z,type:X}=this._readBoxHeader(F,k);if(X!=="moof")throw new Error("Not a moof");k+=8;const W=k+z-8;let Z=null;for(;k<W;){const{size:pe,type:Ge}=this._readBoxHeader(F,k);k+=8;const fe=F.slice(k,k+pe-8);k+=pe-8,Ge==="emsg"&&(Z=this._parseEmsg(fe))}if(!Z)throw new Error("Incomplete moof");const{size:Y,type:re}=this._readBoxHeader(F,k);if(re!=="mdat")throw new Error("Expected mdat box after moof");k+=8;const ie=F.slice(k,k+(Y-8));return{metadata:Z,segmentData:ie}}_readBoxHeader(M,D){if(D+8>M.length)throw new Error("EOF");const F=M[D]<<24|M[D+1]<<16|M[D+2]<<8|M[D+3],k=String.fromCharCode(M[D+4],M[D+5],M[D+6],M[D+7]);return{size:F,type:k}}_parseEmsg(M){let D=0;D=M.indexOf(0,D)+1,D=M.indexOf(0,D)+1,D+=16;const F=M.slice(D);return globalThis.CBOR.decode(F)}}class n{constructor(M=0,D=0,F=0,k=1){this.x=M,this.y=D,this.z=F,this.w=k}set(M,D,F,k){return this.x=M,this.y=D,this.z=F,this.w=k,this}length(){return Math.sqrt(this.x*this.x+this.y*this.y+this.z*this.z+this.w*this.w)}normalize(M=this){let D=M.length();return D===0?(this.x=this.y=this.z=0,this.w=1):(D=1/D,this.x=M.x*D,this.y=M.y*D,this.z=M.z*D,this.w=M.w*D),this}mulScalar(M,D=this){return this.x=D.x*M,this.y=D.y*M,this.z=D.z*M,this.w=D.w*M,this}}self.onmessage=async R=>{var D,F;const{data:M}=R;switch(M.type){case"initWorker":importScripts(M.cborXUrl);break;case"destroyWorker":o();break;case"loadGsdManifest":const{manifestUrl:k,loadRepresentation:z}=M,X=await d(k,z);globalThis.manifestUrl=k,globalThis.manifest=X,globalThis.resentation=X.representation,globalThis.downloadQueueUrlList=h(),globalThis.fetchWorker=new i(globalThis.downloadQueueUrlList),self.postMessage({type:"onloadManifest",data:X,url:k,representation:z});break;case"loadGsdSegments":try{const Z=u(globalThis.manifest,globalThis.resentation),Y=await p(globalThis.manifest,Z),re=(D=Y==null?void 0:Y.elements[0])==null?void 0:D.properties.map(ie=>ie.storage.buffer);self.postMessage({type:"loadGsdSegmentsDone",data:Y,url:globalThis.manifestUrl,representation:globalThis.resentation},re)}catch(Z){console.error("Error loading GSD:",Z),self.postMessage({type:"error",data:Z.message,url:globalThis.manifestUrl})}break;case"loadTimelineIndexSegments":const{timelineIndexs:W}=M;try{const Z=u(globalThis.manifest,globalThis.resentation),Y=await m(globalThis.manifest,Z,W),re=(F=Y==null?void 0:Y.elements[0])==null?void 0:F.properties.map(ie=>ie.storage.buffer);self.postMessage({type:"loadTimelineIndexSegmentsDone",data:Y,timelineIndexs:W,url:globalThis.manifestUrl,representation:globalThis.resentation},re)}catch(Z){console.error("Error loading GSD:",Z),self.postMessage({type:"error",data:Z.message,url:globalThis.manifestUrl})}break}};const o=()=>{var R;globalThis.manifestUrl=null,globalThis.manifest=null,globalThis.resentation=null,(R=globalThis.fetchWorker)==null||R.destroy(),globalThis.fetchWorker=null,globalThis.downloadQueueUrlList=[],globalThis.loadedSegments=[],globalThis.currentLoadSg=null},h=()=>{const R=new Set,M=u(globalThis.manifest,globalThis.resentation),D=globalThis.manifest.baseUrl,F=M.segmentTemplate[0];for(const z of F.segmentTimeline)for(const X of z.nl){const W=`${D}${F.media.replace("$SegGroupIndex$",String(z.sg)).replace("$NodeIndex$",String(X))}`;R.add(W)}return Array.from(R)},d=async(R,M)=>{const F=await(await fetch(R)).text(),k=JSON.parse(F);k.baseUrl=R.replace(/\/[^\/]*$/,"/");const{schemas:z,gsiUrl:X,repId:W}=await f(k,M);return k.schemas=z,k.gsiUrl=X,k.representation=W,k},f=async(R,M)=>{let D=null,F=null;for(const re of R.adaptationSets)if(re.contentType==="4dgs"){F=re;for(const ie of re.representations)if(ie.id===M){D=ie;break}break}D||(D=F.representations[0],console.warn(`Representation '${M}' not found, use the first representation instead`));const k=D.id,z=R.baseUrl+k+"/init.gsi.json",W=await(await fetch(z)).text(),Z=JSON.parse(W),Y={};return Y[k]=Z,{schemas:Y,gsiUrl:z,repId:k}},u=(R,M="high-quantized")=>{let D=null;for(const F of R.adaptationSets)if(F.contentType==="4dgs"){for(const k of F.representations)if(k.id===M){D=k;break}break}if(!D)throw new Error(`Representation '${M}' not found`);return D},p=async(R,M)=>{const D=M.id,F=R.schemas[D].attributes,k=M.segmentTemplate[0];globalThis.loadedSegments=[];const z=[],X=[];for(const Z of k.segmentTimeline)for(const Y of Z.nl){if(globalThis.loadedSegments.includes(`${Z.sg}_${Y}`))continue;globalThis.loadedSegments.push(`${Z.sg}_${Y}`);const re=await _(R,M,F,Z.sg,Y);X.push(re.decoded),z.push(re.metadata)}return g(X,F,R.comments)},m=async(R,M,D)=>{if(!D||D.length===0)return{decoded:[],metadata:[]};const F=M.id,k=R.schemas[F].attributes,z=M.segmentTemplate[0];globalThis.loadedSegments||(globalThis.loadedSegments=[]);const X=z.segmentTimeline[D[0]];globalThis.currentLoadSg!==X.sg&&(globalThis.loadedSegments=globalThis.loadedSegments.filter(pe=>!pe.startsWith(globalThis.currentLoadSg)),globalThis.currentLoadSg=X.sg);let W;const Z=[];for(const pe of D){W=z.segmentTimeline[pe];for(const Ge of W.nl)globalThis.loadedSegments.includes(`${W.sg}_${Ge}`)||(globalThis.loadedSegments.push(`${W.sg}_${Ge}`),Z.push(Ge))}const Y=await _(R,M,k,W.sg,Z);Y.metadata;const re=Y.decoded;return g(re,k,R.comments)},_=async(R,M,D,F,k)=>{const z=R.baseUrl,W=M.segmentTemplate[0].media,Z=k.map(pe=>`${z}${W.replace("$SegGroupIndex$",String(F)).replace("$NodeIndex$",String(pe))}`),Y=await Promise.all(Z.map(async pe=>{const Ge=await x(pe),fe=Ge.metadata,we=Ge.segmentData,Oe=fe.gaussianCount;console.log(`loadSegment ${pe}`),console.log("loadSegment timeStart:",fe.timeStart,"segment timeEnd:",fe.timeEnd,"segment gaussianCount:",Oe);let be;if(M.id.includes("quantized")){const te=fe.chunk_bounds;be=j(we,Oe,D,F,te)}else be=U(we,Oe,D,F);return{decoded:be,metadata:fe}})),re=Y.map(pe=>pe.decoded),ie=Y.map(pe=>pe.metadata);return{decoded:re,metadata:ie}},g=(R,M,D)=>{if(R.length===0)return new r([{name:"vertex",count:0,properties:[{name:"position",type:"float",storage:new Float32Array(0),byteSize:4},{name:"color_opacity",type:"uint16",storage:new Uint16Array(0),byteSize:2},{name:"t",type:"float",storage:new Float32Array(0),byteSize:4},{name:"t_scale",type:"float",storage:new Float32Array(0),byteSize:4},{name:"cutoff",type:"float",storage:new Float32Array(0),byteSize:4},{name:"motion",type:"float",storage:new Float32Array(0),byteSize:4},{name:"rotation",type:"float",storage:new Float32Array(0),byteSize:4},{name:"scale",type:"uint16",storage:new Uint16Array(0),byteSize:2},{name:"time_index",type:"float",storage:new Float32Array(0),byteSize:4}]}],D);const F=V(R),[k,z,X]=S(F.lifecycle,3,Float32Array),W=F.time_index,Z=M.find(ie=>ie.name==="feature_rest"),Y=[];if(Z&&F.feature_rest){const ie=Z.dataType.split(",")[1].trim().replace(">",""),pe=S(F.feature_rest,3,Float32Array);for(const Ge of pe){const fe=S(Ge,ie/3,Float32Array);for(let we=0;we<fe.length;we++)Y.push({name:`f_rest_${we}`,type:"float",storage:fe[we],byteSize:4})}}return new r([{name:"vertex",count:F.position.length/3,properties:[{name:"position",type:"float",storage:F.position,byteSize:4},{name:"color_opacity",type:"uint16",storage:F.color_opacity,byteSize:2},{name:"t",type:"float",storage:z,byteSize:4},{name:"t_scale",type:"float",storage:k,byteSize:4},{name:"cutoff",type:"float",storage:X,byteSize:4},{name:"motion",type:"float",storage:F.motion,byteSize:4},{name:"rotation",type:"float",storage:F.rotation,byteSize:4},{name:"scale",type:"uint16",storage:F.scale,byteSize:2},{name:"time_index",type:"float",storage:W,byteSize:4},...Y]}],D)},S=(R,M,D)=>{const F=new Array(M),k=Math.floor(R.length/M),z=R.length%M;for(let X=0;X<M;X++){const W=X<z?k+1:k;F[X]=new D(W)}for(let X=0;X<R.length;X++){const W=X%M,Z=Math.floor(X/M);F[W][Z]=R[X]}return F},x=async R=>{const M=new a(R),{metadata:D,segmentData:F}=await M.readFragment();return{metadata:D,segmentData:F}},b=(R,M)=>{let D,F,k=-1;if(R.encoding){const z=R.encoding.storageType;if(z==="uint32")F=Uint32Array,D=Uint32Array.BYTES_PER_ELEMENT;else if(z.startsWith("array<uchar")){F=Uint8Array;const X=z.split(",")[1].trim().replace(">","");k=parseInt(X),D=k*Uint8Array.BYTES_PER_ELEMENT}else throw new Error(`Unsupported storage type: ${z}`)}else if(F=Float32Array,R.dataType==="vec3f")D=3*Float32Array.BYTES_PER_ELEMENT;else if(R.dataType==="vec4f")D=4*Float32Array.BYTES_PER_ELEMENT;else if(R.dataType==="vec2f")D=2*Float32Array.BYTES_PER_ELEMENT;else if(R.dataType.startsWith("array<float")){const z=R.dataType.split(",")[1].trim().replace(">","");k=parseInt(z),D=k*Float32Array.BYTES_PER_ELEMENT}else throw new Error(`Unsupported data type: ${R.dataType}`);return{dataSize:M*D,datatype:F,arraySize:k}},y=(R,M)=>{const D=(1<<M)-1;return(R&D)/D},w=R=>{const M=new Float32Array(R.length*3);for(let D=0;D<R.length;D++)M[D*3]=y(R[D]>>>21,11),M[D*3+1]=y(R[D]>>>11,10),M[D*3+2]=y(R[D],11);return M},A=R=>{const M=new Float32Array(R.length*4);for(let D=0;D<R.length;D++)M[D*4]=y(R[D]>>>24,8),M[D*4+1]=y(R[D]>>>16,8),M[D*4+2]=y(R[D]>>>8,8),M[D*4+3]=y(R[D],8);return M},C=R=>{const M=new Float32Array(R.length*3),D=1/(Math.sqrt(2)*.5);for(let F=0;F<R.length;F++){const k=(y(R[F]>>>20,10)-.5)*D,z=(y(R[F]>>>10,10)-.5)*D,X=(y(R[F],10)-.5)*D,W=Math.sqrt(1-(k*k+z*z+X*X));let Z=0,Y=0,re=0,ie=0;switch(R[F]>>>30){case 0:Z=W,Y=k,re=z,ie=X;break;case 1:Z=W,Y=z,re=X,ie=k;break;case 2:Z=z,Y=W,re=X,ie=k;break;case 3:Z=z,Y=X,re=W,ie=k;break}const pe=G(Z,Y,re,ie);M[F*3]=pe.x,M[F*3+1]=pe.y,M[F*3+2]=pe.z}return M},T=(R,M,D)=>{const F=D-M,k=new Float32Array(R.length);for(let z=0;z<R.length;z++)k[z]=R[z]/255*F+M;return k},P=new Float32Array(1),L=new Int32Array(P.buffer),O=R=>{P[0]=R;const M=L[0];let D=M>>16&32768,F=M>>12&2047;const k=M>>23&255;return k<103?D:k>142?(D|=31744,D|=(k===255?0:1)&&M&8388607,D):k<113?(F|=2048,D|=(F>>114-k)+(F>>113-k&1),D):(D|=k-112<<10|F>>1,D+=F&1,D)},N=R=>{const M=new Uint16Array(R.length);for(let D=0;D<R.length/4;++D)M[D*4]=O(R[D*4]*e+.5),M[D*4+1]=O(R[D*4+1]*e+.5),M[D*4+2]=O(R[D*4+2]*e+.5),M[D*4+3]=O(R[D*4+3]);return M},B=new n(0,0,0,0),G=(R,M,D,F)=>(B.set(M,D,F,R),B.normalize(),B.w<0&&B.mulScalar(-1),B);function j(R,M,D,F,k){const z=k[Object.keys(k)[0]].length,X=256;let W=[],Z=M;for(let fe=0;fe<z;fe++){const we=Math.min(X,Z);W.push(we),Z-=we}let Y=0,re={};for(let fe of D){const we=fe.name,{dataSize:Oe,datatype:be}=b(fe,M);let te=R.buffer.slice(Y,Y+Oe),it=new be(te);re[we]=it,Y+=Oe}let ie=[],pe=0;for(let fe=0;fe<z;fe++){const we=H(re,k,fe,W,pe,D),Oe=we.chunkDecompressed;ie.push(Oe),pe=we.chunkStartIdx}let Ge={};for(let fe of Object.keys(ie[0])){let we=0;for(let be=0;be<ie.length;be++)we+=ie[be][fe].length;fe==="color_opacity"||fe==="scale"?Ge[fe]=new Uint16Array(we):Ge[fe]=new Float32Array(we);let Oe=0;for(let be=0;be<ie.length;be++)Ge[fe].set(ie[be][fe],Oe),Oe+=ie[be][fe].length}return D.some(fe=>fe.name==="feature_rest")&&(Ge.feature_rest=I(re,D)),Ge.time_index=new Float32Array(M),Ge.time_index.fill(F-1),Ge}const H=(R,M,D,F,k,z)=>{const X=F[D],W=k+X,Z=(re,ie,pe)=>re*(1-pe)+ie*pe;let Y={};for(let re of z){const ie=re.name,pe=re.encoding.codec,Ge=R[ie].slice(k,W);if(pe==="pack_11_10_11")if(ie==="scale"){const fe=M.min_scales[D],we=M.max_scales[D],Oe=w(Ge),be=Oe.length,te=new Uint16Array(be);for(let it=0;it<be;it++)te[it]=O(Math.exp(Z(fe[it%3],we[it%3],Oe[it])));Y[ie]=te}else{const fe=w(Ge);let we,Oe;if(ie==="position")we=M.min_means[D],Oe=M.max_means[D];else if(ie==="motion")we=M.min_motion[D],Oe=M.max_motion[D];else if(ie==="lifecycle"){const be=M.min_t_scale[D],te=M.max_t_scale[D],it=M.min_time[D],ir=M.max_time[D],Or=M.min_cutoff[D],Fr=M.max_cutoff[D];we=[be[0],it[0],Or[0]],Oe=[te[0],ir[0],Fr[0]]}else throw new Error(`Unknown attribute for pack_11_10_11: ${ie}`);for(let be=0;be<fe.length;be++)fe[be]=Z(we[be%3],Oe[be%3],fe[be]);Y[ie]=fe}else if(pe==="pack_8888"){let fe=A(Ge);const we=M.min_colors[D],Oe=M.max_colors[D],be=new Uint16Array(fe.length);for(let te=0;te<fe.length;te++){const it=te*4;be[it]=O(Z(we[0],Oe[0],fe[it])),be[it+1]=O(Z(we[1],Oe[1],fe[it+1])),be[it+2]=O(Z(we[2],Oe[2],fe[it+2])),be[it+3]=O(fe[it+3])}Y[ie]=be}else if(pe==="pack_rotation_32"){const fe=C(Ge);Y[ie]=fe}else if(pe==="range_quant_u8"){if(ie==="feature_rest")continue;throw new Error(`Unknown codec: ${pe}`)}}return{chunkDecompressed:Y,chunkStartIdx:W}},I=(R,M)=>{const D="feature_rest",F=M.find(W=>W.name===D);let k;const z=F.encoding.codec,X=R[D];if(z==="range_quant_u8"){const[W,Z]=F.encoding.range;k=T(X,W,Z)}else throw new Error(`Unknown codec: ${z}`);return k},U=(R,M,D,F)=>{let k=0;const z={};for(const Y of D){const{dataSize:re}=b(Y,M);if(["vec3f","vec4f","vec2f"].includes(Y.dataType))z[Y.name]=new Float32Array(R.buffer.slice(k,k+re));else if(Y.dataType.startsWith("array<float"))z[Y.name]=new Float32Array(R.buffer.slice(k,k+re));else throw new Error(`Unsupported data type: ${Y.dataType}`);k+=re}const X=new Uint16Array(z.scale.length);for(let Y=0;Y<z.scale.length;Y++)X[Y]=O(Math.exp(z.scale[Y]));z.scale=X;const W=z.rotation.length/4,Z=new Float32Array(W*3);for(let Y=0;Y<W;Y++){const re=G(z.rotation[Y*4],z.rotation[Y*4+1],z.rotation[Y*4+2],z.rotation[Y*4+3]);Z[Y*3]=re.x,Z[Y*3+1]=re.y,Z[Y*3+2]=re.z}return z.rotation=Z,z.color_opacity=N(z.color_opacity),z.time_index=new Float32Array(M),z.time_index.fill(F-1),z},V=(R,M)=>{const D={};if(R.length===1)return R[0];for(const F of Object.keys(R[0]))if(R[0][F]instanceof Float32Array||R[0][F]instanceof Uint16Array){const k=R.reduce((W,Z)=>W+Z[F].length,0);let z;R[0][F]instanceof Uint16Array?z=new Uint16Array(k):z=new Float32Array(k);let X=0;for(const W of R)z.set(W[F],X),X+=W[F].length;D[F]=z}else Array.isArray(R[0][F])?D[F]=R.flatMap(k=>Array.from(k[F])):D[F]=R.map(k=>k[F]).flat();return D}}class QN extends ue{constructor(e){super();l(this,"manifestUrl");l(this,"worker");this.manifestUrl=e,this._initWorker()}async _initWorker(){this.worker=new Worker(URL.createObjectURL(new Blob([`(${ZN.toString()})()`],{type:"application/javascript"}))),this.worker.postMessage({type:"initWorker",cborXUrl:"https://frontend.4dv-intelligence.com/viewer-static/cbor-x@1.6.0.min.js"})}loadGsdManifest(e){var s;return(s=this.worker)==null||s.postMessage({type:"loadGsdManifest",manifestUrl:this.manifestUrl,loadRepresentation:e}),new Promise((i,r)=>{if(!this.worker){r(new Error("no worker"));return}this.worker.onmessage=a=>{if(!this.worker)return;const{data:n}=a;if(this.manifestUrl===n.url)switch(n.type){case"onloadManifest":i({manifest:n.data,url:n.url,representation:n.representation});break;case"error":r(n.data);break}}})}loadGsdSegments(e,s){var i;return(i=this.worker)==null||i.postMessage({type:"loadGsdSegments"}),new Promise((r,a)=>{if(!this.worker){a(new Error("no worker"));return}this.worker.onmessage=n=>{if(!this.worker)return;const{data:o}=n;if(this.manifestUrl===o.url)switch(o.type){case"progress":e==null||e(o.bytes,o.totalLength,o.url);break;case"loadGsdSegmentsDone":r(o.data);break;case"error":s==null||s(o.data,o.url);break}}})}loadGsdSegmentsByTimelineIndex(e,s,i){var r;return(r=this.worker)==null||r.postMessage({type:"loadTimelineIndexSegments",timelineIndexs:e}),new Promise((a,n)=>{if(!this.worker){n(new Error("no worker"));return}this.worker.onmessage=o=>{if(!this.worker)return;const{data:h}=o;if(this.manifestUrl===h.url)switch(h.type){case"progress":s==null||s(h.bytes,h.totalLength,h.url);break;case"loadTimelineIndexSegmentsDone":a(h);break;case"error":i==null||i(h.data,h.url);break}}})}destroy(){this.worker&&(this.worker.postMessage({type:"destroyWorker"}),this.worker.terminate(),this.worker=void 0)}}const Yh=class Yh{constructor(t,e,s){l(this,"lastLoadIndex",0);l(this,"gsdAssetParser");this.manifest=t,this.representation=e,this.gsdAssetParser=s,this.segmentTimelines=this.getSegmentTimeline(t,e)}getSegmentTimeline(t,e){let s=null;for(const i of t.adaptationSets)if(i.contentType==="4dgs"){for(const r of i.representations)if(r.id===e){s=r;break}break}if(!s)throw new Error(`Representation '${e}' not found`);return s.segmentTemplate[0].segmentTimeline}onTimeChanged(t){const e=this.findSegmentTimeline(t);if(!e)return;const s=e.timelineIndex<this.segmentTimelines.length-1?e.timelineIndex+1:0;this.lastLoadIndex!==s&&(this.lastLoadIndex=s,this.loadNextSegment(s))}async loadNextSegment(t){const e=[];for(let r=0;r<Yh.CACHE_COUNT;r++)e.push((t+r)%this.segmentTimelines.length);const s=e[e.length-1],i=this.segmentTimelines[s].t+this.segmentTimelines[s].d;this.gsdAssetParser.appendloadDataTask(e,i)}findSegmentTimeline(t){let e=0,s=this.segmentTimelines.length-1;for(;e<=s;){const i=e+s>>1,{t:r,d:a}=this.segmentTimelines[i];if(t<r)s=i-1;else if(t>=r+a)e=i+1;else return{timeline:this.segmentTimelines[i],timelineIndex:i}}return null}};l(Yh,"CACHE_COUNT",6);let Wu=Yh;class JN{constructor(t,e){l(this,"urlList");l(this,"app");l(this,"maxRetries");l(this,"gsplatResource");l(this,"onlyOneAsset");l(this,"manifest");l(this,"schedule");l(this,"readWorker");l(this,"loadDataTaskQueue",[]);l(this,"isProcessingLoadTaskQueue",!1);console.log("____ GSDJS ENGINE IVAN","Register GsdParser.constructor"),this.app=t,this.maxRetries=e,this.urlList=[],this.gsplatResource=null,this.totalReceived=0,this.manifest={}}async load(t,e,s){console.log("____ GSDJS ENGINE IVAN","GsdParser.load",t.load);const i=s.data.events;this.events=i,this.asset=s,this.callback=e,this.timeOption=s.data.timeOption;let r=s.data.representation||"high-raw";this.readWorker=new QN(t.load);const a=await this.readWorker.loadGsdManifest(r);this.manifest=a.manifest,r=a.manifest.representation||r,this.schedule=new Wu(this.manifest,r,this),this.totalReceivedCount=0;const n=this.getSegmentTimeline(this.manifest,r),o=n[0].t+n[0].d;this.appendloadDataTask([0,1],o),i.on("timeChanged",h=>{var d;(d=this.schedule)==null||d.onTimeChanged(h)})}getSegmentTimeline(t,e){let s=null;for(const i of t.adaptationSets)if(i.contentType==="4dgs"){for(const r of i.representations)if(r.id===e){s=r;break}break}if(!s)throw new Error(`Representation '${e}' not found`);return s.segmentTemplate[0].segmentTimeline}appendloadDataTask(t,e){this.loadDataTaskQueue.push({segmentIndexs:t,loadedTime:e}),this.isProcessingLoadTaskQueue||Promise.resolve().then(()=>this.processLoadQueue())}async processLoadQueue(){if(!this.isProcessingLoadTaskQueue){this.isProcessingLoadTaskQueue=!0;try{for(;this.loadDataTaskQueue.length>0;){const t=this.loadDataTaskQueue.shift();await this.loadGsplatData(t)}}finally{this.isProcessingLoadTaskQueue=!1}}}async loadGsplatData(t){var o,h;const{segmentIndexs:e,loadedTime:s}=t,i=this.events,r=this.asset,a=this.callback,n=this.timeOption;try{const f=(await this.readWorker.loadGsdSegmentsByTimelineIndex(e,(m,_)=>{this.totalReceived+=m,r&&i.fire("progress",this.totalReceived,_)},(m,_)=>{debugger;console.warn("ERROE Load GSD",_,m)})).data;if(r.fire("load:data",f),f.elements[0].count===0)return;this.totalReceivedCount+=f.elements[0].count;const u={};f.elements[0].properties.forEach(m=>{u[m.name]=m.storage});const p=r.data.createTime!==((h=(o=this.onlyOneAsset)==null?void 0:o.data)==null?void 0:h.createTime);if(this.gsplatResource&&!p)console.log("____ ENGINE IVAN","appendGSplatDecodedResource"),this.gsplatResource.appendGSplatResource(u,n,s,r,i);else{console.log("____ ENGINE IVAN","new GSplatDecodedResource");const m=new Z1([{name:"vertex",count:0,properties:[]}],f.comments);m.is4D=f.is4D,m.shBands=f.shBands,this.gsplatResource=new gA(this.app.graphicsDevice,m),this.gsplatResource.setSceneInfo(this.manifest.sceneInfo),await this.gsplatResource.updateData(),this.gsplatResource.appendGSplatResource(u,n,s,r,i),this.onlyOneAsset=r,a&&a(null,this.gsplatResource),i.fire("loadAllAssetsDone")}}catch(d){console.error("loadGsplatData","error",d),a&&a(d,null)}}open(t,e){return e}}class ek extends Ze{constructor(t){console.log("____ ENGINE IVAN","Register GSplatHandler.constructor by application addResourceHandles"),super(t,"gsplat"),this.parsers={ply:new KN(t,3),json:new JN(t,3)}}_getUrlWithoutParams(t){return t.indexOf("?")>=0?t.split("?")[0]:t}_getParser(t){const e=ge.getExtension(this._getUrlWithoutParams(t)).toLowerCase().replace(".","");return this.parsers[e]||this.parsers.ply}load(t,e,s){console.log("____ ENGINE IVAN","GSplatHandler.load"),typeof t=="string"&&(t={load:t,original:t}),this._getParser(t.original).load(t,e,s)}open(t,e,s){return console.log("____ ENGINE IVAN","GSplatHandler.open"),e}}class $u{static setCompressedPRS(t,e,s){const i=s.singleVecs;let r,a;const n=e.___1;n||(r=s.tripleVecs,a=e.___2);let o=n?n[0]:r[a];t.setLocalPosition(i[o],i[o+1],i[o+2]),o=n?n[1]:r[a+1],t.setLocalEulerAngles(i[o],i[o+1],i[o+2]),o=n?n[2]:r[a+2],t.setLocalScale(i[o],i[o+1],i[o+2])}static oneCharToKey(t,e){const s=t.charCodeAt(0)-e.fieldFirstCode;return e.fieldArray[s]}static multCharToKey(t,e){let s=0;for(let i=0;i<t.length;i++)s=s*e.fieldCodeBase+t.charCodeAt(i)-e.fieldFirstCode;return e.fieldArray[s]}}class Vh{constructor(t,e){this._node=t,this._data=e}run(){const t=Object.prototype.toString.call(this._node);return t==="[object Object]"?this._handleMap():t==="[object Array]"?this._handleArray():this._result=this._node,this._result}_handleMap(){this._result={},Object.keys(this._node).forEach(this._handleKey,this)}_handleKey(t){let e=t;const s=t.length;s===1?e=$u.oneCharToKey(t,this._data):s===2&&(e=$u.multCharToKey(t,this._data)),this._result[e]=new Vh(this._node[t],this._data).run()}_handleArray(){this._result=[],this._node.forEach(this._handleArElt,this)}_handleArElt(t){const e=new Vh(t,this._data).run();this._result.push(e)}}class Am{constructor(t,e){this._app=t,this._isTemplate=e}parse(t){const e={};let s=null;const i=t.compressedFormat;i&&!t.entDecompressed&&(t.entDecompressed=!0,t.entities=new Vh(t.entities,i).run());for(const r in t.entities){const a=t.entities[r],n=this._createEntity(a,i);e[r]=n,a.parent===null&&(s=n)}for(const r in t.entities){const a=e[r],n=t.entities[r].children,o=n.length;for(let h=0;h<o;h++){const d=e[n[h]];d&&a.addChild(d)}}return this._openComponentData(s,t.entities),s}_createEntity(t,e){const s=new lt(t.name,this._app);if(s.setGuid(t.resource_id),this._setPosRotScale(s,t,e),s._enabled=t.enabled??!0,this._isTemplate?s._template=!0:s._enabledInHierarchy=s._enabled,s.template=t.template,t.tags)for(let i=0;i<t.tags.length;i++)s.tags.add(t.tags[i]);return s}_setPosRotScale(t,e,s){if(s)$u.setCompressedPRS(t,e,s);else{const i=e.position,r=e.rotation,a=e.scale;t.setLocalPosition(i[0],i[1],i[2]),t.setLocalEulerAngles(r[0],r[1],r[2]),t.setLocalScale(a[0],a[1],a[2])}}_openComponentData(t,e){const s=this._app.systems.list;let i=s.length;const r=e[t.getGuid()];for(let n=0;n<i;n++){const o=s[n],h=r.components[o.id];h&&o.addComponent(t,h)}i=r.children.length;const a=t._children;for(let n=0;n<i;n++)a[n]?a[n]=this._openComponentData(a[n],e):v.warn(`Scene data is invalid where a child under "${t.name}" Entity doesn't exist. Please check the scene data.`);return t}}class vx{static load(t,e,s){typeof t=="string"&&(t={load:t,original:t}),ot.get(t.load,{retry:e>0,maxRetries:e},(i,r)=>{if(!i)s(i,r);else{let a=`Error while loading scene JSON ${t.original}`;i.message?(a+=`: ${i.message}`,i.stack&&(a+=`
@@ -20672,4 +20673,4 @@ void modifyColor(vec3 center, inout vec4 color) {
     // After hit duration: original color (no change)
 }
 `,V4=`
-`;class G4 extends Rr{constructor(){super(...arguments);l(this,"effectType",1);l(this,"_centerArray",[0,0,0]);l(this,"_scaleArray",[1,1,1]);l(this,"center",new E(0,0,0));l(this,"scale",new E(1,1,1));l(this,"distance",30);l(this,"rainSize",.0016);l(this,"intensity",.8);l(this,"speed",2);l(this,"acceleration",0);l(this,"flightTime",0);l(this,"rotation",.9);l(this,"hitDuration",.5);l(this,"endRadius",25)}getShaderGLSL(){return z4}getShaderWGSL(){return V4}updateEffect(e,s){if(this.isEffectComplete()){this.enabled=!1;return}this.setMaterialsAppliedParams("uEffectType",this.effectType),this.setMaterialsAppliedParams("uEffectTime",e),this.setMaterialsAppliedParams("uEffectSpeed",this.speed),this.setMaterialsAppliedParams("uEffectAcceleration",this.acceleration),this.setMaterialsAppliedParams("uEffectEndRadius",this.endRadius),this.setMaterialsAppliedParams("uEffectFlightTime",this.flightTime),this.setMaterialsAppliedParams("uEffectHitDuration",this.hitDuration),this.setMaterialsAppliedParams("uEffectRainSize",this.rainSize),this.setMaterialsAppliedParams("uIntensity",this.intensity),this._centerArray[0]=this.center.x,this._centerArray[1]=this.center.y,this._centerArray[2]=this.center.z,this.setMaterialsAppliedParams("uEffectCenter",this._centerArray),this._scaleArray[0]=this.scale.x,this._scaleArray[1]=this.scale.y,this._scaleArray[2]=this.scale.z,this.setMaterialsAppliedParams("uEffectScales",this._scaleArray)}isEffectComplete(){let e;if(this.acceleration===0)e=this.endRadius/this.speed;else{const r=this.speed*this.speed+2*this.acceleration*this.endRadius;e=(-this.speed+Math.sqrt(Math.max(r,0)))/this.acceleration}const i=e+this.flightTime+Math.max(.5,this.hitDuration);return this.effectTime>=i}}l(G4,"scriptName","gsplatRevealDyno");export{vt as $,J4 as A,B0 as B,J as C,X4 as D,lt as E,SA as F,Yc as G,Ve as H,Yn as I,Ht as J,h_ as K,Zp as L,oa as M,Ee as N,js as O,tB as P,oe as Q,_g as R,Gs as S,JS as T,bt as U,E as V,H0 as W,Zk as X,ze as Y,$s as Z,$ as _,se as a,xa as a0,ce as a1,rh as a2,Nu as a3,qe as a4,OL as a5,ye as a6,qO as a7,WO as a8,De as a9,G4 as aA,Ko as aB,tc as aC,eB as aD,Te as aE,Ho as aF,k0 as aG,Au as aa,FL as ab,Nl as ac,ee as ad,W4 as ae,iB as af,z1 as ag,Q4 as ah,x4 as ai,N0 as aj,y4 as ak,$4 as al,Gv as am,kx as an,Lx as ao,de as ap,Re as aq,Wi as ar,_t as as,ue as at,E4 as au,C4 as av,M4 as aw,R4 as ax,U4 as ay,N4 as az,Ok as b,K as c,he as d,kl as e,Dn as f,ai as g,im as h,q4 as i,j4 as j,Y4 as k,K4 as l,Z4 as m,YS as n,jS as o,KS as p,Fb as q,Ob as r,au as s,em as t,cl as u,kt as v,UO as w,sn as x,mv as y,Nx as z};
+`;class G4 extends Rr{constructor(){super(...arguments);l(this,"effectType",1);l(this,"_centerArray",[0,0,0]);l(this,"_scaleArray",[1,1,1]);l(this,"center",new E(0,0,0));l(this,"scale",new E(1,1,1));l(this,"distance",30);l(this,"rainSize",.0016);l(this,"intensity",.8);l(this,"speed",2);l(this,"acceleration",0);l(this,"flightTime",0);l(this,"rotation",.9);l(this,"hitDuration",.5);l(this,"endRadius",25)}getShaderGLSL(){return z4}getShaderWGSL(){return V4}updateEffect(e,s){if(this.isEffectComplete()){this.enabled=!1;return}this.setMaterialsAppliedParams("uEffectType",this.effectType),this.setMaterialsAppliedParams("uEffectTime",e),this.setMaterialsAppliedParams("uEffectSpeed",this.speed),this.setMaterialsAppliedParams("uEffectAcceleration",this.acceleration),this.setMaterialsAppliedParams("uEffectEndRadius",this.endRadius),this.setMaterialsAppliedParams("uEffectFlightTime",this.flightTime),this.setMaterialsAppliedParams("uEffectHitDuration",this.hitDuration),this.setMaterialsAppliedParams("uEffectRainSize",this.rainSize),this.setMaterialsAppliedParams("uIntensity",this.intensity),this._centerArray[0]=this.center.x,this._centerArray[1]=this.center.y,this._centerArray[2]=this.center.z,this.setMaterialsAppliedParams("uEffectCenter",this._centerArray),this._scaleArray[0]=this.scale.x,this._scaleArray[1]=this.scale.y,this._scaleArray[2]=this.scale.z,this.setMaterialsAppliedParams("uEffectScales",this._scaleArray)}isEffectComplete(){let e;if(this.acceleration===0)e=this.endRadius/this.speed;else{const r=this.speed*this.speed+2*this.acceleration*this.endRadius;e=(-this.speed+Math.sqrt(Math.max(r,0)))/this.acceleration}const i=e+this.flightTime+Math.max(.5,this.hitDuration);return this.effectTime>=i}}l(G4,"scriptName","gsplatRevealDyno");export{vt as $,J4 as A,B0 as B,J as C,X4 as D,lt as E,SA as F,Yc as G,Ve as H,Yn as I,Ht as J,h_ as K,Zp as L,oa as M,Ee as N,js as O,tB as P,oe as Q,_g as R,Gs as S,JS as T,bt as U,E as V,H0 as W,Zk as X,ze as Y,$s as Z,$ as _,se as a,xa as a0,ce as a1,Nu as a2,qe as a3,rh as a4,OL as a5,ye as a6,Nl as a7,ee as a8,De as a9,Te as aA,Ho as aB,k0 as aC,W4 as aa,iB as ab,z1 as ac,Q4 as ad,x4 as ae,N0 as af,y4 as ag,$4 as ah,Gv as ai,kx as aj,Lx as ak,de as al,Re as am,Wi as an,_t as ao,ue as ap,E4 as aq,C4 as ar,M4 as as,R4 as at,U4 as au,N4 as av,G4 as aw,Ko as ax,tc as ay,eB as az,Ok as b,K as c,he as d,kl as e,Dn as f,ai as g,im as h,q4 as i,j4 as j,Y4 as k,K4 as l,Z4 as m,YS as n,jS as o,KS as p,Fb as q,Ob as r,au as s,em as t,cl as u,kt as v,UO as w,sn as x,mv as y,Nx as z};
