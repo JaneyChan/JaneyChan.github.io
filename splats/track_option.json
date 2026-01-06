@@ -1,0 +1,20 @@
+[
+  {
+    "ts": "0",
+    "splatMode": "0",
+    "controlColorMode": "true",
+    "saturation": "0.7",
+    "opacity": "1.0",
+    "brightness": "0.36",
+    "openFrameAnim": "true"
+  },
+  {
+    "ts": "5",
+    "splatMode": "0",
+    "controlColorMode": "true",
+    "saturation": "2.0",
+    "opacity": "4.0",
+    "brightness": "0.86",
+    "openFrameAnim": "true"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "attributes": {
+    "aPosition":"POSITION"
+  },
+  "vshader":"\nattribute vec3 aPosition;\n        uniform mat4 matrix_model;\n        uniform mat4 matrix_viewProjection;\n        varying vec3 vWorldPos;\n        \n        void main(void) {\n            vec4 worldPos = matrix_model * vec4(aPosition, 1.0);\n            vWorldPos = worldPos.xyz;\n            gl_Position = matrix_viewProjection * worldPos;\n        }",
+  "fshader": "\nprecision highp float;\n\nuniform vec3 iResolution;   // 视口分辨率\nuniform float uTime;        // 时间\n\nvoid main(void) {\n    // 屏幕坐标转 uv\n    vec2 uv = gl_FragCoord.xy / iResolution.xy;\n    \n    vec3 col = 0.5 + 0.5*cos(uTime+uv.xyx+vec3(0,2,4));\n    \n    gl_FragColor = vec4(col,1.0);\n}"
+}

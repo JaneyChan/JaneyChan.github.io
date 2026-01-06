@@ -1,0 +1,65 @@
+{
+  "name": "Test-4DV.ai",
+  "short_name": "Test-4DV.ai",
+  "description": "At 4DV.ai, we are working on 4D video creation, playing and editing tools based on Gaussian Splatting. We envision 4D video to be the future of visual media and ultimate medium for immersive storytelling.",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "natural",
+  "lang": "en-US",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "https://frontend.4dv.ai/viewer-static/logo/super4d-256.jpg",
+      "sizes": "256x256",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://frontend.4dv.ai/viewer-static/logo/super4d-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://frontend.4dv.ai/viewer-static/logo/super4d-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "https://frontend.4dv.ai/viewer-static/logo/super4d-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://frontend.4dv.ai/viewer-static/logo/super-4d-screenshot.jpg",
+      "type": "image/jpeg",
+      "sizes": "1920x1080",
+      "form_factor": "wide"
+    },
+    {
+      "src": "https://frontend.4dv.ai/viewer-static/logo/super-4d-screenshot-narrow.jpg",
+      "type": "image/jpeg",
+      "sizes": "1080x1920",
+      "form_factor": "narrow"
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "./",
+      "accept": {
+        "application/octet-stream": [
+          ".ply",
+          ".plys",
+          ".4dv",
+          ".gsd"
+        ],
+        "application/ply": [
+          ".ply"
+        ]
+      }
+    }
+  ]
+}
